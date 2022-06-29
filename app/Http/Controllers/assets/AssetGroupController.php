@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Http\Controllers\assets;
+
+use App\Http\Controllers\Controller;
+use App\Models\asset\AssetSubGroup;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class AssetGroupController extends Controller
+{
+    public function assetGroup(){
+        return view('assets.assetGroupList');
+    }
+
+    public function assetSubGroup(){
+        $data=AssetSubGroup::all();
+        return view('assets.assetSubGroupList',compact('data'));
+    }
+
+    public function saveSubGroup(Request $request){
+        $data=array(
+            'group_id' => $request->group_id,
+            'sub_group_name' => $request->sub_group_name
+        );
+        if(DB::table('asset_sub_group')->insert($data)){
+            return 1;
+        }else{
+            return 0;
+        }
+
+    }
+
+    public function getAllAssetSubGroup(){
+        $allSubGroupData=AssetSubGroup::all();
+        return response()->json($allSubGroupData);
+    }
+
+    public function deleteSubGroup(Request $id){
+//        AssetSubGroup::find($id->sub_group_id)->delete($id->sub_group_id);
+//        return response()->json([
+//
+//            'success' => 'Record deleted successfully!'
+//
+//        ]);
+        // echo $id;
+        $deleted = DB::table('asset_sub_group')->where('sub_group_id', '=', $id->sub_group_id)->delete();
+        return $deleted;
+    }
+}
