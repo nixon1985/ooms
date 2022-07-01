@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 // use Illuminate\Http\Request;
 use App\Http\Controllers\Config\OutletController;
 use App\Http\Controllers\assets\AssetGroupController;
+use App\Http\Controllers\assets\AssetConfigController;
 
 
 /*
@@ -60,8 +61,15 @@ Route::get('/service_update', function () {
 Route::get('/outletinfo',[OutletController::class,'agreement'])->name('outletinforr.user');
 Route::post('/outletinfoSave',[OutletController::class,'save'])->name('outletinfoSave7.save');
 
-//__ Asset Sub Group __//
+
+
+//__ Asset Config __//
+Route::get('/assetConfigUi',[AssetConfigController::class,'assetConfigUi'])->name('assetConfigUi');
+
 Route::get('/assetGroup',[AssetGroupController::class,'assetSubGroup'])->name('assetSubGroup');
+Route::get('/getAllAssetGroup',[AssetGroupController::class,'getAllAssetGroup'])->name('getAllAssetGroup');
+
+Route::post('/saveAssetGroup',[AssetGroupController::class,'saveAssetGroup'])->name('saveAssetGroup');
 Route::post('/saveSubGroup',[AssetGroupController::class,'saveSubGroup'])->name('saveSubGroup');
 //__Get Sub-group__//
 Route::get('/getAllAssetSubGroup',[AssetGroupController::class,'getAllAssetSubGroup'])->name('getAllAssetSubGroup');
@@ -69,5 +77,11 @@ Route::get('/getAllAssetSubGroup',[AssetGroupController::class,'getAllAssetSubGr
 // Route::get('/deleteSubGroup/{id}', function () {
 //    echo "hello";
 // });
+Route::delete('/deleteAssetGroup',[AssetGroupController::class,'deleteAssetGroup'])->name('deleteAssetGroup');
 Route::delete('/deleteSubGroup',[AssetGroupController::class,'deleteSubGroup'])->name('deleteSubGroup');
+
+
+Route::get('/qrcode', function () {
+    return QrCode::size(300)->generate('A basic example of QR code!');
+});
 

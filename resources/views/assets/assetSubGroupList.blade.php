@@ -37,6 +37,7 @@
                         <div class="form-actions">
                             <button class="btn btn-primary" type="submit" onclick="saveSubGroup()">Save</button>
                         </div>
+                        {{ QrCode::size(200)->generate('A basic example of QR code!') }}
                     </div><!-- /grid column -->
                 </div><!-- /.form-row -->
             </form><!-- /form .needs-validation -->

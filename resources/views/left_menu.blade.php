@@ -65,6 +65,9 @@
                               </li>
                           </ul>
                       </li>
+                      <li class="menu-item">
+                          <a href="#" class="menu-link" onclick="loadRemotePage('assetConfigUi')" >Asset Config</a>
+                      </li>
                     <li class="menu-item">
                       <a href="user-profile.html" class="menu-link">Asset List</a>
                     </li>
