@@ -5,6 +5,7 @@ namespace App\Http\Controllers\assets;
 use App\Http\Controllers\Controller;
 use App\Models\asset\AssetSubGroup;
 use App\Models\asset\AssetsGroup;
+use App\Models\asset\AssetList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -49,6 +50,21 @@ class AssetGroupController extends Controller
     }
 
 
+    public function saveAssets(Request $request){
+        $data=array(
+            'sub_group_id' => $request->sub_group_id,
+            'asset_name' => $request->asset_name,
+            'model_no' => $request->model_no,
+            'brand_name' => $request->brand_name
+        );
+        if(DB::table('asset_list')->insert($data)){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+
 
 
     public function getAllAssetSubGroup(){
@@ -73,4 +89,10 @@ class AssetGroupController extends Controller
         $deleted = DB::table('asset_sub_group')->where('sub_group_id', '=', $id->sub_group_id)->delete();
         return $deleted;
     }
+
+    public function getAllAssetList(){
+        $data=AssetList::all();
+        return response()->json($data);
+    }
+
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\assets\AssetGroupController;
 use App\Http\Controllers\assets\AssetConfigController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,6 +72,7 @@ Route::get('/getAllAssetGroup',[AssetGroupController::class,'getAllAssetGroup'])
 
 Route::post('/saveAssetGroup',[AssetGroupController::class,'saveAssetGroup'])->name('saveAssetGroup');
 Route::post('/saveSubGroup',[AssetGroupController::class,'saveSubGroup'])->name('saveSubGroup');
+Route::post('/saveAssets',[AssetGroupController::class,'saveAssets'])->name('saveAssets');
 //__Get Sub-group__//
 Route::get('/getAllAssetSubGroup',[AssetGroupController::class,'getAllAssetSubGroup'])->name('getAllAssetSubGroup');
 //__Delete Sub-group __//

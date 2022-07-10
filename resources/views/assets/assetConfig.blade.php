@@ -200,6 +200,100 @@
                         {{ QrCode::size(100)->generate('Asset ID: 59960') }}
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
+
+
+
+
+                <div class="page-section">
+                    <!-- .card-deck-xl -->
+                    <div class="card-deck-xl">
+
+                        <!-- .card -->
+                        <div class="card card-fluid">
+                            <!-- .card-body -->
+                            <div class="card-body">
+                                <h4 class="card-title"> Add New Assets </h4>
+                                <h6 class="card-subtitle mb-4"> New assets creation form. </h6><!-- form -->
+                                <form>
+
+                                    <div class="form-row" id="massageDiv-asset"></div>
+                                    <!-- .form-group -->
+                                    <div class="form-group">
+                                        <label for="sub_group_id">Asset Subgroup <abbr title="Required">*</abbr></label>
+                                        <select class="custom-select d-block w-100" id="sub_group_id" required="">
+                                            <option value=""> Choose... </option>
+                                        </select>
+                                    </div><!-- /.form-group -->
+                                    <!-- .form-group -->
+                                    <div class="form-group">
+                                        <label for="asset_name">Asset Name <abbr title="Required">*</abbr></label>
+                                        <input type="text" class="form-control" id="asset_name" placeholder="Asset Name" value="" required="">
+                                    </div><!-- /.form-group -->
+
+                                    <!-- .form-group -->
+                                    <div class="form-group">
+                                        <label for="model_no">Model <abbr title="Required">*</abbr></label>
+                                        <input type="text" class="form-control" id="model_no" placeholder="Model Name" value="" required="">
+                                    </div><!-- /.form-group -->
+
+                                    <!-- .form-group -->
+                                    <div class="form-group">
+                                        <label for="brand_name">Brand<abbr title="Required">*</abbr></label>
+                                        <input type="text" class="form-control" id="brand_name" placeholder="Brand Name" value="" required="">
+                                    </div><!-- /.form-group -->
+
+
+
+                                    <!-- .form-group -->
+                                    <div class="form-group">
+                                        <label for="addbutton"> </label>
+                                        <div class="form-actions">
+                                            <button class="btn btn-primary" type="submit" onclick="saveAssets()">Save</button>
+                                        </div>
+                                    </div><!-- /.form-group -->
+                                    <!-- .form-group -->
+
+                                </form><!-- /form -->
+                            </div><!-- /.card-body -->
+                        </div><!-- /.card -->
+
+                        <!-- .card -->
+                        <div class="card card-fluid">
+                            <!-- .card-body -->
+                            <div class="card-body">
+                                <h4 class="card-title"> Assets List </h4>
+                                <h6 class="card-subtitle mb-4"> List of assets. </h6><!-- form -->
+
+                                <div class="table-responsive">
+                                    <!-- .table -->
+                                    <table class="table table-sm mb-0 table-hover table-striped" id="asset_grid">
+                                        <!-- thead -->
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th> ID </th>
+                                            <th style="min-width:200px"> Asset </th>
+                                            <th> Sub-Group </th>
+                                            <th></th>
+                                        </tr>
+                                        </thead><!-- /thead -->
+                                        <!-- tbody -->
+                                        <tbody></tbody><!-- /tbody -->
+                                    </table><!-- /.table -->
+                                </div><!-- /.table-responsive -->
+
+
+
+                            </div><!-- /.card-body -->
+                        </div><!-- /.card -->
+
+                    </div><!-- /.card-deck-xl -->
+
+                </div>
+
+
+
+
+
             </div>
             <!-- /.tab-pane -->
 
@@ -251,6 +345,7 @@
                 html += '</tr>';
             });
             $('#asset_sub_group_grid tbody').html(html);
+            assetSubGroupCombo(result);
         });
     }
 
@@ -339,6 +434,45 @@
         });
         $('#assetGroup').html(html);
 
+    }
+
+
+    function assetSubGroupCombo(subGroupData){
+        var html = '<option value="">Choose... </option>';
+        $.each(subGroupData, function(i,data) {
+            html +='<option value="'+data.sub_group_id+'">'+data.sub_group_name+'</option>';
+        });
+        $('#sub_group_id').html(html);
+
+    }
+
+
+    function saveAssets(){
+        var sub_group_id = $('#sub_group_id').val();
+        var asset_name = $('#asset_name').val();
+        var model_no = $('#model_no').val();
+        var brand_name = $('#brand_name').val();
+
+        var massageTest = '<div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">×</button><strong>Well done!</strong> You successfully saved asset sub-group.</div>';
+
+        var actionlink = 'saveAssets';
+        $.ajax({
+            type: "POST",
+            url: actionlink,
+            data:{_token:'{{csrf_token()}}',sub_group_id:sub_group_id,asset_name:asset_name,model_no:model_no,brand_name:brand_name},
+            context: JSON
+        }).done(function(result) {
+            if(result==1){
+                // $("#massageDiv").show();
+                $("#massageDiv-asset").html(massageTest);
+                $('#assetGroup').val("");
+                $('#assetSubGroup').val("");
+                getAllAssetSubGroup();
+            }else{
+                alert('Error');
+            }
+            // alert(result);
+        });
     }
 
 
