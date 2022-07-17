@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Config\OutletController;
 use App\Http\Controllers\assets\AssetGroupController;
 use App\Http\Controllers\assets\AssetConfigController;
+use App\Http\Controllers\assets\AssetRegisterController;
+
 
 
 
@@ -69,6 +71,7 @@ Route::get('/assetConfigUi',[AssetConfigController::class,'assetConfigUi'])->nam
 
 Route::get('/assetGroup',[AssetGroupController::class,'assetSubGroup'])->name('assetSubGroup');
 Route::get('/getAllAssetGroup',[AssetGroupController::class,'getAllAssetGroup'])->name('getAllAssetGroup');
+Route::get('/getAllAssetList',[AssetGroupController::class,'getAllAssetList'])->name('getAllAssetList');
 
 Route::post('/saveAssetGroup',[AssetGroupController::class,'saveAssetGroup'])->name('saveAssetGroup');
 Route::post('/saveSubGroup',[AssetGroupController::class,'saveSubGroup'])->name('saveSubGroup');
@@ -81,9 +84,17 @@ Route::get('/getAllAssetSubGroup',[AssetGroupController::class,'getAllAssetSubGr
 // });
 Route::delete('/deleteAssetGroup',[AssetGroupController::class,'deleteAssetGroup'])->name('deleteAssetGroup');
 Route::delete('/deleteSubGroup',[AssetGroupController::class,'deleteSubGroup'])->name('deleteSubGroup');
+Route::delete('/deleteAsset',[AssetGroupController::class,'deleteAsset'])->name('deleteAsset');
 
 
 Route::get('/qrcode', function () {
     return QrCode::size(300)->generate('A basic example of QR code!');
 });
+
+
+
+// Asset Register
+
+
+Route::get('/assetRegister',[AssetRegisterController::class,'index'])->name('assetConfigUi');
 

@@ -95,4 +95,9 @@ class AssetGroupController extends Controller
         return response()->json($data);
     }
 
+    public function deleteAsset(Request $id){
+        $deleted = DB::table('asset_list')->where('asset_id', '=', $id->asset_id)->delete();
+        return $deleted;
+    }
+
 }

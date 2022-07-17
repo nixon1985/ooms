@@ -19,7 +19,6 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#asset-tab-content" onClick="storeTabId('complain')">Assets Name</a>
                     </li>
-
                 </ul><!-- /.nav-tabs -->
             </div><!-- /.nav-scroller -->
         <!--</div>-->
@@ -192,17 +191,8 @@
         <!-- .tab-content -->
 
             <div class="tab-pane fade" id="asset-tab-content" role="tabpanel" aria-labelledby="asset-tab-content">
-                <!-- New -->
-                <div class="card">
-                    <!-- .card-body -->
-                    <div class="card-body">
-                        <h1>Asset</h1>
-                        {{ QrCode::size(100)->generate('Asset ID: 59960') }}
-                    </div><!-- /.card-body -->
-                </div><!-- /.card -->
 
-
-
+                <!-- QrCode-size(100)->generate('Asset ID: 59960')-->
 
                 <div class="page-section">
                     <!-- .card-deck-xl -->
@@ -266,13 +256,15 @@
 
                                 <div class="table-responsive">
                                     <!-- .table -->
-                                    <table class="table table-sm mb-0 table-hover table-striped" id="asset_grid">
+                                    <table class="table table-sm mb-0 table-hover table-striped" id="asset_list_grid">
                                         <!-- thead -->
                                         <thead class="thead-light">
                                         <tr>
                                             <th> ID </th>
                                             <th style="min-width:200px"> Asset </th>
                                             <th> Sub-Group </th>
+                                            <th> Model </th>
+                                            <th> Brand </th>
                                             <th></th>
                                         </tr>
                                         </thead><!-- /thead -->
@@ -308,6 +300,7 @@
     $(document).ready(function(){
         getAllAssetSubGroup();
         getAllAssetGroup();
+        getAllAssetList();
     });
 
     function getAllAssetGroup(){
@@ -467,11 +460,46 @@
                 $("#massageDiv-asset").html(massageTest);
                 $('#assetGroup').val("");
                 $('#assetSubGroup').val("");
-                getAllAssetSubGroup();
+                getAllAssetList();
             }else{
                 alert('Error');
             }
             // alert(result);
+        });
+    }
+
+
+
+    function getAllAssetList(){
+        var html = '';
+        $.ajax({
+            type: "GET",
+            url: 'getAllAssetList',
+            context: document.body
+        }).done(function(result) {
+            $.each(result, function(i,data) {
+                html += "<tr>";
+                html +="<td class='align-middle'>"+data.asset_id+"</td>";
+                html +="<td class='align-middle'>"+data.asset_name+"</td>";
+                html +="<td class='align-middle'>"+data.sub_group_id+"</td>";
+                html +="<td class='align-middle'>"+data.model_no+"</td>";
+                html +="<td class='align-middle'>"+data.brand_name+"</td>";
+                html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="modal" data-target="#clientContactEditModal"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeAsset('+data.asset_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html += '</tr>';
+            });
+            $('#asset_list_grid tbody').html(html);
+        });
+    }
+
+
+    function removeAsset(asset_id){
+        $.ajax({
+            type: "DELETE",
+            url: 'deleteAsset',
+            data:{_token:'{{csrf_token()}}',asset_id:asset_id}
+        }).done(function(result) {
+            alert(result);
+            getAllAssetList();
         });
     }
 

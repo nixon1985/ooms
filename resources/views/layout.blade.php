@@ -39,6 +39,7 @@
     <!-- BEGIN PLUGINS STYLES -->
     <link rel="stylesheet" href="assets/vendor/open-iconic/font/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="assets/vendor/select2/css/select2.min.css">
     <link rel="stylesheet" href="assets/vendor/flatpickr/flatpickr.min.css"><!-- END PLUGINS STYLES -->
     <!-- BEGIN THEME STYLES -->
     <link rel="stylesheet" href="assets/stylesheets/theme.min.css" data-skin="default">
@@ -124,6 +125,7 @@
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/popper.js/umd/popper.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script> <!-- END BASE JS -->
+    <script src="assets/vendor/select2/js/select2.min.js"></script>
     <!-- BEGIN PLUGINS JS -->
     <!-- <script src="assets/vendor/pace-progress/pace.min.js"></script> -->
     <script src="assets/vendor/stacked-menu/js/stacked-menu.min.js"></script>
