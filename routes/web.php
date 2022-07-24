@@ -94,7 +94,6 @@ Route::get('/qrcode', function () {
 
 
 // Asset Register
-
-
 Route::get('/assetRegister',[AssetRegisterController::class,'index'])->name('assetConfigUi');
+Route::post('/addAssetsRegister',[AssetRegisterController::class,'addAssetsRegister'])->name('addAssetsRegister');
 

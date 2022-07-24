@@ -308,112 +308,153 @@
 
                 <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2">
                     <div class="page-section">
-                        <!-- .card-deck-xl -->
-                        <div class="card-deck-xl">
-                            <!-- .card -->
-                            <div class="card card-fluid">
-                                <!-- .card-body -->
-                                <div class="card-body">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <!-- .form-group -->
-                                                <div class="form-group">
-                                                    <label class="control-label" for="select2-single">Asset <abbr title="Required">*</abbr></label>
-                                                    <select id="select2-single" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
-                                                        <option value="AK"> Alaska </option>
-                                                        <option value="HI"> Hawaii </option>
-                                                    </select>
-                                                </div><!-- /.form-group -->
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="select2-single">Supplier</label>
-                                                    <select id="select2-supplier" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
-                                                        <option value="AK"> Rohime Electric </option>
-                                                        <option value="HI"> Hawaii </option>
-                                                    </select>
-                                                </div><!-- /.form-group -->
-                                            </div>
-                                        </div>
 
-
-                                        <div class="row">
-                                            <!-- .col -->
-                                            <div class="col-md-6">
-                                                <!-- .form-group -->
-                                                <div class="form-group">
-                                                    <label class="control-label" for="bss13">Divider</label>
-                                                    <select id="bss13" data-toggle="selectpicker" data-width="100%">
-                                                        <option> Mustard </option>
-                                                        <option> Ketchup </option>
-                                                        <option> Relish </option>
-                                                        <option> Mayonnaise </option>
-                                                        <option data-divider="true">
-                                                        </option>
-                                                        <option> Barbecue Sauce </option>
-                                                        <option> Salad Dressing </option>
-                                                        <option> Tabasco </option>
-                                                        <option> Salsa </option>
-                                                    </select>
-                                                </div><!-- /.form-group -->
+                        <form id="assetRegisterForm" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <!-- .card-deck-xl -->
+                            <div class="card-deck-xl">
+                                <!-- .card -->
+                                <div class="card card-fluid">
+                                    <!-- .card-body -->
+                                    <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <!-- .form-group -->
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="asset_list">Asset <abbr title="Required">*</abbr></label>
+                                                        <select id="asset_list" name="asset_id" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
+                                                            <option value=""> No Data found </option>
+                                                        </select>
+                                                    </div><!-- /.form-group -->
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="select2-single">Supplier</label>
+                                                        <select id="select2-supplier" name="supplier_id" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
+                                                            <option value="AK"> Rohime Electric </option>
+                                                            <option value="HI"> Hawaii </option>
+                                                        </select>
+                                                    </div><!-- /.form-group -->
+                                                </div>
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <!-- .form-group -->
-                                                <div class="form-group">
-                                                    <label class="control-label" for="bss13">Divider</label> <select id="bss14" data-toggle="selectpicker" data-width="100%">
-                                                        <option> Mustard </option>
-                                                        <option> Ketchup </option>
-                                                        <option> Relish </option>
-                                                        <option> Mayonnaise </option>
-                                                        <option data-divider="true">
-                                                        </option>
-                                                        <option> Barbecue Sauce </option>
-                                                        <option> Salad Dressing </option>
-                                                        <option> Tabasco </option>
-                                                        <option> Salsa </option>
-                                                    </select>
-                                                </div><!-- /.form-group -->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="purchase_date">Purchase Date</label>
+                                                        <div class="input-group input-group-alt flatpickr" id="flatpickr9"  data-toggle="flatpickr" data-wrap="true" data-alt-input="true" data-alt-format="F j, Y" data-alt-input-class="form-control" data-date-format="Y-m-d" value="2019-11-04" placeholder="DD/MM/YYYY">
+                                                            <input id="purchase_date" name="purchase_date" type="text" class="form-control" data-input="">
+                                                            <div class="input-group-append">
+                                                                <button type="button" class="btn btn-secondary" data-toggle=""><i class="far fa-calendar"></i></button>
+                                                                <button type="button" class="btn btn-secondary" data-clear=""><i class="fa fa-times"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /.form-group -->
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="purchase_order_no">Purchase Order No</label>
+                                                        <input class="form-control" type="text" placeholder="Purchase Order No" id="purchase_order_no" name="purchase_order_no">
+                                                    </div><!-- /.form-group -->
+                                                </div>
                                             </div>
 
-                                        </div>
 
 
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label class="d-block"> Warranty </label>
+                                                            <div class="custom-control custom-control-inline custom-radio">
+                                                                <input type="radio" class="custom-control-input" name="warrantyYesNo" id="rd1" value="1" onclick="warrantyDateEnableDisable()">
+                                                                <label class="custom-control-label" for="rd1">Yes</label>
+                                                            </div>
+                                                            <div class="custom-control custom-control-inline custom-radio">
+                                                                <input type="radio" class="custom-control-input" name="warrantyYesNo" id="rd2" value="0" onclick="warrantyDateEnableDisable()">
+                                                                <label class="custom-control-label" for="rd2">No</label>
+                                                            </div>
+
+                                                        </div>
+                                                    </div><!-- /.form-group -->
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="warranty_end_date">Warranty End Date</label>
+                                                        <div class="input-group input-group-alt flatpickr" id="flatpickr10" data-toggle="flatpickr" data-wrap="true" data-alt-input="true" data-alt-format="F j, Y" data-alt-input-class="form-control" data-date-format="Y-m-d" value="2019-11-04" placeholder="DD/MM/YYYY">
+                                                            <input id="warranty_end_date" name="warranty_end_date" type="text" class="form-control" data-input="">
+                                                            <div class="input-group-append">
+                                                                <button type="button" class="btn btn-secondary" data-toggle=""><i class="far fa-calendar"></i></button>
+                                                                <button type="button" class="btn btn-secondary" data-clear=""><i class="fa fa-times"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /.form-group -->
+                                                </div>
+                                            </div>
 
 
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="outlet_id">Outlet</label>
+                                                        <select id="outlet_id" name="outlet_id" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
+                                                            <option value="AK"> Rohime Electric </option>
+                                                            <option value="HI"> Hawaii </option>
+                                                        </select>
+                                                    </div><!-- /.form-group -->
+                                                </div>
+                                            </div>
 
+                                    </div><!-- /.card-body -->
+                                </div><!-- /.card -->
 
-                                        <!-- .form-group -->
+                                <!-- .card -->
+                                <div class="card card-fluid">
+                                    <!-- .card-body -->
+                                    <div class="card-body">
+                                        <h4 class="card-title"> Upload Asset photo </h4>
                                         <div class="form-group">
-                                            <label for="addbutton"> </label>
-                                            <div class="form-actions">
-                                                <button class="btn btn-primary" type="submit" onclick="saveGroup()">Save</button>
+                                            <label for="tf3">Asset photo</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" accept="image/*" id="image" name="image" onchange="loadFile(event)" multiple>
+                                                <label class="custom-file-label" for="image">Choose file</label>
                                             </div>
+
+{{--                                            <img style="width:50%"id="output"/>--}}
                                         </div><!-- /.form-group -->
-                                        <!-- .form-group -->
+                                        <div class="has-attachment" style="width:60%">
+                                        <div class="pswp-gallery">
+                                            <!-- .card-figure -->
+                                            <div class="card card-figure">
+                                                <!-- .card-figure -->
+                                                <figure class="figure">
+                                                    <!-- .figure-img -->
+                                                    <div class="figure-img figure-attachment">
+                                                        <img id="output" style="width:100%; height: 100%" alt="Card image cap">
+                                                    </div><!-- /.figure-img -->
+                                                </figure><!-- /.card-figure -->
+                                            </div><!-- /.card-figure -->
+                                        </div>
+                                        </div>
+                                    </div><!-- /.card-body -->
+                                </div><!-- /.card -->
 
+                            </div><!-- /.card-deck-xl -->
 
-
-                                    </form><!-- /form -->
-                                </div><!-- /.card-body -->
-                            </div><!-- /.card -->
-
-                            <!-- .card -->
-                            <div class="card card-fluid">
-                                <!-- .card-body -->
-                                <div class="card-body">
-                                    <h4 class="card-title"> Assets Group List </h4>
-                                    <h6 class="card-subtitle mb-4"> List of assets group. </h6><!-- form -->
-
-                                    <div class="table-responsive">
-
-                                    </div><!-- /.table-responsive -->
-                                </div><!-- /.card-body -->
-                            </div><!-- /.card -->
-                        </div><!-- /.card-deck-xl -->
+                            <div class="card">
+                                <!-- .form-group -->
+                                <div class="form-group">
+                                    <div class="form-actions">
+                                        <button class="btn btn-primary" type="submit">Save</button>
+                                    </div>
+                                </div><!-- /.form-group -->
+                                <!-- .form-group -->
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -421,3 +462,76 @@
     </div>
 </div>
 <script src="assets/javascript/theme.min.js"></script> <!-- END THEME JS -->
+
+<script>
+            var loadFile = function(event) {
+                var output = document.getElementById('output');
+                output.src = URL.createObjectURL(event.target.files[0]);
+                output.onload = function() {
+                    URL.revokeObjectURL(output.src) // free memory
+                }
+            };
+
+    $(document).ready(function(){
+        $("#purchase_order_no").prop('disabled', true);
+        // $("#flatpickr10").prop('disabled', true);
+        // $('#warranty_end_date > .form-control').prop('disabled', true);
+
+       // $('#warranty_end_date > .form-control').prop('disabled', true);
+        getAllAsset();
+    });
+
+    function getAllAsset(){
+        var html = '';
+        $.ajax({
+            type: "GET",
+            url: 'getAllAssetList',
+            context: document.body
+        }).done(function(result) {
+            $.each(result, function(i,data) {
+                html +='<option value="'+data.asset_id+'">'+data.asset_name+'</option>';
+            });
+            $('#asset_list').html(html);
+        });
+    }
+
+    function warrantyDateEnableDisable(){
+        var ss = $('input[name="warrantyYesNo"]:checked').val();
+        $("#warranty_end_date").attr("disabled", true);
+        // $("#warranty_end_date").prop('disabled', false);
+
+
+        // $('#warranty_end_date').datetimepicker({
+        //     pickTime: false
+        // });
+
+
+
+        // $( "#warranty_end_date" ).prop( "disabled", false );
+        // $( "#warranty_end_date" ).datepicker( "option", "disabled", false );
+        // if(checkValue==1){
+        //     $( "#warranty_end_date" ).prop( "disabled", false );
+        // }else{
+        //     $( "#warranty_end_date" ).prop( "disabled", true );
+        // }
+
+        alert(ss);
+    }
+
+    $("form#assetRegisterForm").submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: 'addAssetsRegister',
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                alert(data)
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+</script>
