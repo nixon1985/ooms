@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AssetRegisterModel extends Model
 {
     use HasFactory;
-    protected $table="asset_register";
+    protected $table="assets_register";
     protected $primaryKey = 'asset_reg_id';
 
 }

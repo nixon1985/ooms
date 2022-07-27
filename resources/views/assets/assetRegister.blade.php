@@ -333,8 +333,8 @@
                                                     <div class="form-group">
                                                         <label class="control-label" for="select2-single">Supplier</label>
                                                         <select id="select2-supplier" name="supplier_id" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
-                                                            <option value="AK"> Rohime Electric </option>
-                                                            <option value="HI"> Hawaii </option>
+                                                            <option value="1"> Rohime Electric </option>
+                                                            <option value="2"> Hawaii </option>
                                                         </select>
                                                     </div><!-- /.form-group -->
                                                 </div>
@@ -402,8 +402,8 @@
                                                     <div class="form-group">
                                                         <label class="control-label" for="outlet_id">Outlet</label>
                                                         <select id="outlet_id" name="outlet_id" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
-                                                            <option value="AK"> Rohime Electric </option>
-                                                            <option value="HI"> Hawaii </option>
+                                                            <option value="1"> Rohime Electric </option>
+                                                            <option value="2"> Hawaii </option>
                                                         </select>
                                                     </div><!-- /.form-group -->
                                                 </div>
@@ -426,7 +426,7 @@
 
 {{--                                            <img style="width:50%"id="output"/>--}}
                                         </div><!-- /.form-group -->
-                                        <div class="has-attachment" style="width:60%">
+                                        <div class="has-attachment" style="width:60%; height: 100%">
                                         <div class="pswp-gallery">
                                             <!-- .card-figure -->
                                             <div class="card card-figure">
