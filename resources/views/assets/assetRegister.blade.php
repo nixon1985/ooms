@@ -65,20 +65,23 @@
                     <tr>
                         <th colspan="2" style="min-width:320px">
                             <div class="thead-dd dropdown">
-                                <span class="custom-control custom-control-nolabel custom-checkbox"><input type="checkbox" class="custom-control-input" id="check-handle"> <label class="custom-control-label" for="check-handle"></label></span>
+                                <span class="custom-control custom-control-nolabel custom-checkbox"><input type="checkbox" class="custom-control-input" id="check-handle">
+                                    <label class="custom-control-label" for="check-handle"></label></span>
                                 <div class="thead-btn" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="fa fa-caret-down"></span>
                                 </div>
                                 <div class="dropdown-menu">
                                     <div class="dropdown-arrow"></div><a class="dropdown-item" href="#">Select all</a> <a class="dropdown-item" href="#">Unselect all</a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#">Bulk remove</a> <a class="dropdown-item" href="#">Bulk edit</a> <a class="dropdown-item" href="#">Separate actions</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#">Bulk remove</a> <a class="dropdown-item" href="#">Bulk edit</a>
+                                    <a class="dropdown-item" href="#">Separate actions</a>
                                 </div>
                             </div>
                         </th>
-                        <th> Inventory </th>
-                        <th> Variants </th>
-                        <th> Prices </th>
-                        <th> Sales </th>
+                        <th> Registration No </th>
+                        <th> Purchase Date </th>
+                        <th> Warranty End Date </th>
+                        <th> Supplier </th>
+
                         <th style="width:100px; min-width:100px;"> &nbsp; </th>
                     </tr>
                     </thead><!-- /thead -->
@@ -423,23 +426,31 @@
                                                 <input type="file" class="custom-file-input" accept="image/*" id="image" name="image" onchange="loadFile(event)" multiple>
                                                 <label class="custom-file-label" for="image">Choose file</label>
                                             </div>
-
-{{--                                            <img style="width:50%"id="output"/>--}}
                                         </div><!-- /.form-group -->
-                                        <div class="has-attachment" style="width:60%; height: 100%">
-                                        <div class="pswp-gallery">
-                                            <!-- .card-figure -->
-                                            <div class="card card-figure">
+
+                                        <div class="has-attachment" style="width:60%;">
+                                            <div class="pswp-gallery">
                                                 <!-- .card-figure -->
-                                                <figure class="figure">
-                                                    <!-- .figure-img -->
-                                                    <div class="figure-img figure-attachment">
-                                                        <img id="output" style="width:100%; height: 100%" alt="Card image cap">
-                                                    </div><!-- /.figure-img -->
-                                                </figure><!-- /.card-figure -->
-                                            </div><!-- /.card-figure -->
+                                                <div class="card card-figure">
+                                                    <!-- .card-figure -->
+                                                    <figure class="figure">
+                                                        <!-- .figure-img -->
+                                                        <div class="figure-img figure-attachment">
+                                                            <img id="output" style="width:100%; height: 100%" alt="Card image cap">
+                                                        </div><!-- /.figure-img -->
+                                                    </figure><!-- /.card-figure -->
+                                                </div><!-- /.card-figure -->
+                                            </div>
                                         </div>
-                                        </div>
+
+                                        <div class="form-group">
+                                            <div id="after_insert_result">
+                                                <div id="qrcode"></div>
+                                                <div id="registration_no"></div>
+                                            </div>
+                                        </div><!-- /.form-group -->
+
+
                                     </div><!-- /.card-body -->
                                 </div><!-- /.card -->
 
@@ -473,7 +484,7 @@
             };
 
     $(document).ready(function(){
-        $("#purchase_order_no").prop('disabled', true);
+        // $("#purchase_order_no").prop('disabled', true);
         // $("#flatpickr10").prop('disabled', true);
         // $('#warranty_end_date > .form-control').prop('disabled', true);
 
@@ -527,7 +538,9 @@
             type: 'POST',
             data: formData,
             success: function (data) {
-                alert(data)
+               alert(JSON.stringify(data.qrcode));
+               $("#qrcode").html(data.qrcode);
+               $("#registration_no").html(data.reg_id);
             },
             cache: false,
             contentType: false,
