@@ -63,6 +63,7 @@ Route::get('/service_update', function () {
 
 Route::get('/outletinfo',[OutletController::class,'agreement'])->name('outletinforr.user');
 Route::post('/outletinfoSave',[OutletController::class,'save'])->name('outletinfoSave7.save');
+Route::get('/getAllOutlet',[OutletController::class,'getAllOutlet'])->name('getAllOutlet');
 
 
 
@@ -96,4 +97,5 @@ Route::get('/qrcode', function () {
 // Asset Register
 Route::get('/assetRegister',[AssetRegisterController::class,'index'])->name('assetConfigUi');
 Route::post('/addAssetsRegister',[AssetRegisterController::class,'addAssetsRegister'])->name('addAssetsRegister');
+Route::get('/getAllRegisterAssetList',[AssetRegisterController::class,'getRegisterAssetList'])->name('getAllRegisterAssetList');
 

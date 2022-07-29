@@ -22,7 +22,7 @@
                     <input type="text" class="form-control" id="searchClients" data-filter=".board .list-group-item" placeholder="Find clients">
                 </div><!-- /.input-group -->
               </header>
-                <button type="button" class="btn btn-primary btn-floated position-absolute" data-toggle="modal" data-target="#clientNewModal" title="Add new client">
+                <button type="button" class="btn btn-primary btn-floated position-absolute" data-toggle="modal" data-target="#outletCreateFormModal" title="Add new outlet">
                     <i class="fa fa-plus"></i>
                 </button> <!-- board -->
 
@@ -30,7 +30,7 @@
 
               <div class="board p-0 perfect-scrollbar nxscroll">
                 <!-- .list-group -->
-                <div class="list-group list-group-flush list-group-divider border-top" data-toggle="radiolist">
+                <div id="outletList-panel" class="list-group list-group-flush list-group-divider border-top" data-toggle="radiolist">
 
                   <!-- .list-group-item -->
                   <div class="list-group-item active" data-toggle="sidebar" data-sidebar="show" onclick="outletInfo('BASHUNDHARA CITY MEGA MALL',1)">
@@ -1383,16 +1383,16 @@
 
 
             <!-- .modal -->
-            <form id="clientNewForm" name="clientNewForm">
-              <div class="modal fade" id="clientNewModal" tabindex="-1" role="dialog" aria-labelledby="clientNewModalLabel" aria-hidden="true">
+            <form id="outletCreateForm" name="outletCreateForm">
+              <div class="modal fade" id="outletCreateFormModal" tabindex="-1" role="dialog" aria-labelledby="outletCreateFormModal" aria-hidden="true">
                 <!-- .modal-dialog -->
                 <div class="modal-dialog" role="document">
                   <!-- .modal-content -->
                   <div class="modal-content">
                     <!-- .modal-header -->
                     <div class="modal-header">
-                      <h6 id="clientNewModalLabel" class="modal-title">
-                        <span class="sr-only">ADD NEW Outlet</span>
+                      <h6 id="outletCreateFormModal" class="modal-title">
+                        <span class="sr-only">ADD New Outlet</span>
                       </h6>
                     </div><!-- /.modal-header -->
                     <!-- .modal-body -->
@@ -1401,56 +1401,59 @@
                       <div class="form-row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label for="cnContactName">Outlet name</label> <input type="text" id="outletName" name="outletName" class="form-control">
+                            <label for="cnContactName">Outlet name</label>
+                              <input type="text" id="outletName" name="outletName" class="form-control">
                           </div>
                         </div>
 
                           <div class="col-md-6">
                               <div class="form-group">
-                                  <label for="cnCity">Outlet Type</label>
-                                  <select id="cnCity" class="custom-select d-block w-100">
+                                  <label for="outletType">Outlet Type</label>
+                                  <select id="outletType" name="outletType" class="custom-select d-block w-100">
                                       <option value=""> Choose... </option>
-                                      <option> Mega Mall </option>
-                                      <option> Small </option>
-                                      <option> Large </option>
+                                      <option value="1"> Mega Mall </option>
+                                      <option value="2"> Small </option>
+                                      <option value="3"> Large </option>
                                   </select>
                               </div>
                           </div>
                           <div class="col-md-6">
                               <div class="form-group">
-                                  <label for="cnContactEmail">Outlet Size</label>
-                                  <input type="email" id="cnContactEmail" class="form-control">
+                                  <label for="outletSize">Outlet Size</label>
+                                  <input type="text" id="outletSize" name="outletSize" class="form-control">
                               </div>
                           </div>
 
                         <div class="col-md-12">
                           <div class="form-group">
-                              <label for="cnContactEmail">Address</label>
-                              <input type="email" id="cnContactEmail" class="form-control">
+                              <label for="outletAddress">Address</label>
+                              <input type="text" id="outletAddress" name="outletAddress" class="form-control">
                           </div>
                         </div>
 
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label for="cnCountry">District</label> <select id="cnCountry" class="custom-select d-block w-100">
-                              <option value=""> Choose... </option>
-                              <option> Dhaka </option>
-                                  <option> Chittagong  </option>
-                                  <option> Rajshahi  </option>
-                                  <option> Sylhet  </option>
-                                  <option> Mymensingh   </option>
-                                  <option> Jashore   </option>
-                            </select>
+                            <label for="districtId">District</label>
+                              <select id="districtId" name="districtId" class="custom-select d-block w-100">
+                                <option value=""> Choose... </option>
+                                <option value="1"> Dhaka </option>
+                                <option value="2"> Chittagong </option>
+                                <option value="3"> Rajshahi </option>
+                                <option value="4"> Sylhet </option>
+                                <option value="5"> Mymensingh </option>
+                                <option value="6"> Jashore </option>
+                              </select>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label for="cnCity">Upazila</label> <select id="cnCity" class="custom-select d-block w-100">
-                              <option value=""> Choose... </option>
-                              <option> Mirpur </option>
-                                  <option> Mirpur-1 </option>
-                                  <option> Gulshan </option>
-                                  <option> Dhanmondi </option>
+                            <label for="areaId">Area</label>
+                              <select id="areaId" name="areaId" class="custom-select d-block w-100">
+                                  <option value=""> Choose... </option>
+                                  <option value="1"> Mirpur </option>
+                                  <option value="2"> Mirpur-1 </option>
+                                  <option value="3"> Gulshan </option>
+                                  <option value="4"> Dhanmondi </option>
                             </select>
                           </div>
                         </div>
@@ -1458,7 +1461,7 @@
                     </div><!-- /.modal-body -->
                     <!-- .modal-footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" onclick="saveOutletInfo()">Save1</button>
+                        <button type="button" class="btn btn-primary" onclick="saveOutletInfo()">Save</button>
                         <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
                     </div><!-- /.modal-footer -->
                   </div><!-- /.modal-content -->
@@ -1770,12 +1773,31 @@
 
 
     <script>
+      var gOutletInfo = Array();
       var tabID='basicInfo';
+      $(document).ready(function(){
+          getAllOutlet();
+      });
 
-      function outletInfo(outletInfo,id){
-        $("#title-outlet-name").html('<i class="far fa-building text-muted mr-2"></i> ' + outletInfo);
+      const colorCodes = [];
+      colorCodes['B'] = 'bg-blue';
+      colorCodes['J'] = 'bg-indigo';
+      colorCodes['G'] = 'bg-purple';
+      colorCodes['P'] = 'bg-pink';
+      colorCodes['R'] = 'bg-red';
+      colorCodes['M'] = 'bg-orange';
+      colorCodes['N'] = 'bg-cyan';
+      colorCodes['O'] = 'bg-yellow';
+      colorCodes['S'] = 'bg-green';
+      colorCodes['M'] = 'bg-teal';
 
+
+
+      function outletInfo(index,id){
+          // gOutletInfo[index].outlet_name;
+        $("#title-outlet-name").html('<i class="far fa-building text-muted mr-2"></i> ' +  gOutletInfo[index].outlet_name);
         // Call Tab containt loading function
+          $("#title-outlet-address").html(gOutletInfo[index].outlet_address);
         storeTabId(tabID);
 
       }
@@ -1818,28 +1840,59 @@
       }
 
       function saveOutletInfo(){
-            var actionlink = 'outletinfoSave';
+          var actionlink = 'outletinfoSave';
+          var outletName = $("#outletName").val();
+          var outletType = $("#outletType").val();
+          var outletSize = $("#outletSize").val();
+          var outletAddress = $("#outletAddress").val();
+          var districtId = $("#districtId").val();
+          var areaId = $("#areaId").val();
           $.ajax({
               type: "POST",
               url: actionlink,
-              data:{_token:'{{csrf_token()}}',outletName:'BB Megamall'},
+              data:{_token:'{{csrf_token()}}',outletName:outletName,outletType:outletType,outletSize:outletSize,outletAddress:outletAddress,districtId:districtId,areaId:areaId},
               context: document.body
           }).done(function(result) {
-            alert(result);
+            if(result.success){
+                $("#outletCreateFormModal").modal('hide');
+                getAllOutlet()
+            }else if(result.error){
+
+            }
+
           });
+      }
 
+      function getAllOutlet(){
+          $.ajax({
+              type: "GET",
+              url: 'getAllOutlet',
+              context: document.body
+          }).done(function(result) {
+              gOutletInfo = result;
+              var html='';
+              $.each(result, function(i,data) {
+                  var text = data.outlet_name;
+                  var subStrs = text.substring(0,1);
 
+                  alert(subStrs);
 
+                  html += '<div class="list-group-item" data-toggle="sidebar" data-sidebar="show" onclick="outletInfo(\''+ i +'\',1)">';
+                  html += '<a href="#" class="stretched-link"></a>';
+                  html += '<div class="list-group-item-figure">';
+                  html += '<div class="tile tile-circle '+colorCodes[subStrs]+'">'+subStrs+'</div>';
+                  html += '</div>';
+                  html += '<div class="list-group-item-body">';
+                  html += '<h4 class="list-group-item-title"> '+data.outlet_name+' </h4>';
+                  html += '<p class="list-group-item-text"> '+data.outlet_address+' </p>';
+                  html += '</div>';
+                  html += '</div>';
+              });
+              $('#outletList-panel').html(html);
 
-          // var url = 'outletinfo';
-          // alert('save outlet information');
-          // $.ajax({
-          //     type: "POST",
-          //     url: url
-          //     // data: data,
-          //     // success: success,
-          //     // dataType: dataType
-          // });
+          });
+              // onclick="outletInfo('BASHUNDHARA CITY MEGA MALL',1)"
+
       }
     </script>
 

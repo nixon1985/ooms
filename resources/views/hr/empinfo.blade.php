@@ -451,7 +451,7 @@
                             <!-- tr -->
                             <tr>
                               <td class="align-middle text-truncate">
-                                <a href="#" class="tile bg-pink text-white mr-2">SP</a> <a href="#">Syrena Project</a>
+                                <a href="#" class="tile bg-pink text-white mr-2">SP</a><a href="#">Syrena Project</a>
                               </td>
                               <td class="align-middle"> 04/10/2018 </td>
                               <td class="align-middle"> 08/18/2018 </td>

@@ -56,221 +56,28 @@
                 </div><!-- /.input-group -->
             </div><!-- /.form-group -->
             <!-- .table-responsive -->
-            <div class="text-muted"> Showing 1 to 10 of 1,000 entries </div>
+            <!-- <div class="text-muted"> Showing 1 to 10 of 1,000 entries </div> -->
             <div class="table-responsive">
                 <!-- .table -->
-                <table class="table">
+                <table id="registerAssetGrid" class="table">
                     <!-- thead -->
                     <thead>
                     <tr>
-                        <th colspan="2" style="min-width:320px">
-                            <div class="thead-dd dropdown">
-                                <span class="custom-control custom-control-nolabel custom-checkbox"><input type="checkbox" class="custom-control-input" id="check-handle">
-                                    <label class="custom-control-label" for="check-handle"></label></span>
-                                <div class="thead-btn" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="fa fa-caret-down"></span>
-                                </div>
-                                <div class="dropdown-menu">
-                                    <div class="dropdown-arrow"></div><a class="dropdown-item" href="#">Select all</a> <a class="dropdown-item" href="#">Unselect all</a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#">Bulk remove</a> <a class="dropdown-item" href="#">Bulk edit</a>
-                                    <a class="dropdown-item" href="#">Separate actions</a>
-                                </div>
-                            </div>
-                        </th>
+                        <th></th>
                         <th> Registration No </th>
+                        <th style="min-width:220px">Asset</th>
                         <th> Purchase Date </th>
                         <th> Warranty End Date </th>
-                        <th> Supplier </th>
-
+                        <th> Outlet </th>
                         <th style="width:100px; min-width:100px;"> &nbsp; </th>
                     </tr>
                     </thead><!-- /thead -->
                     <!-- tbody -->
                     <tbody>
-                    <!-- tr -->
-                    <tr>
-                        <td class="align-middle col-checker">
-                            <div class="custom-control custom-control-nolabel custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="selectedRow[]" id="p3"> <label class="custom-control-label" for="p3"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-1.jpg" alt="Card image cap"></a> <a href="#">Tomato - Green</a>
-                        </td>
-                        <td class="align-middle"> 329 </td>
-                        <td class="align-middle"> 4 </td>
-                        <td class="align-middle"> $31.70 </td>
-                        <td class="align-middle"> 796 </td>
-                        <td class="align-middle text-right">
-                            <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
-                        </td>
-                    </tr><!-- /tr -->
-                    <!-- tr -->
-                    <tr>
-                        <td class="align-middle col-checker">
-                            <div class="custom-control custom-control-nolabel custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="selectedRow[]" id="p4"> <label class="custom-control-label" for="p4"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-3.jpg" alt="Card image cap"></a> <a href="#">Quiche Assorted</a>
-                        </td>
-                        <td class="align-middle"> 169 </td>
-                        <td class="align-middle"> 1 </td>
-                        <td class="align-middle"> $34.41 </td>
-                        <td class="align-middle"> 1824 </td>
-                        <td class="align-middle text-right">
-                            <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
-                        </td>
-                    </tr><!-- /tr -->
-                    <!-- tr -->
-                    <tr>
-                        <td class="align-middle col-checker">
-                            <div class="custom-control custom-control-nolabel custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="selectedRow[]" id="p5"> <label class="custom-control-label" for="p5"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-5.jpg" alt="Card image cap"></a> <a href="#">Cookies Oatmeal Raisin</a>
-                        </td>
-                        <td class="align-middle"> 155 </td>
-                        <td class="align-middle"> 2 </td>
-                        <td class="align-middle"> $39.26 </td>
-                        <td class="align-middle"> 366 </td>
-                        <td class="align-middle text-right">
-                            <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
-                        </td>
-                    </tr><!-- /tr -->
-                    <!-- tr -->
-                    <tr>
-                        <td class="align-middle col-checker">
-                            <div class="custom-control custom-control-nolabel custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="selectedRow[]" id="p6"> <label class="custom-control-label" for="p6"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-7.jpg" alt="Card image cap"></a> <a href="#">Lemonade - Mandarin, 591 Ml</a>
-                        </td>
-                        <td class="align-middle"> 391 </td>
-                        <td class="align-middle"> 3 </td>
-                        <td class="align-middle"> $34.03 </td>
-                        <td class="align-middle"> 921 </td>
-                        <td class="align-middle text-right">
-                            <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
-                        </td>
-                    </tr><!-- /tr -->
-                    <!-- tr -->
-                    <tr>
-                        <td class="align-middle col-checker">
-                            <div class="custom-control custom-control-nolabel custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="selectedRow[]" id="p7"> <label class="custom-control-label" for="p7"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-2.jpg" alt="Card image cap"></a> <a href="#">Sour Puss - Tangerine</a>
-                        </td>
-                        <td class="align-middle"> 368 </td>
-                        <td class="align-middle"> 4 </td>
-                        <td class="align-middle"> $32.68 </td>
-                        <td class="align-middle"> 1216 </td>
-                        <td class="align-middle text-right">
-                            <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
-                        </td>
-                    </tr><!-- /tr -->
-                    <!-- tr -->
-                    <tr>
-                        <td class="align-middle col-checker">
-                            <div class="custom-control custom-control-nolabel custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="selectedRow[]" id="p8"> <label class="custom-control-label" for="p8"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-6.jpg" alt="Card image cap"></a> <a href="#">Scallops - 20/30</a>
-                        </td>
-                        <td class="align-middle"> 345 </td>
-                        <td class="align-middle"> 4 </td>
-                        <td class="align-middle"> $29.34 </td>
-                        <td class="align-middle"> 883 </td>
-                        <td class="align-middle text-right">
-                            <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
-                        </td>
-                    </tr><!-- /tr -->
-                    <!-- tr -->
-                    <tr>
-                        <td class="align-middle col-checker">
-                            <div class="custom-control custom-control-nolabel custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="selectedRow[]" id="p9"> <label class="custom-control-label" for="p9"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-4.jpg" alt="Card image cap"></a> <a href="#">Skirt - 29 Foot</a>
-                        </td>
-                        <td class="align-middle"> 432 </td>
-                        <td class="align-middle"> 3 </td>
-                        <td class="align-middle"> $23.50 </td>
-                        <td class="align-middle"> 854 </td>
-                        <td class="align-middle text-right">
-                            <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
-                        </td>
-                    </tr><!-- /tr -->
-                    <!-- tr -->
-                    <tr>
-                        <td class="align-middle col-checker">
-                            <div class="custom-control custom-control-nolabel custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="selectedRow[]" id="p10"> <label class="custom-control-label" for="p10"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-8.jpg" alt="Card image cap"></a> <a href="#">Tea - Grapefruit Green Tea</a>
-                        </td>
-                        <td class="align-middle"> 461 </td>
-                        <td class="align-middle"> 6 </td>
-                        <td class="align-middle"> $29.09 </td>
-                        <td class="align-middle"> 1694 </td>
-                        <td class="align-middle text-right">
-                            <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
-                        </td>
-                    </tr><!-- /tr -->
-                    <!-- tr -->
-                    <tr>
-                        <td class="align-middle col-checker">
-                            <div class="custom-control custom-control-nolabel custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="selectedRow[]" id="p11"> <label class="custom-control-label" for="p11"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-6.jpg" alt="Card image cap"></a> <a href="#">Pecan Raisin - Tarts</a>
-                        </td>
-                        <td class="align-middle"> 235 </td>
-                        <td class="align-middle"> 1 </td>
-                        <td class="align-middle"> $31.28 </td>
-                        <td class="align-middle"> 353 </td>
-                        <td class="align-middle text-right">
-                            <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
-                        </td>
-                    </tr><!-- /tr -->
-                    <!-- tr -->
-                    <tr>
-                        <td class="align-middle col-checker">
-                            <div class="custom-control custom-control-nolabel custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="selectedRow[]" id="p12"> <label class="custom-control-label" for="p12"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-5.jpg" alt="Card image cap"></a> <a href="#">Wine - Chateau Bonnet</a>
-                        </td>
-                        <td class="align-middle"> 113 </td>
-                        <td class="align-middle"> 2 </td>
-                        <td class="align-middle"> $22.38 </td>
-                        <td class="align-middle"> 1281 </td>
-                        <td class="align-middle text-right">
-                            <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
-                        </td>
-                    </tr><!-- /tr -->
                     </tbody><!-- /tbody -->
                 </table><!-- /.table -->
             </div><!-- /.table-responsive -->
-            <!-- .pagination -->
+            <!-- .pagination
             <ul class="pagination justify-content-center mt-4">
                 <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1"><i class="fa fa-lg fa-angle-left"></i></a>
@@ -299,10 +106,11 @@
                 <li class="page-item">
                     <a class="page-link" href="#"><i class="fa fa-lg fa-angle-right"></i></a>
                 </li>
-            </ul><!-- /.pagination -->
+            </ul>   .pagination -->
         </div><!-- /.card-body -->
                     </div>
                 </div>
+
 
 
 
@@ -489,6 +297,9 @@
         // $('#warranty_end_date > .form-control').prop('disabled', true);
 
        // $('#warranty_end_date > .form-control').prop('disabled', true);
+
+        //generateGrid(resultSet);
+        getAllRegisterAsset();
         getAllAsset();
     });
 
@@ -526,7 +337,7 @@
         //     $( "#warranty_end_date" ).prop( "disabled", true );
         // }
 
-        alert(ss);
+        // alert(ss);
     }
 
     $("form#assetRegisterForm").submit(function(e) {
@@ -547,4 +358,38 @@
             processData: false
         });
     });
+
+    function generateGrid(resultSet){
+        var html = '';
+        $.each(resultSet, function(i,data) {
+            html += "<tr>";
+            html +="<td class='align-middle'><div class='user-avatar user-avatar-lg'><img src='asset_image/"+data.photo_path+"' alt=''></div></td>";
+            html +="<td class='align-middle'>"+data.asset_reg_id+"</td>";
+            html +="<td class='align-middle'><div class='media-body'><a href='#'>"+data.asset_name+"</a> <small class='d-block text-muted'>"+data.brand_name+" "+data.model_no +"</small></div></td>";
+            html +="<td class='align-middle'>"+data.purchase_date+"</td>";
+            html +="<td class='align-middle'>"+data.warranty_end_date+"</td>";
+            html +="<td class='align-middle'>"+data.outlet_name+"</td>";
+            html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="modal" data-target="#clientContactEditModal"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeAssetSubGroup('+data.asset_reg_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+            html += '</tr>';
+        });
+
+        $('#registerAssetGrid tbody').html(html);
+    }
+
+
+        function getAllRegisterAsset(){
+            var html = '';
+            $.ajax({
+                type: "GET",
+                url: 'getAllRegisterAssetList',
+                context: document.body
+            }).done(function(result) {
+                generateGrid(result);
+                // alert(result);
+                // $.each(result, function(i,data) {
+                //     // html +='<option value="'+data.asset_id+'">'+data.asset_name+'</option>';
+                // });
+                // $('#asset_list').html(html);
+            });
+        }
 </script>
