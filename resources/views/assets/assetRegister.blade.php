@@ -38,7 +38,7 @@
                 <div class="input-group input-group-alt">
                     <!-- .input-group-prepend -->
                     <div class="input-group-prepend">
-                        <select class="custom-select">
+                        <select class="custom-select" id="filterParam">
                             <option selected> Filter By </option>
                             <option value="1"> Tags </option>
                             <option value="2"> Vendor </option>
@@ -144,8 +144,9 @@
                                                     <div class="form-group">
                                                         <label class="control-label" for="select2-single">Supplier</label>
                                                         <select id="select2-supplier" name="supplier_id" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
-                                                            <option value="1"> Rohime Electric </option>
-                                                            <option value="2"> Hawaii </option>
+                                                            <option value="0"> --- Select Supplier ---- </option>
+                                                            <option value="1"> ABC Electric LTD. </option>
+                                                            <option value="2"> XYZ Company LTD. </option>
                                                         </select>
                                                     </div><!-- /.form-group -->
                                                 </div>
@@ -213,8 +214,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label" for="outlet_id">Outlet</label>
                                                         <select id="outlet_id" name="outlet_id" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
-                                                            <option value="1"> Rohime Electric </option>
-                                                            <option value="2"> Hawaii </option>
+
                                                         </select>
                                                     </div><!-- /.form-group -->
                                                 </div>
@@ -280,16 +280,88 @@
             </div>
     </div>
 </div>
+
+
+
+
+
+
+
+<!-- Modal form -->
+<div class="modal fade" id="outletAgreementForm" tabindex="-1" role="dialog" aria-labelledby="outletAgreementFormLabel" aria-hidden="true">
+    <!-- .modal-dialog -->
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <!-- .modal-content -->
+        <div class="modal-content">
+            <!-- .modal-header -->
+            <div class="modal-header">
+                <h6 id="outletAgreementFormLabel" class="modal-title"> Repairing </h6>
+            </div><!-- /.modal-header -->
+            <!-- .modal-body -->
+            <div class="modal-body px-0">
+
+
+                <div class="card card-fluid">
+                    <!-- .card-body -->
+                    <div class="card-body">
+
+                <div class="form-row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label" for="problem_date">Problem Date</label>
+                        <div class="input-group input-group-alt flatpickr" id="problem_date"  data-toggle="flatpickr" data-wrap="true" data-alt-input="true" data-alt-format="F j, Y" data-alt-input-class="form-control" data-date-format="Y-m-d" value="2019-11-04" placeholder="DD/MM/YYYY">
+                            <input id="problem_date" name="problem_date" type="text" class="form-control" data-input="">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-secondary" data-toggle=""><i class="far fa-calendar"></i></button>
+                                <button type="button" class="btn btn-secondary" data-clear=""><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="outletAddress">User Comment</label>
+                        <input type="text" id="outletAddress" name="outletAddress" class="form-control">
+                    </div>
+                </div>
+
+                    <div class="form-group">
+                        <div class="form-actions">
+                            <button class="btn btn-primary" type="button">Send for Repair</button>
+                        </div>
+                    </div>
+
+
+            </div><!-- /.form-row -->
+
+
+</div></div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 <script src="assets/javascript/theme.min.js"></script> <!-- END THEME JS -->
 
 <script>
-            var loadFile = function(event) {
-                var output = document.getElementById('output');
-                output.src = URL.createObjectURL(event.target.files[0]);
-                output.onload = function() {
-                    URL.revokeObjectURL(output.src) // free memory
-                }
-            };
+
+    var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
 
     $(document).ready(function(){
         // $("#purchase_order_no").prop('disabled', true);
@@ -301,6 +373,7 @@
         //generateGrid(resultSet);
         getAllRegisterAsset();
         getAllAsset();
+        getOutletList();
     });
 
     function getAllAsset(){
@@ -314,6 +387,21 @@
                 html +='<option value="'+data.asset_id+'">'+data.asset_name+'</option>';
             });
             $('#asset_list').html(html);
+        });
+    }
+
+    function getOutletList(){
+        var html = '';
+        $.ajax({
+            type: "GET",
+            url: 'getAllOutlet',
+            context: document.body
+        }).done(function(result) {
+            $.each(result, function(i,data) {
+                html +='<option value="'+data.outlet_id+'">'+data.outlet_name+'</option>';
+            });
+            $('#filterParam').html(html);
+            $('#outlet_id').html(html);
         });
     }
 
@@ -349,9 +437,10 @@
             type: 'POST',
             data: formData,
             success: function (data) {
-               alert(JSON.stringify(data.qrcode));
+               // alert(JSON.stringify(data.qrcode));
                $("#qrcode").html(data.qrcode);
                $("#registration_no").html(data.reg_id);
+                getAllAsset();
             },
             cache: false,
             contentType: false,
@@ -362,6 +451,20 @@
     function generateGrid(resultSet){
         var html = '';
         $.each(resultSet, function(i,data) {
+
+            var linkdown = '<div class="dropdown">'+
+                                    '<button type="button" class="btn btn-icon btn-light" data-toggle="dropdown">'+
+                                    '<i class="fa fa-ellipsis-v"></i></button>'+
+                                    '<div class="dropdown-menu dropdown-menu-right">'+
+                                        '<div class="dropdown-arrow"></div>'+
+                                        '<a href="#" class="dropdown-item" onclick="popupAssetRepair('+i+')"><i class="fa fa-pencil-alt"></i> Edit </a>'+
+                                        '<a href="#" class="dropdown-item" onclick="popupAssetRepair()"><i class="far fa-trash-alt"></i> Remove</a>'+
+                                        '<a href="#" class="dropdown-item" onclick="popupAssetRepair()"><i class="oi oi-wrench"></i> Repair </a>'+
+                                        '<a href="#" class="dropdown-item" onclick="popupAssetRepair()"><i class="fas fa-rocket"></i> Transfer</a>'+
+                                    '</div>'+
+                            '</div>';
+
+
             html += "<tr>";
             html +="<td class='align-middle'><div class='user-avatar user-avatar-lg'><img src='asset_image/"+data.photo_path+"' alt=''></div></td>";
             html +="<td class='align-middle'>"+data.asset_reg_id+"</td>";
@@ -369,7 +472,8 @@
             html +="<td class='align-middle'>"+data.purchase_date+"</td>";
             html +="<td class='align-middle'>"+data.warranty_end_date+"</td>";
             html +="<td class='align-middle'>"+data.outlet_name+"</td>";
-            html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="modal" data-target="#clientContactEditModal"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeAssetSubGroup('+data.asset_reg_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+            //html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="modal" data-target="#clientContactEditModal"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeAssetSubGroup('+data.asset_reg_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button>'+ linkdown +'</td>';
+            html +='<td class="alian-middle text-right">'+ linkdown +'</td>';
             html += '</tr>';
         });
 
@@ -390,6 +494,16 @@
                 //     // html +='<option value="'+data.asset_id+'">'+data.asset_name+'</option>';
                 // });
                 // $('#asset_list').html(html);
+            });
+        }
+
+        function popupAssetRepair(i){
+        //alert(i);
+            //$("#outletAgreementForm").modal();
+
+            $("#outletAgreementForm").modal({
+                fadeDuration: 1000,
+                fadeDelay: 0.50
             });
         }
 </script>

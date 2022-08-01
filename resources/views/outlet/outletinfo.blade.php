@@ -33,191 +33,6 @@
                 <div id="outletList-panel" class="list-group list-group-flush list-group-divider border-top" data-toggle="radiolist">
 
                   <!-- .list-group-item -->
-                  <div class="list-group-item active" data-toggle="sidebar" data-sidebar="show" onclick="outletInfo('BASHUNDHARA CITY MEGA MALL',1)">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-blue"> B </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> BASHUNDHARA CITY MEGA MALL.</h4>
-                      <p class="list-group-item-text"> Bashundhara City </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-
-
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show" onclick="outletInfo('JAMUNA FUTURE PARK MEGA MALL',1)">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-indigo"> J </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> JAMUNA FUTURE PARK MEGA MALL </h4>
-                      <p class="list-group-item-text"> Jamuna Future Park </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show" onclick="outletInfo('GULSHAN PINK CITY',1)">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-purple"> G </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> GULSHAN PINK CITY </h4>
-                      <p class="list-group-item-text"> Gulshan, Dhaka </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show" onclick="outletInfo('BAILY ROAD',1)">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-pink"> B </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> BAILY ROAD </h4>
-                      <p class="list-group-item-text"> Baily Road, Dhaka </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-red"> R </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Ron-tech </h4>
-                      <p class="list-group-item-text"> Pekalongan, Indonesia </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-orange"> G </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Groovestreet </h4>
-                      <p class="list-group-item-text"> London, United Kingdom </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-yellow"> B </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Bioplex et Chandon </h4>
-                      <p class="list-group-item-text"> Hyderabad, India </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-green"> S </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Streethex </h4>
-                      <p class="list-group-item-text"> Mexico City, Mexico </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-teal"> H </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Hottechi Motor Company, Ltd </h4>
-                      <p class="list-group-item-text"> Jakarta, Indonesia </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-cyan"> N </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Newex </h4>
-                      <p class="list-group-item-text"> Tokyo, Japan </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-blue"> F </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Finjob </h4>
-                      <p class="list-group-item-text"> Paris, France </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-indigo"> S </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Sonron, Inc. </h4>
-                      <p class="list-group-item-text"> Beijing, China </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-purple"> D </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Doncon </h4>
-                      <p class="list-group-item-text"> Delhi, India </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-pink"> C </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Conecom </h4>
-                      <p class="list-group-item-text"> São Paulo, Brazil </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-red"> J </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> J-Texon Systems, Inc. </h4>
-                      <p class="list-group-item-text"> New York City, United States </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-
-                  <!-- .list-group-item -->
                   <div class="list-group-item">
                     <!-- .list-group-item-body -->
                     <div class="list-group-item-body text-center py-4">
@@ -257,8 +72,8 @@
 
               <!-- Title Name -->
                 <h1 class="page-title" id="title-outlet-name">
-                  <i class="far fa-building text-muted mr-2"></i> BASHUNDHARA CITY MEGA MALL. </h1>
-                <p class="text-muted" id="title-outlet-address"> Level-7, Block: C, Panthapath, Dhaka. </p><!-- .nav-scroller -->
+                  <i class="far fa-building text-muted mr-2"></i>  </h1>
+                <p class="text-muted" id="title-outlet-address"> </p><!-- .nav-scroller -->
 
 
 
@@ -310,7 +125,7 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                   <h2 id="client-billing-contact-tab" class="card-title"> Outlet Address </h2>
                                 </div>
-                                <address> Level-7, Block: C, Panthapath, Dhaka.
+                                <address id="viewOutletAddress"> Level-7, Block: C, Panthapath, Dhaka.
                                 <br>Mobile: 01678-614819 <br> Bangladesh </address>
                           </div>
 
@@ -1781,6 +1596,7 @@
 
       const colorCodes = [];
       colorCodes['B'] = 'bg-blue';
+      colorCodes['D'] = 'bg-orange';
       colorCodes['J'] = 'bg-indigo';
       colorCodes['G'] = 'bg-purple';
       colorCodes['P'] = 'bg-pink';
@@ -1798,7 +1614,9 @@
         $("#title-outlet-name").html('<i class="far fa-building text-muted mr-2"></i> ' +  gOutletInfo[index].outlet_name);
         // Call Tab containt loading function
           $("#title-outlet-address").html(gOutletInfo[index].outlet_address);
-        storeTabId(tabID);
+          $("#viewOutletAddress").html(gOutletInfo[index].outlet_address);
+
+         storeTabId(tabID);
 
       }
 
@@ -1875,8 +1693,6 @@
                   var text = data.outlet_name;
                   var subStrs = text.substring(0,1);
 
-                  alert(subStrs);
-
                   html += '<div class="list-group-item" data-toggle="sidebar" data-sidebar="show" onclick="outletInfo(\''+ i +'\',1)">';
                   html += '<a href="#" class="stretched-link"></a>';
                   html += '<div class="list-group-item-figure">';
@@ -1887,11 +1703,12 @@
                   html += '<p class="list-group-item-text"> '+data.outlet_address+' </p>';
                   html += '</div>';
                   html += '</div>';
+                  // $('#outletList-panel').append(html);
+                  // html='';
               });
               $('#outletList-panel').html(html);
 
           });
-              // onclick="outletInfo('BASHUNDHARA CITY MEGA MALL',1)"
 
       }
     </script>
