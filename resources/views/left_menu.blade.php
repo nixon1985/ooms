@@ -42,6 +42,10 @@
                 <li class="menu-item has-child">
                   <a href="#" class="menu-link"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text">Maintenance</span></a> <!-- child menu -->
                   <ul class="menu">
+                      <li class="menu-item">
+                          <a href="#" class="menu-link" onclick="loadRemotePage('maintenanceConfig')"> Configuration </a>
+                      </li>
+
                     <li class="menu-item">
                       <a href="#" class="menu-link" onclick="loadRemotePage('servicing')">Schedule Maintenance</a>
                     </li>

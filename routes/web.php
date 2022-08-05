@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\maintenance\MaintenanceController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Http\Request;
 use App\Http\Controllers\Config\OutletController;
 use App\Http\Controllers\assets\AssetGroupController;
 use App\Http\Controllers\assets\AssetConfigController;
 use App\Http\Controllers\assets\AssetRegisterController;
+
 
 
 
@@ -98,4 +100,7 @@ Route::get('/qrcode', function () {
 Route::get('/assetRegister',[AssetRegisterController::class,'index'])->name('assetConfigUi');
 Route::post('/addAssetsRegister',[AssetRegisterController::class,'addAssetsRegister'])->name('addAssetsRegister');
 Route::get('/getAllRegisterAssetList',[AssetRegisterController::class,'getRegisterAssetList'])->name('getAllRegisterAssetList');
+
+// Maintenance
+Route::get('/maintenanceConfig', [MaintenanceController::class, 'index'])->name('maintenanceConfig');
 
