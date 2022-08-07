@@ -14,10 +14,10 @@
                 <a class="nav-link active show" data-toggle="tab" href="#problem-tab-content" onClick="storeTabId('basicInfo')"> Problems </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#asset-sub-group-tab-content" onClick="storeTabId('service')"> Solution </a>
+                <a class="nav-link" data-toggle="tab" href="#solution-tab-content" onClick="storeTabId('service')"> Solution </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#asset-tab-content" onClick="storeTabId('complain')">Additional Parts</a>
+                <a class="nav-link" data-toggle="tab" href="#parts-tab-content" onClick="storeTabId('complain')">Additional Parts</a>
             </li>
         </ul><!-- /.nav-tabs -->
     </div><!-- /.nav-scroller -->
@@ -41,21 +41,28 @@
                     <div class="card card-fluid">
                         <!-- .card-body -->
                         <div class="card-body">
-                            <h4 class="card-title"> Add New Assets Group </h4>
-                            <h6 class="card-subtitle mb-4"> New assets group creation form. </h6><!-- form -->
+                            <h4 class="card-title"> Add New Problems </h4>
+                            <h6 class="card-subtitle mb-4"> Add the mechanical and technical problems of assets  </h6><!-- form -->
                             <form>
                                 <div class="form-row" id="massageDiv-group"></div>
 
+                                <div class="form-group">
+                                    <label for="problem_group_id">Asset Group <abbr title="Required">*</abbr></label>
+                                    <select id="problem_group_id" name="problem_group_id" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
+                                        <option value=""> No Data found </option>
+                                    </select>
+                                </div><!-- /.form-group -->
+
                                 <!-- .form-group -->
                                 <div class="form-group">
-                                    <label for="assetGroupName">Group <abbr title="Required">*</abbr></label>
-                                    <input type="text" class="form-control" id="assetGroupName" placeholder="Enter Group Name" value="" required="">
+                                    <label for="problem_name">Problem Name <abbr title="Required">*</abbr></label>
+                                    <input type="text" class="form-control" id="problem_name" name="problem_name" placeholder="Enter Problem Name" value="" required="">
                                 </div><!-- /.form-group -->
                                 <!-- .form-group -->
                                 <div class="form-group">
                                     <label for="addbutton"> </label>
                                     <div class="form-actions">
-                                        <button class="btn btn-primary" type="submit" onclick="saveGroup()">Save</button>
+                                        <button class="btn btn-primary" type="submit" onclick="saveProblem()">Save</button>
                                     </div>
                                 </div><!-- /.form-group -->
                                 <!-- .form-group -->
@@ -69,7 +76,7 @@
                         <!-- .card-body -->
                         <div class="card-body">
                             <h4 class="card-title"> Assets Group List </h4>
-                            <h6 class="card-subtitle mb-4"> List of assets group. </h6><!-- form -->
+                            <h6 class="card-subtitle mb-4"> List of mechanical and technical problems of assets </h6><!-- form -->
 
                             <div class="table-responsive">
                                 <!-- .table -->
@@ -78,7 +85,8 @@
                                     <thead class="thead-light">
                                     <tr>
                                         <th> ID </th>
-                                        <th> Group </th>
+                                        <th> Problems </th>
+                                        <th> Group</th>
                                         <th></th>
                                     </tr>
                                     </thead><!-- /thead -->
@@ -94,9 +102,6 @@
 
                 </div><!-- /.card-deck-xl -->
 
-
-
-
             </div>
 
 
@@ -107,7 +112,7 @@
 
 
         <!-- .Sub-Group tab-pane Start -->
-        <div class="tab-pane fade" id="asset-sub-group-tab-content" role="tabpanel" aria-labelledby="asset-sub-group-tab-content">
+        <div class="tab-pane fade" id="solution-tab-content" role="tabpanel" aria-labelledby="solution-tab-content">
 
             <div class="page-section">
                 <!-- .card-deck-xl -->
@@ -190,14 +195,11 @@
 
         <!-- .tab-content -->
 
-        <div class="tab-pane fade" id="asset-tab-content" role="tabpanel" aria-labelledby="asset-tab-content">
-
-            <!-- QrCode-size(100)->generate('Asset ID: 59960')-->
+        <div class="tab-pane fade" id="parth-tab-content" role="tabpanel" aria-labelledby="parth-tab-content">
 
             <div class="page-section">
                 <!-- .card-deck-xl -->
                 <div class="card-deck-xl">
-
                     <!-- .card -->
                     <div class="card card-fluid">
                         <!-- .card-body -->
@@ -294,7 +296,7 @@
 
 
 </div>
-
+<script src="assets/javascript/tt.min.js"></script> <!-- END THEME JS -->
 <script>
 
     $(document).ready(function(){
@@ -435,6 +437,7 @@
         $.each(subGroupData, function(i,data) {
             html +='<option value="'+data.sub_group_id+'">'+data.sub_group_name+'</option>';
         });
+        $('#problem_group_id').html(html);
         $('#sub_group_id').html(html);
 
     }
