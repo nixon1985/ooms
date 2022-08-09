@@ -103,4 +103,6 @@ Route::get('/getAllRegisterAssetList',[AssetRegisterController::class,'getRegist
 
 // Maintenance
 Route::get('/maintenanceConfig', [MaintenanceController::class, 'index'])->name('maintenanceConfig');
+Route::post('/saveProblem',[MaintenanceController::class,'saveProblem'])->name('saveProblem');
+Route::get('/getAllProblems',[MaintenanceController::class,'getAllProblems'])->name('getAllProblems');
 

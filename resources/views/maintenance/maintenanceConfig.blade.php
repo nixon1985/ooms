@@ -62,7 +62,7 @@
                                 <div class="form-group">
                                     <label for="addbutton"> </label>
                                     <div class="form-actions">
-                                        <button class="btn btn-primary" type="submit" onclick="saveProblem()">Save</button>
+                                        <button class="btn btn-primary" type="button" onclick="saveProblem()">Save</button>
                                     </div>
                                 </div><!-- /.form-group -->
                                 <!-- .form-group -->
@@ -309,18 +309,19 @@
         var html = '';
         $.ajax({
             type: "GET",
-            url: 'getAllAssetGroup',
+            url: 'getAllProblems',
             context: document.body
         }).done(function(result) {
             $.each(result, function(i,data) {
                 html += "<tr>";
-                html +="<td class='align-middle'>"+data.group_id+"</td>";
-                html +="<td class='align-middle'>"+data.group_name+"</td>";
+                html +="<td class='align-middle'>"+data.problem_id+"</td>";
+                html +="<td class='align-middle'>"+data.problem_name+"</td>";
+                html +="<td class='align-middle'>"+data.sub_group_name+"</td>";
                 html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="modal" data-target="#clientContactEditModal"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeAssetGroup('+data.group_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
                 html += '</tr>';
             });
             $('#asset_group_grid tbody').html(html);
-            assetGroupCombo(result);
+            // assetGroupCombo(result);
         });
     }
 
@@ -397,22 +398,23 @@
 
 
 
-    function saveGroup(){
-        var groupName = $('#assetGroupName').val();
+    function saveProblem(){
+        var group_id = $('#problem_group_id').val();
+        var problemName = $('#problem_name').val();
         var massageTest = '<div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">×</button><strong>Well done!</strong> You successfully saved asset sub-group.</div>';
 
-        var actionlink = 'saveAssetGroup';
+        var actionlink = 'saveProblem';
         $.ajax({
             type: "POST",
             url: actionlink,
-            data:{_token:'{{csrf_token()}}',group_name:groupName},
+            data:{_token:'{{csrf_token()}}',group_id:group_id, problem_name:problemName},
             context: document.body
         }).done(function(result) {
-            if(result==1){
+            if(result.success){
                 // $("#massageDiv").show();
                 $("#massageDiv-group").html(massageTest);
-                $('#assetGroup').val("");
-                $('#assetSubGroup').val("");
+                // $('#problem_group_id').val("");
+                $('#problem_name').val("");
                 getAllAssetGroup();
             }else{
                 alert('Error');
