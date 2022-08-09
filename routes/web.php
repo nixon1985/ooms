@@ -102,7 +102,20 @@ Route::post('/addAssetsRegister',[AssetRegisterController::class,'addAssetsRegis
 Route::get('/getAllRegisterAssetList',[AssetRegisterController::class,'getRegisterAssetList'])->name('getAllRegisterAssetList');
 
 // Maintenance
-Route::get('/maintenanceConfig', [MaintenanceController::class, 'index'])->name('maintenanceConfig');
+Route::get('/maintenanceConfig',[MaintenanceController::class, 'index'])->name('maintenanceConfig');
 Route::post('/saveProblem',[MaintenanceController::class,'saveProblem'])->name('saveProblem');
+Route::post('/saveSolution',[MaintenanceController::class,'saveSolution'])->name('saveSolution');
+Route::post('/saveAssetParts',[MaintenanceController::class,'saveAssetParts'])->name('saveAssetParts');
+
 Route::get('/getAllProblems',[MaintenanceController::class,'getAllProblems'])->name('getAllProblems');
+Route::get('/getAllSolutions',[MaintenanceController::class,'getAllSolutions'])->name('getAllSolutions');
+Route::get('/getAllAssetParts',[MaintenanceController::class,'getAllAssetParts'])->name('getAllAssetParts');
+Route::delete('/deleteProblem',[MaintenanceController::class,'deleteProblem'])->name('deleteProblem');
+Route::delete('/deleteSolution',[MaintenanceController::class,'deleteSolution'])->name('deleteSolution');
+Route::delete('/deleteAssetParts',[MaintenanceController::class,'deleteAssetParts'])->name('deleteAssetParts');
+
+
+
+
+
 

@@ -1,4 +1,9 @@
-
+<style>
+    .table-wrap {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+</style>
 <div class="page-inner">
 
     <!-- <div class="card"> -->
@@ -27,7 +32,7 @@
 
 
     <!-- .tab-content -->
-    <div class="tab-content mt-4" id="asset-group-tab">
+    <div class="tab-content mt-4">
 
         <!-- .tab-pane -->
         <div class="tab-pane fade show active" id="problem-tab-content" role="tabpanel" aria-labelledby="problem-tab-content">
@@ -44,7 +49,7 @@
                             <h4 class="card-title"> Add New Problems </h4>
                             <h6 class="card-subtitle mb-4"> Add the mechanical and technical problems of assets  </h6><!-- form -->
                             <form>
-                                <div class="form-row" id="massageDiv-group"></div>
+                                <div class="form-group" id="massageDiv-group"></div>
 
                                 <div class="form-group">
                                     <label for="problem_group_id">Asset Group <abbr title="Required">*</abbr></label>
@@ -75,12 +80,12 @@
                     <div class="card card-fluid">
                         <!-- .card-body -->
                         <div class="card-body">
-                            <h4 class="card-title"> Assets Group List </h4>
+                            <h4 class="card-title"> Problem List </h4>
                             <h6 class="card-subtitle mb-4"> List of mechanical and technical problems of assets </h6><!-- form -->
 
-                            <div class="table-responsive">
+                            <div class="table-responsive table-wrap">
                                 <!-- .table -->
-                                <table class="table table-sm mb-0 table-hover table-striped" id="asset_group_grid">
+                                <table class="table table-sm mb-0 table-hover table-striped" id="asset_group_grid" style="min-height: 200px;">
                                     <!-- thead -->
                                     <thead class="thead-light">
                                     <tr>
@@ -109,8 +114,6 @@
         <!-- /.tab-pane -->
 
 
-
-
         <!-- .Sub-Group tab-pane Start -->
         <div class="tab-pane fade" id="solution-tab-content" role="tabpanel" aria-labelledby="solution-tab-content">
 
@@ -122,31 +125,28 @@
                     <div class="card card-fluid">
                         <!-- .card-body -->
                         <div class="card-body">
-                            <h4 class="card-title"> Add New Assets Sub-Group </h4>
-                            <h6 class="card-subtitle mb-4"> New subgroup creation form. </h6><!-- form -->
+                            <h4 class="card-title"> Add New Solution </h4>
+                            <h6 class="card-subtitle mb-4"> New Solution creation form. </h6><!-- form -->
                             <form>
 
-                                <div class="form-row" id="massageDiv"></div>
+                                <div class="form-row" id="massageDiv-forSolution"></div>
                                 <!-- .form-group -->
                                 <div class="form-group">
-                                    <label for="assetGroup">Asset Group <abbr title="Required">*</abbr></label>
-                                    <select class="custom-select d-block w-100" id="assetGroup" required="">
-                                        <option value=""> Choose... </option>
-                                        <option value="1"> Electric </option>
-                                        <option value="2"> Glass </option>
-                                        <option value="3"> General </option>
+                                    <label for="problem_id">Problem List <abbr title="Required">*</abbr></label>
+                                    <select id="problem_id" name="problem_id" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
+                                        <option value=""> No Data found </option>
                                     </select>
                                 </div><!-- /.form-group -->
                                 <!-- .form-group -->
                                 <div class="form-group">
-                                    <label for="assetSubGroup">Sub Group <abbr title="Required">*</abbr></label>
-                                    <input type="text" class="form-control" id="assetSubGroup" placeholder="Sub-Group Name" value="" required="">
+                                    <label for="solution_name">Solution Name <abbr title="Required">*</abbr></label>
+                                    <input type="text" class="form-control" id="solution_name" name="solution_name" placeholder="Solution" value="" required="">
                                 </div><!-- /.form-group -->
                                 <!-- .form-group -->
                                 <div class="form-group">
                                     <label for="addbutton"> </label>
                                     <div class="form-actions">
-                                        <button class="btn btn-primary" type="submit" onclick="saveSubGroup()">Save</button>
+                                        <button class="btn btn-primary" type="button" onclick="saveSolution()">Save</button>
                                     </div>
                                 </div><!-- /.form-group -->
                                 <!-- .form-group -->
@@ -159,18 +159,19 @@
                     <div class="card card-fluid">
                         <!-- .card-body -->
                         <div class="card-body">
-                            <h4 class="card-title"> Sub-Group List </h4>
-                            <h6 class="card-subtitle mb-4"> List of sub-group assets. </h6><!-- form -->
+                            <h4 class="card-title"> Solutions List </h4>
+                            <h6 class="card-subtitle mb-4"> List of solutions. </h6><!-- form -->
 
-                            <div class="table-responsive">
+                            <div class="table-responsive table-wrap">
                                 <!-- .table -->
-                                <table class="table table-sm mb-0 table-hover table-striped" id="asset_sub_group_grid">
+                                <table class="table table-sm mb-0 table-hover table-striped" id="solution_grid">
                                     <!-- thead -->
                                     <thead class="thead-light">
                                     <tr>
                                         <th> ID </th>
-                                        <th> Group </th>
-                                        <th style="min-width:200px"> Sub-Group </th>
+                                        <th style="min-width:100px"> Solution </th>
+                                        <th style="min-width:200px"> Problems </th>
+                                        <th> Asset Group </th>
                                         <th></th>
                                     </tr>
                                     </thead><!-- /thead -->
@@ -195,7 +196,7 @@
 
         <!-- .tab-content -->
 
-        <div class="tab-pane fade" id="parth-tab-content" role="tabpanel" aria-labelledby="parth-tab-content">
+        <div class="tab-pane fade" id="parts-tab-content" role="tabpanel" aria-labelledby="parts-tab-content">
 
             <div class="page-section">
                 <!-- .card-deck-xl -->
@@ -204,47 +205,32 @@
                     <div class="card card-fluid">
                         <!-- .card-body -->
                         <div class="card-body">
-                            <h4 class="card-title"> Add New Assets </h4>
-                            <h6 class="card-subtitle mb-4"> New assets creation form. </h6><!-- form -->
+                            <h4 class="card-title"> Add New Parts </h4>
+                            <h6 class="card-subtitle mb-4"> New parts creation form. </h6><!-- form -->
                             <form>
 
-                                <div class="form-row" id="massageDiv-asset"></div>
+                                <div class="form-group" id="massageDiv-forAssetParts"></div>
                                 <!-- .form-group -->
                                 <div class="form-group">
-                                    <label for="sub_group_id">Asset Subgroup <abbr title="Required">*</abbr></label>
-                                    <select class="custom-select d-block w-100" id="sub_group_id" required="">
-                                        <option value=""> Choose... </option>
+                                    <label for="asset_group_id">Asset Sub Group <abbr title="Required">*</abbr></label>
+                                    <select id="asset_group_id" name="asset_group_id" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
+                                        <option value=""> No Data found </option>
                                     </select>
                                 </div><!-- /.form-group -->
                                 <!-- .form-group -->
                                 <div class="form-group">
-                                    <label for="asset_name">Asset Name <abbr title="Required">*</abbr></label>
-                                    <input type="text" class="form-control" id="asset_name" placeholder="Asset Name" value="" required="">
+                                    <label for="parts_name">Parts Name <abbr title="Required">*</abbr></label>
+                                    <input type="text" class="form-control" id="parts_name" placeholder="Parts Name" value="" required="">
                                 </div><!-- /.form-group -->
-
-                                <!-- .form-group -->
-                                <div class="form-group">
-                                    <label for="model_no">Model <abbr title="Required">*</abbr></label>
-                                    <input type="text" class="form-control" id="model_no" placeholder="Model Name" value="" required="">
-                                </div><!-- /.form-group -->
-
-                                <!-- .form-group -->
-                                <div class="form-group">
-                                    <label for="brand_name">Brand<abbr title="Required">*</abbr></label>
-                                    <input type="text" class="form-control" id="brand_name" placeholder="Brand Name" value="" required="">
-                                </div><!-- /.form-group -->
-
-
 
                                 <!-- .form-group -->
                                 <div class="form-group">
                                     <label for="addbutton"> </label>
                                     <div class="form-actions">
-                                        <button class="btn btn-primary" type="submit" onclick="saveAssets()">Save</button>
+                                        <button class="btn btn-primary" type="button" onclick="saveAssetParts()">Save</button>
                                     </div>
                                 </div><!-- /.form-group -->
                                 <!-- .form-group -->
-
                             </form><!-- /form -->
                         </div><!-- /.card-body -->
                     </div><!-- /.card -->
@@ -253,20 +239,18 @@
                     <div class="card card-fluid">
                         <!-- .card-body -->
                         <div class="card-body">
-                            <h4 class="card-title"> Assets List </h4>
-                            <h6 class="card-subtitle mb-4"> List of assets. </h6><!-- form -->
+                            <h4 class="card-title"> Assets Parts List </h4>
+                            <h6 class="card-subtitle mb-4"> List of assets parts. </h6><!-- form -->
 
                             <div class="table-responsive">
                                 <!-- .table -->
-                                <table class="table table-sm mb-0 table-hover table-striped" id="asset_list_grid">
+                                <table class="table table-sm mb-0 table-hover table-striped" id="asset_parts_grid">
                                     <!-- thead -->
                                     <thead class="thead-light">
                                     <tr>
                                         <th> ID </th>
-                                        <th style="min-width:200px"> Asset </th>
-                                        <th> Sub-Group </th>
-                                        <th> Model </th>
-                                        <th> Brand </th>
+                                        <th style="min-width:200px"> Parts </th>
+                                        <th> Asset Group</th>
                                         <th></th>
                                     </tr>
                                     </thead><!-- /thead -->
@@ -301,11 +285,29 @@
 
     $(document).ready(function(){
         getAllAssetSubGroup();
-        getAllAssetGroup();
+        getAllProblems();
+        getAllSolutions();
         getAllAssetList();
+        getAllAssetPartsList();
     });
 
-    function getAllAssetGroup(){
+    function getAllAssetSubGroup(){
+        $.ajax({
+            type: "GET",
+            url: 'getAllAssetSubGroup',
+            context: document.body
+        }).done(function(result) {
+            var html = '<option value="">Choose... </option>';
+            $.each(result, function(i,data) {
+                html +='<option value="'+data.sub_group_id+'">'+data.sub_group_name+'</option>';
+            });
+            $('#problem_group_id').html(html);
+            $('#asset_group_id').html(html);
+
+        });
+    }
+
+    function getAllProblems(){
         var html = '';
         $.ajax({
             type: "GET",
@@ -317,91 +319,140 @@
                 html +="<td class='align-middle'>"+data.problem_id+"</td>";
                 html +="<td class='align-middle'>"+data.problem_name+"</td>";
                 html +="<td class='align-middle'>"+data.sub_group_name+"</td>";
-                html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="modal" data-target="#clientContactEditModal"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeAssetGroup('+data.group_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeProblem('+data.problem_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
                 html += '</tr>';
             });
             $('#asset_group_grid tbody').html(html);
-            // assetGroupCombo(result);
+            problemsCombo(result);
         });
     }
 
-    function getAllAssetSubGroup(){
+    function getAllSolutions(){
         var html = '';
         $.ajax({
             type: "GET",
-            url: 'getAllAssetSubGroup',
+            url: 'getAllSolutions',
             context: document.body
         }).done(function(result) {
             $.each(result, function(i,data) {
                 html += "<tr>";
-                html +="<td class='align-middle'>"+data.sub_group_id+"</td>";
-                html +="<td class='align-middle'>"+data.group_id+"</td>";
+                html +="<td class='align-middle'>"+data.solution_id+"</td>";
+                html +="<td class='align-middle'>"+data.solution_name+"</td>";
+                html +="<td class='align-middle'>"+data.problem_name+"</td>";
                 html +="<td class='align-middle'>"+data.sub_group_name+"</td>";
-                html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="modal" data-target="#clientContactEditModal"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeAssetSubGroup('+data.sub_group_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeSolution('+data.solution_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
                 html += '</tr>';
             });
-            $('#asset_sub_group_grid tbody').html(html);
-            assetSubGroupCombo(result);
+            $('#solution_grid tbody').html(html);
+        });
+    }
+
+    function getAllAssetPartsList(){
+        var html = '';
+        $.ajax({
+            type: "GET",
+            url: 'getAllAssetParts',
+            context: document.body
+        }).done(function(result) {
+            $.each(result, function(i,data) {
+                html += "<tr>";
+                html +="<td class='align-middle'>"+data.parts_id+"</td>";
+                html +="<td class='align-middle'>"+data.parts_name+"</td>";
+                html +="<td class='align-middle'>"+data.sub_group_name+"</td>";
+                html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeAssetParts('+data.parts_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html += '</tr>';
+            });
+            $('#asset_parts_grid tbody').html(html);
         });
     }
 
 
-    function saveSubGroup(){
-        var groupId = $('#assetGroup').val();
-        var subGroupName = $('#assetSubGroup').val();
 
-        var massageTest = '<div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">×</button><strong>Well done!</strong> You successfully saved asset sub-group.</div>';
+    function saveSolution(){
+        var problem_id = $('#problem_id').val();
+        var solution_name = $('#solution_name').val();
+        var massageTest = '<div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">×</button><strong>Well done!</strong> You successfully saved new solution.</div>';
 
-        var actionlink = 'saveSubGroup';
+        var actionlink = 'saveSolution';
         $.ajax({
             type: "POST",
             url: actionlink,
-            data:{_token:'{{csrf_token()}}',group_id:groupId,sub_group_name:subGroupName},
+            data:{_token:'{{csrf_token()}}',problem_id:problem_id,solution_name:solution_name},
             context: document.body
         }).done(function(result) {
-            if(result==1){
-                // $("#massageDiv").show();
-                $("#massageDiv").html(massageTest);
-                $('#assetGroup').val("");
-                $('#assetSubGroup').val("");
-                getAllAssetSubGroup();
+
+            if(result.success){
+                $("#massageDiv-forSolution").html(massageTest);
+                $('#solution_name').val("");
+                getAllSolutions();
             }else{
-                alert('Error');
+                $("#massageDiv-forSolution").html("Database Error......");
             }
-            // alert(result);
+        });
+    }
+
+    function saveAssetParts(){
+        var asset_group_id = $('#asset_group_id').val();
+        var parts_name = $('#parts_name').val();
+        var massageTest = '<div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">×</button><strong>Well done!</strong> You successfully saved asset part.</div>';
+
+        var actionlink = 'saveAssetParts';
+        $.ajax({
+            type: "POST",
+            url: actionlink,
+            data:{_token:'{{csrf_token()}}',sub_group_id:asset_group_id,parts_name:parts_name},
+            context: document.body
+        }).done(function(result) {
+
+            if(result.success){
+                $("#massageDiv-forAssetParts").html(massageTest);
+                $('#parts_name').val("");
+                getAllAssetPartsList();
+            }else{
+                $("#massageDiv-forSolution").html("Database Error......");
+            }
         });
     }
 
 
 
-    function removeAssetGroup(groupId){
+
+
+    function removeProblem(problem_id){
         $.ajax({
             type: "DELETE",
-            url: 'deleteAssetGroup',
-            data:{_token:'{{csrf_token()}}',group_id:groupId}
+            url: 'deleteProblem',
+            data:{_token:'{{csrf_token()}}',problem_id:problem_id}
         }).done(function(result) {
-            getAllAssetGroup();
+            getAllProblems();
         });
     }
 
-    function removeAssetSubGroup(subGroupId){
-        alert(subGroupId);
+    function removeSolution(solutionID){
         $.ajax({
             type: "DELETE",
-            url: 'deleteSubGroup',
-            data:{_token:'{{csrf_token()}}',sub_group_id:subGroupId}
+            url: 'deleteSolution',
+            data:{_token:'{{csrf_token()}}',solution_id:solutionID}
         }).done(function(result) {
-            alert(result);
-            getAllAssetSubGroup();
+            getAllSolutions();
         });
     }
 
+    function removeAssetParts(partsID){
+        $.ajax({
+            type: "DELETE",
+            url: 'deleteAssetParts',
+            data:{_token:'{{csrf_token()}}',parts_id:partsID}
+        }).done(function(result) {
+            getAllAssetPartsList();
+        });
+    }
 
 
     function saveProblem(){
         var group_id = $('#problem_group_id').val();
         var problemName = $('#problem_name').val();
-        var massageTest = '<div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">×</button><strong>Well done!</strong> You successfully saved asset sub-group.</div>';
+        var massageTest = '<div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">×</button><strong>Well done!</strong> You successfully saved new problem name.</div>';
 
         var actionlink = 'saveProblem';
         $.ajax({
@@ -415,11 +466,10 @@
                 $("#massageDiv-group").html(massageTest);
                 // $('#problem_group_id').val("");
                 $('#problem_name').val("");
-                getAllAssetGroup();
+                getAllProblems();
             }else{
                 alert('Error');
             }
-            // alert(result);
         });
     }
 
@@ -434,13 +484,13 @@
     }
 
 
-    function assetSubGroupCombo(subGroupData){
+    function problemsCombo(dataSet){
         var html = '<option value="">Choose... </option>';
-        $.each(subGroupData, function(i,data) {
-            html +='<option value="'+data.sub_group_id+'">'+data.sub_group_name+'</option>';
+        $.each(dataSet, function(i,data) {
+            html +='<option value="'+data.problem_id+'">'+data.problem_name+' [ '+data.sub_group_name+' ]</option>';
         });
-        $('#problem_group_id').html(html);
-        $('#sub_group_id').html(html);
+        $('#problem_id').html(html);
+       // $('#sub_group_id').html(html);
 
     }
 
