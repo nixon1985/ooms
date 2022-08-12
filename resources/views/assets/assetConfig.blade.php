@@ -120,7 +120,6 @@
                                 <h4 class="card-title"> Add New Assets Sub-Group </h4>
                                 <h6 class="card-subtitle mb-4"> New subgroup creation form. </h6><!-- form -->
                                 <form>
-
                                     <div class="form-row" id="massageDiv"></div>
                                     <!-- .form-group -->
                                     <div class="form-group">

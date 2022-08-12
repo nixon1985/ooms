@@ -7,6 +7,7 @@ use App\Http\Controllers\Config\OutletController;
 use App\Http\Controllers\assets\AssetGroupController;
 use App\Http\Controllers\assets\AssetConfigController;
 use App\Http\Controllers\assets\AssetRegisterController;
+use App\Http\Controllers\maintenance\ServiceRequestController;
 
 
 
@@ -101,7 +102,7 @@ Route::get('/assetRegister',[AssetRegisterController::class,'index'])->name('ass
 Route::post('/addAssetsRegister',[AssetRegisterController::class,'addAssetsRegister'])->name('addAssetsRegister');
 Route::get('/getAllRegisterAssetList',[AssetRegisterController::class,'getRegisterAssetList'])->name('getAllRegisterAssetList');
 
-// Maintenance
+// Maintenance Configure
 Route::get('/maintenanceConfig',[MaintenanceController::class, 'index'])->name('maintenanceConfig');
 Route::post('/saveProblem',[MaintenanceController::class,'saveProblem'])->name('saveProblem');
 Route::post('/saveSolution',[MaintenanceController::class,'saveSolution'])->name('saveSolution');
@@ -113,6 +114,17 @@ Route::get('/getAllAssetParts',[MaintenanceController::class,'getAllAssetParts']
 Route::delete('/deleteProblem',[MaintenanceController::class,'deleteProblem'])->name('deleteProblem');
 Route::delete('/deleteSolution',[MaintenanceController::class,'deleteSolution'])->name('deleteSolution');
 Route::delete('/deleteAssetParts',[MaintenanceController::class,'deleteAssetParts'])->name('deleteAssetParts');
+
+// Maintenance Service
+Route::get('/getServiceUI',[MaintenanceController::class,'getServiceUI'])->name('getAllProblems');
+Route::get('/getIncomingService',[MaintenanceController::class,'getIncomingService'])->name('getIncomingService');
+
+
+// Complain Request
+Route::post('/serviceRequest',[ServiceRequestController::class,'saveServiceRequest'])->name('serviceRequest');
+
+
+
 
 
 

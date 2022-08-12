@@ -65,9 +65,8 @@
                                 </div><!-- /.form-group -->
                                 <!-- .form-group -->
                                 <div class="form-group">
-                                    <label for="addbutton"> </label>
                                     <div class="form-actions">
-                                        <button class="btn btn-primary" type="button" onclick="saveProblem()">Save</button>
+                                        <button class="btn btn-primary" type="submit" onclick="saveProblem()">Save</button>
                                     </div>
                                 </div><!-- /.form-group -->
                                 <!-- .form-group -->
@@ -611,6 +610,9 @@
             alert(result);
         });
     }
+
+
+
 
 
 </script>

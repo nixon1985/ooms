@@ -14,6 +14,10 @@ class MaintenanceController extends Controller
         return view('maintenance.maintenanceConfig');
     }
 
+    function getServiceUI(){
+        return view('maintenance.serviceUI');
+    }
+
     function saveProblem(Request $request){
         $data=array(
             'group_id' => $request->group_id,
@@ -114,4 +118,21 @@ class MaintenanceController extends Controller
     }
 
 
+
+    /* Service Panel */
+
+
+
+    function getIncomingService(){
+        $dataList = DB::table('service_request AS s')
+            ->selectRaw('s.request_id,s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_name')
+            ->join('assets_register AS ar', 'ar.asset_reg_id', '=', 's.asset_reg_id')
+            ->join('asset_list AS a', 'a.asset_id', '=', 'ar.asset_id')
+            ->leftJoin('outlet_info AS o', 'o.outlet_id','=','ar.outlet_id')
+            ->whereNull('s.token_id')
+            ->orderByDesc('s.added_on')
+            ->get();
+        return response()->json($dataList);
+        // $results = DB::select('select * from users where id = ?', [1]);
+    }
 }

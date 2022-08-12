@@ -287,62 +287,63 @@
 
 
 
-<!-- Modal form -->
-<div class="modal fade" id="outletAgreementForm" tabindex="-1" role="dialog" aria-labelledby="outletAgreementFormLabel" aria-hidden="true">
+
+<div class="modal fade" id="serviceRequestForm" tabindex="-1" role="dialog" aria-labelledby="serviceRequestFormLabel" aria-hidden="true">
     <!-- .modal-dialog -->
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <!-- .modal-content -->
         <div class="modal-content">
             <!-- .modal-header -->
             <div class="modal-header">
-                <h6 id="outletAgreementFormLabel" class="modal-title"> Repairing </h6>
+                <h6 id="outletAgreementFormLabel" class="modal-title"> Outlet Agreement </h6>
             </div><!-- /.modal-header -->
             <!-- .modal-body -->
             <div class="modal-body px-0">
 
-
-                <div class="card card-fluid">
+                <!-- .card -->
+                <div class="card">
                     <!-- .card-body -->
                     <div class="card-body">
 
-                <div class="form-row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="control-label" for="problem_date">Problem Date</label>
-                        <div class="input-group input-group-alt flatpickr" id="problem_date"  data-toggle="flatpickr" data-wrap="true" data-alt-input="true" data-alt-format="F j, Y" data-alt-input-class="form-control" data-date-format="Y-m-d" value="2019-11-04" placeholder="DD/MM/YYYY">
-                            <input id="problem_date" name="problem_date" type="text" class="form-control" data-input="">
-                            <div class="input-group-append">
-                                <button type="button" class="btn btn-secondary" data-toggle=""><i class="far fa-calendar"></i></button>
-                                <button type="button" class="btn btn-secondary" data-clear=""><i class="fa fa-times"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            <!-- .form-row -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="problem_dateu" id="svcAssetName"></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="problem_datey" id="svcAssetLocation"></label>
+                                    </div>
+                                </div>
 
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="problem_date">Problem Date</label>
+                                        <div class="input-group input-group-alt flatpickr" data-toggle="flatpickr" data-wrap="true" data-alt-input="true" data-alt-format="F j, Y" data-alt-input-class="form-control" data-date-format="Y-m-d" value="2019-11-04" placeholder="DD/MM/YYYY">
+                                            <input id="problem_date" name="problem_date" type="text" class="form-control" data-input="">
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-secondary" data-toggle=""><i class="far fa-calendar"></i></button>
+                                                <button type="button" class="btn btn-secondary" data-clear=""><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="user_comment">User Comment</label>
+                                        <textarea id="user_comment" name="user_comment" class="form-control"></textarea>
+                                    </div>
+                                </div>
 
+                    </div><!-- /.card-body -->
+                </div><!-- /.card -->
 
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="outletAddress">User Comment</label>
-                        <input type="text" id="outletAddress" name="outletAddress" class="form-control">
-                    </div>
-                </div>
+            </div><!-- /.modal-body -->
 
-                    <div class="form-group">
-                        <div class="form-actions">
-                            <button class="btn btn-primary" type="button">Send for Repair</button>
-                        </div>
-                    </div>
-
-
-            </div><!-- /.form-row -->
-
-
-</div></div>
-
-
-
-            </div>
+            <!-- .modal-footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="button" onClick="sendServiceRequest()">Send Service Request</button>
+            </div><!-- /.modal-footer -->
         </div>
     </div>
 </div>
@@ -351,10 +352,15 @@
 
 
 
+
+
+
+
+
 <script src="assets/javascript/theme.min.js"></script> <!-- END THEME JS -->
 
 <script>
-
+var gRegAssetList = '';
     var loadFile = function(event) {
         var output = document.getElementById('output');
         output.src = URL.createObjectURL(event.target.files[0]);
@@ -449,29 +455,39 @@
     });
 
     function generateGrid(resultSet){
+        var linkdown = '';
+        var disableStyle = '';
+        var assetStatus = '';
         var html = '';
         $.each(resultSet, function(i,data) {
+             linkdown = '';
+            disableStyle = '';
+            assetStatus = '';
+            if(data.asset_condition==1) {
+                 linkdown = '<div class="dropdown">' +
+                    '<button type="button" class="btn btn-icon btn-light" data-toggle="dropdown">' +
+                    '<i class="fa fa-ellipsis-v"></i></button>' +
+                    '<div class="dropdown-menu dropdown-menu-right">' +
+                    '<div class="dropdown-arrow"></div>' +
+                    '<a href="#" class="dropdown-item" onclick="popupAssetRepair(' + i + ')"><i class="fa fa-pencil-alt"></i> Edit </a>' +
+                    '<a href="#" class="dropdown-item" onclick="popupAssetRepair()"><i class="far fa-trash-alt"></i> Remove</a>' +
+                    '<a href="#" class="dropdown-item" onclick="popupAssetRepair(' + i + ')"><i class="oi oi-wrench"></i> Repair </a>' +
+                    '<a href="#" class="dropdown-item" onclick="popupAssetRepair()"><i class="fas fa-rocket"></i> Transfer</a>' +
+                    '</div>' +
+                    '</div>';
+            }else{
+                disableStyle="style='color: red'";
+                assetStatus = '<span class="badge badge-lg badge-danger"><span class="oi oi-media-record pulse mr-1"></span>Problem</span>';
+            }
 
-            var linkdown = '<div class="dropdown">'+
-                                    '<button type="button" class="btn btn-icon btn-light" data-toggle="dropdown">'+
-                                    '<i class="fa fa-ellipsis-v"></i></button>'+
-                                    '<div class="dropdown-menu dropdown-menu-right">'+
-                                        '<div class="dropdown-arrow"></div>'+
-                                        '<a href="#" class="dropdown-item" onclick="popupAssetRepair('+i+')"><i class="fa fa-pencil-alt"></i> Edit </a>'+
-                                        '<a href="#" class="dropdown-item" onclick="popupAssetRepair()"><i class="far fa-trash-alt"></i> Remove</a>'+
-                                        '<a href="#" class="dropdown-item" onclick="popupAssetRepair()"><i class="oi oi-wrench"></i> Repair </a>'+
-                                        '<a href="#" class="dropdown-item" onclick="popupAssetRepair()"><i class="fas fa-rocket"></i> Transfer</a>'+
-                                    '</div>'+
-                            '</div>';
-
-
-            html += "<tr>";
+            html += "<tr "+disableStyle+">";
             html +="<td class='align-middle'><div class='user-avatar user-avatar-lg'><img src='asset_image/"+data.photo_path+"' alt=''></div></td>";
             html +="<td class='align-middle'>"+data.asset_reg_id+"</td>";
-            html +="<td class='align-middle'><div class='media-body'><a href='#'>"+data.asset_name+"</a> <small class='d-block text-muted'>"+data.brand_name+" "+data.model_no +"</small></div></td>";
+            html +="<td class='align-middle'><div class='media-body'><a href='#'>"+data.asset_name+"</a> <small class='d-block text-muted'>"+data.brand_name+" "+data.model_no +"</small>"+assetStatus+"</div></td>";
             html +="<td class='align-middle'>"+data.purchase_date+"</td>";
             html +="<td class='align-middle'>"+data.warranty_end_date+"</td>";
             html +="<td class='align-middle'>"+data.outlet_name+"</td>";
+            // html +="<td class='align-middle'>"+assetStatus+"</td>";
             //html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="modal" data-target="#clientContactEditModal"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeAssetSubGroup('+data.asset_reg_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button>'+ linkdown +'</td>';
             html +='<td class="alian-middle text-right">'+ linkdown +'</td>';
             html += '</tr>';
@@ -488,22 +504,52 @@
                 url: 'getAllRegisterAssetList',
                 context: document.body
             }).done(function(result) {
+                gRegAssetList = result;
                 generateGrid(result);
-                // alert(result);
-                // $.each(result, function(i,data) {
-                //     // html +='<option value="'+data.asset_id+'">'+data.asset_name+'</option>';
-                // });
-                // $('#asset_list').html(html);
             });
         }
 
-        function popupAssetRepair(i){
-        //alert(i);
-            //$("#outletAgreementForm").modal();
 
-            $("#outletAgreementForm").modal({
+        var gIndex = '';
+        function popupAssetRepair(i){
+            gIndex = i;
+            $("#svcAssetName").html(gRegAssetList[i].asset_name);
+            $("#svcAssetLocation").html(gRegAssetList[i].outlet_name);
+            $("#serviceRequestForm").modal({
                 fadeDuration: 1000,
                 fadeDelay: 0.50
             });
         }
+
+    function sendServiceRequest(){
+        // alert(gRegAssetList[i].asset_reg_id);
+
+        alert(gRegAssetList[gIndex].outlet_id+'=='+gRegAssetList[gIndex].outlet_name);
+        var asset_reg_id    = gRegAssetList[gIndex].asset_reg_id;
+        var outlet_id       = gRegAssetList[gIndex].outlet_id;
+        var problem_date    = $('#problem_date').val();
+        var user_comment    = $('#user_comment').val();
+
+        var massageTest = '<div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">×</button><strong>Well done!</strong> You successfully saved asset sub-group.</div>';
+
+        var actionlink = 'serviceRequest';
+        $.ajax({
+            type: "POST",
+            url: actionlink,
+            data:{_token:'{{csrf_token()}}',asset_reg_id:asset_reg_id,problem_date:problem_date,outlet_id:outlet_id,user_comment:user_comment},
+            context: JSON
+        }).done(function(result) {
+            if(result.success){
+                // $("#massageDiv").show();
+                $('#serviceRequestForm').modal('hide');
+                // $("#massageDiv-asset").html(massageTest);
+                $('#problem_date').val("");
+                $('#user_comment').val("");
+                getAllRegisterAsset();
+            }else{
+                alert('Error');
+            }
+            // alert(result);
+        });
+    }
 </script>

@@ -50,7 +50,7 @@
                       <a href="#" class="menu-link" onclick="loadRemotePage('servicing')">Schedule Maintenance</a>
                     </li>
                     <li class="menu-item">
-                      <a href="#" class="menu-link" onclick="loadRemotePage('service_update')">Service Update</a>
+                      <a href="#" class="menu-link" onclick="loadRemotePage('getServiceUI')">Service Panel</a>
                     </li>
                     <li class="menu-item">
                       <a href="#" class="menu-link" onclick="loadRemotePage('complain')" >Observe the request</a>
