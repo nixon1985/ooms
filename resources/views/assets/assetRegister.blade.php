@@ -524,7 +524,7 @@ var gRegAssetList = '';
     function sendServiceRequest(){
         // alert(gRegAssetList[i].asset_reg_id);
 
-        alert(gRegAssetList[gIndex].outlet_id+'=='+gRegAssetList[gIndex].outlet_name);
+        // alert(gRegAssetList[gIndex].outlet_id+'=='+gRegAssetList[gIndex].outlet_name);
         var asset_reg_id    = gRegAssetList[gIndex].asset_reg_id;
         var outlet_id       = gRegAssetList[gIndex].outlet_id;
         var problem_date    = $('#problem_date').val();

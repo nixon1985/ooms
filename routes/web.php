@@ -118,6 +118,12 @@ Route::delete('/deleteAssetParts',[MaintenanceController::class,'deleteAssetPart
 // Maintenance Service
 Route::get('/getServiceUI',[MaintenanceController::class,'getServiceUI'])->name('getAllProblems');
 Route::get('/getIncomingService',[MaintenanceController::class,'getIncomingService'])->name('getIncomingService');
+Route::post('/updateReqSeenStatus',[MaintenanceController::class,'updateReqSeenStatus'])->name('updateReqSeenStatus');
+Route::post('/addServiceMaintenance',[MaintenanceController::class,'addServiceMaintenance'])->name('addServiceMaintenance');
+Route::get('/getServiceInProgressData',[MaintenanceController::class,'getServiceInProgressData'])->name('getServiceInProgressData');
+
+
+
 
 
 // Complain Request

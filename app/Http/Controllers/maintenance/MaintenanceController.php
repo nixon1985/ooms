@@ -125,12 +125,67 @@ class MaintenanceController extends Controller
 
     function getIncomingService(){
         $dataList = DB::table('service_request AS s')
-            ->selectRaw('s.request_id,s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_name')
+            ->selectRaw('s.request_id,s.view_status, s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_name, o.outlet_name, s.added_on, a.model_no, a.brand_name')
             ->join('assets_register AS ar', 'ar.asset_reg_id', '=', 's.asset_reg_id')
             ->join('asset_list AS a', 'a.asset_id', '=', 'ar.asset_id')
             ->leftJoin('outlet_info AS o', 'o.outlet_id','=','ar.outlet_id')
             ->whereNull('s.token_id')
             ->orderByDesc('s.added_on')
+            ->get();
+        return response()->json($dataList);
+        // $results = DB::select('select * from users where id = ?', [1]);
+    }
+
+
+    function updateReqSeenStatus(Request $request){
+        $seenUpdate = DB::table('service_request')
+            ->where('request_id',  $request->request_id)
+            ->limit(1)
+            ->update(array('view_status' =>1));
+        return response()->json($seenUpdate);
+    }
+
+
+    function addServiceMaintenance(Request $request){
+
+        $data=array(
+            'request_id'                => $request->request_id,
+            'service_start_date'        => $request->service_start_date,
+            'tentative_delivery_date'   => $request->tentative_delivery_date,
+            'user_comment'              => $request->receiverComment,
+            'service_status'            => 0
+        );
+
+        $returnData = array();
+        if(DB::table('service_maintenance')->insert($data)){
+
+            $tokenID = DB::table('service_maintenance AS sm')
+                ->selectRaw('Max(sm.token_id) max_token')
+                ->value('max_token');
+
+            $seenUpdate = DB::table('service_request')
+                ->where('request_id', $request->request_id)
+                ->limit(1)
+                ->update(array('token_id' => $tokenID));
+
+            $returnData['success'] = "Data save successfully";
+        }else{
+            $returnData['error'] = "Data save failed";
+        }
+        return response()->json($returnData);
+    }
+
+
+
+    function getServiceInProgressData(){
+        $dataList = DB::table('service_maintenance AS sp')
+            ->selectRaw('sp.token_id,sp.request_id,s.view_status, s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_name, o.outlet_name, s.added_on, a.model_no, a.brand_name')
+            ->join('service_request AS s','s.request_id','=','sp.request_id')
+            ->join('assets_register AS ar', 'ar.asset_reg_id', '=', 's.asset_reg_id')
+            ->join('asset_list AS a', 'a.asset_id', '=', 'ar.asset_id')
+            ->leftJoin('outlet_info AS o', 'o.outlet_id','=','ar.outlet_id')
+            ->where('sp.service_status','=','0')
+            ->orderByDesc('sp.added_on')
             ->get();
         return response()->json($dataList);
         // $results = DB::select('select * from users where id = ?', [1]);
