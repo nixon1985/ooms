@@ -588,10 +588,16 @@
             },
             context: document.body
         }).done(function(result) {
-
+            var isChecked='';
             $.each(result, function(i,data) {
+
+                if(data.identified_problem_id){
+                    isChecked='checked';
+                }else{
+                    isChecked='';
+                }
                 html +='<label class="list-group-item custom-control custom-checkbox mb-0">'+
-                    '<input name="problem_id" type="checkbox" class="custom-control-input" value="'+data.problem_id+'" checked>'+
+                    '<input name="problem_id" type="checkbox" class="custom-control-input" value="'+data.problem_id+'" '+isChecked+' >'+
                     '<span class="custom-control-label">'+data.problem_name+'</span>'+
                     '</label>';
             });

@@ -195,16 +195,30 @@ class MaintenanceController extends Controller
         $tokenId = $request->tokenId;
         $assetId = $request->assetId;
 
-        $dataList = DB::table('problem_list AS p')
-            ->selectRaw('p.problem_id, p.problem_name, ag.sub_group_name, ind.problem_id identified_problem_id')
-            ->join('asset_sub_group AS ag', 'ag.sub_group_id', '=', 'p.group_id')
+
+//        $dataList = DB::table('problem_list AS p')
+//            ->selectRaw('p.problem_id, p.problem_name, ag.sub_group_name, ind.problem_id identified_problem_id')
+//            ->join('asset_sub_group AS ag', 'ag.sub_group_id', '=', 'p.group_id')
+//            ->leftJoin('service_problem_identify AS ind', function($join) use ($tokenId){
+//                $join->on('ind.problem_id','=','p.problem_id');
+//                $join->on('ind.token_id','=',DB::raw("'".$tokenId."'"));
+//            })
+//            ->where('p.group_id','=',$assetId)
+//            // ->groupBy('companies.id')
+//            // ->orderByDesc('avg_salary')
+//            ->get();
+
+        $dataList = DB::table('assets_register AS ra')
+            ->selectRaw('p.problem_id, p.problem_name, ind.problem_id identified_problem_id')
+            ->join('asset_list AS al', 'al.asset_id', '=', 'ra.asset_id')
+            ->join('problem_list AS p', 'p.group_id', '=', 'al.sub_group_id')
             ->leftJoin('service_problem_identify AS ind', function($join) use ($tokenId){
                 $join->on('ind.problem_id','=','p.problem_id');
                 $join->on('ind.token_id','=',DB::raw("'".$tokenId."'"));
             })
-            ->where('p.group_id','=',$assetId)
+            ->where('ra.asset_reg_id','=',$assetId)
             // ->groupBy('companies.id')
-            // ->orderByDesc('avg_salary')
+            ->orderBy('p.problem_id')
             ->get();
         return response()->json($dataList);
         // $results = DB::select('select * from users where id = ?', [1]);
