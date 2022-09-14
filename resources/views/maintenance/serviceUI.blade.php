@@ -76,10 +76,7 @@
                     </table><!-- /.table -->
                 </div><!-- /.table-responsive -->
             </div><!-- /.card-body -->
-
         </div>
-
-
     </div>
     <!-- /Tab Content -->
 
@@ -105,10 +102,6 @@
             </div><!-- /.modal-header -->
             <!-- .modal-body -->
             <div class="modal-body px-0">
-
-
-
-
                 <!-- .card -->
                 <div class="card">
                     <!-- .card-body -->
@@ -143,10 +136,7 @@
                                     <label class="control-label" for="flatpickr-wrap">Comment</label>
                                     <textarea id="receiverComment" class="form-control" placeholder="Write a message"></textarea>
                                 </div><!-- /.form-group -->
-
                             </div><!-- /.form-row -->
-
-
                         </form><!-- /form .needs-validation -->
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
@@ -163,6 +153,120 @@
 </div>
 
 <!-- /Modal Panel -->
+
+
+
+
+<!-- Repair Modal Panel -->
+
+<div class="modal fade" id="repairPopUp" tabindex="-1" role="dialog" aria-labelledby="repairPopUpLabel" aria-hidden="true">
+    <!-- .modal-dialog -->
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <!-- .modal-content -->
+        <div class="modal-content">
+            <!-- .modal-header -->
+            <div class="modal-header">
+                <h6 id="repairPopUpLabel" class="modal-title"> Repair </h6>
+            </div><!-- /.modal-header -->
+            <!-- .modal-body -->
+            <div class="modal-body px-0">
+
+                <!-- .card -->
+                <div class="card">
+                    <!-- .card-body -->
+                    <div class="card-body">
+                        <form class="needs-validation" novalidate="">
+                            <!-- .form-row -->
+                            <div class="form-row">
+                                <div class="col-md-12 mb-3">
+                                    <!-- .list-group -->
+                                    <div class="list-group list-group-flush list-group-bordered" id="identified_problem_list"></div>
+                                    <!-- /.list-group -->
+                                </div>
+
+
+<!--
+                                <div class="col-md-12 mb-3">
+                                    <label class="control-label" for="asset_list">Problem <abbr title="Required">*</abbr></label>
+                                    <select id="problem_list" name="problem_list" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
+                                        <option value=""> No Data found </option>
+                                    </select>
+                                </div>
+                                -->
+                            </div><!-- /.form-row -->
+                        </form><!-- /form .needs-validation -->
+                    </div><!-- /.card-body -->
+                </div><!-- /.card -->
+            </div><!-- /.modal-body -->
+
+            <!-- .modal-footer -->
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit" onclick="saveIdentifiedProblem()">Save</button>
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+            </div><!-- /.modal-footer -->
+        </div>
+    </div>
+</div>
+
+<!-- /Modal Panel -->
+
+
+
+
+
+<!-- Solution Modal Panel -->
+
+<div class="modal fade" id="solutionPanelPopUp" tabindex="-1" role="dialog" aria-labelledby="solutionPanelPopUpLabel" aria-hidden="true">
+    <!-- .modal-dialog -->
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <!-- .modal-content -->
+        <div class="modal-content">
+            <!-- .modal-header -->
+            <div class="modal-header">
+                <h6 id="repairPopUpLabel" class="modal-title"> Solution </h6>
+            </div><!-- /.modal-header -->
+            <!-- .modal-body -->
+            <div class="modal-body px-0">
+
+                <!-- .card -->
+                <div class="card">
+                    <!-- .card-body -->
+                    <div class="card-body">
+                        <form class="needs-validation" novalidate="">
+                            <!-- .form-row -->
+                            <div class="form-row">
+                                <div class="col-md-12 mb-3">
+                                    <!-- .list-group -->
+                                    <div class="list-group list-group-flush list-group-bordered" id="identified_problem_list"></div>
+                                    <!-- /.list-group -->
+                                </div>
+
+
+                                <!--
+                                                                <div class="col-md-12 mb-3">
+                                                                    <label class="control-label" for="asset_list">Problem <abbr title="Required">*</abbr></label>
+                                                                    <select id="problem_list" name="problem_list" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true">
+                                                                        <option value=""> No Data found </option>
+                                                                    </select>
+                                                                </div>
+                                                                -->
+                            </div><!-- /.form-row -->
+                        </form><!-- /form .needs-validation -->
+                    </div><!-- /.card-body -->
+                </div><!-- /.card -->
+            </div><!-- /.modal-body -->
+
+            <!-- .modal-footer -->
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit" onclick="saveIdentifiedProblem()">Save</button>
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+            </div><!-- /.modal-footer -->
+        </div>
+    </div>
+</div>
+
+<!-- /Modal Panel -->
+
 
 
 
@@ -185,6 +289,7 @@
     var incomingRequestList = '';
     var serviceInProgressList = '';
     var gServiceableItemIndex='';
+    var gSelectedTokenId = '';
 
     function getIncomingService(){
         var html = '';
@@ -212,6 +317,8 @@
             generateServiceProcessGrid(result);
         });
     }
+
+
 
     function incomingServiceGrid(dataSet){
         var html='';
@@ -330,7 +437,7 @@
                 '<td class="align-middle px-0" style="width: 1.5rem">'+
                 '<button type="button" class="btn btn-sm btn-icon btn-light" onclick="updateSeenStatus('+data.request_id+','+data.view_status+');" data-toggle="collapse" data-target="#p_details-'+data.request_id+'"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>'+
                 '</td>'+
-                '<td class="align-middle px-0">'+data.token_no+'</td>'+
+                '<td class="align-middle px-0">'+data.token_id+'</td>'+
                 '<td class="align-middle">'+
                 '<h4 class="list-group-item-title text-truncate '+vStatus+'" id="p_asset_name'+data.request_id+'" data-target="#sdetails-'+data.request_id+'">'+
                 '<a href="#">'+data.asset_name+'</a>'+
@@ -387,15 +494,10 @@
                 '<div class="publisher keep-focus focus">'+
                 '<label for="hgh'+data.request_id+'" class="publisher-label"><b>User Comment: </b>'+data.user_comment+'</label>'+
                 '</div>'+
-                '<div class="publisher keep-focus focus">'+
-                '<label for="publisherInput'+data.request_id+'" class="publisher-label">Send a message to client</label>'+
-                '<div class="publisher-input">'+
-                '<textarea id="publisherInput'+data.request_id+'" class="form-control" placeholder="Write a message"></textarea>'+
-                '</div>'+
                 '<div class="publisher-actions align-items-center">'+
                 '<div class="el-example">'+
-                '<button type="button" class="btn btn-info ml-auto" data-toggle="modal" onclick="popupReceiveForm('+i+')">Receive </button>'+
-                '<button type="button" class="btn btn-danger">Reject</button>'+
+                '<button type="button" class="btn btn-danger" data-toggle="repairStatusPanel" onclick="problemIdentifyPopUpForm('+i+')">Identified Problem </button>'+
+                '<button type="button" class="btn btn-success" data-toggle="solutionPanel" onclick="solutionPanelPopUp('+i+')">Solution </button>'+
                 '</div>'+
                 '</div>'+
                 '</div>'+
@@ -437,6 +539,10 @@
     }
 
 
+
+
+
+
     function generateServiceToken(){
         var request_id = incomingRequestList[gServiceableItemIndex].request_id;
         var tentative_delivery_date = $("#tentative_delivery_date").val();
@@ -466,6 +572,106 @@
 
             });
         }
+    }
+
+
+    function problemIdentifyPopUpForm(index){
+        gSelectedTokenId = serviceInProgressList[index].token_id;
+        var assetId = serviceInProgressList[index].asset_id;
+        var html = '<div class="list-group-header"> Problem List </div>';
+        $.ajax({
+            type: "GET",
+            url: 'getIdentifyProblems',
+            data:{
+                tokenId:gSelectedTokenId,
+                assetId:assetId
+            },
+            context: document.body
+        }).done(function(result) {
+
+            $.each(result, function(i,data) {
+                html +='<label class="list-group-item custom-control custom-checkbox mb-0">'+
+                    '<input name="problem_id" type="checkbox" class="custom-control-input" value="'+data.problem_id+'" checked>'+
+                    '<span class="custom-control-label">'+data.problem_name+'</span>'+
+                    '</label>';
+            });
+            $('#identified_problem_list').html(html);
+        });
+
+        // loadProblemList();
+        // loadPartsList();
+        $("#repairPopUp").modal('show');
+    }
+
+    function loadProblemList(){
+        var html = '<div class="list-group-header"> Problem List </div>';
+        $.ajax({
+            type: "GET",
+            url: 'getAllProblems',
+            context: document.body
+        }).done(function(result) {
+
+            $.each(result, function(i,data) {
+                html +='<label class="list-group-item custom-control custom-checkbox mb-0">'+
+                        '<input name="problem_id" type="checkbox" class="custom-control-input" value="'+data.problem_id+'" checked>'+
+                        '<span class="custom-control-label">'+data.problem_name+'</span>'+
+                     '</label>';
+            });
+            $('#identified_problem_list').html(html);
+        });
+    }
+
+    function loadPartsList(){
+        var html = '';
+        $.ajax({
+            type: "GET",
+            url: 'getAllAssetParts',
+            context: document.body
+        }).done(function(result) {
+            $.each(result, function(i,data) {
+                html +='<option value="'+data.problem_id+'">'+data.problem_name+'</option>';
+            });
+            $('#parts_list').html(html);
+        });
+    }
+
+
+    function saveIdentifiedProblem(){
+        var problemList = [];
+        var i = 0;
+        $.each($("input[name='problem_id']:checked"), function(){
+           // problemList.push($(this).val());
+            problemList[i] = $(this).val();
+            i++;
+        });
+        $.ajax({
+            type: "POST",
+            url: 'saveIdentifiedProblem',
+            data:{_token:'{{csrf_token()}}',
+                problem_list:problemList,
+                token_id:gSelectedTokenId
+            },
+            context: document.body
+        }).done(function(result) {
+            alert('seve event');
+            // if(result.success){
+            //     alert('test');
+            //     getIncomingService();
+            //     $('#followingModal').modal('hide');
+            //     // gServiceableItemIndex ='';
+            // }else{
+            //     alert('Error');
+            // }
+
+        });
+        // alert(problemList);
+    }
+
+    function solutionPanelPopUp(index){
+        var tokenId = serviceInProgressList[index].token_id;
+        alert(tokenId);
+        // gServiceableItemIndex = index;
+        $("#solutionPanelPopUp").modal('show');
     }
 
 

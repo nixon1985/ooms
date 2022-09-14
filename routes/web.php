@@ -122,6 +122,10 @@ Route::post('/updateReqSeenStatus',[MaintenanceController::class,'updateReqSeenS
 Route::post('/addServiceMaintenance',[MaintenanceController::class,'addServiceMaintenance'])->name('addServiceMaintenance');
 Route::get('/getServiceInProgressData',[MaintenanceController::class,'getServiceInProgressData'])->name('getServiceInProgressData');
 
+// Problems Identify
+Route::get('/getIdentifyProblems',[MaintenanceController::class,'getIdentifyProblems'])->name('getIdentifyProblems');
+Route::post('/saveIdentifiedProblem',[MaintenanceController::class,'saveIdentifiedProblem'])->name('saveIdentifiedProblem');
+
 
 
 

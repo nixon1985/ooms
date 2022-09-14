@@ -179,7 +179,7 @@ class MaintenanceController extends Controller
 
     function getServiceInProgressData(){
         $dataList = DB::table('service_maintenance AS sp')
-            ->selectRaw('sp.token_id,sp.request_id,s.view_status, s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_name, o.outlet_name, s.added_on, a.model_no, a.brand_name')
+            ->selectRaw('sp.token_id,sp.request_id,s.view_status, s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_id, a.asset_name, o.outlet_name, s.added_on, a.model_no, a.brand_name')
             ->join('service_request AS s','s.request_id','=','sp.request_id')
             ->join('assets_register AS ar', 'ar.asset_reg_id', '=', 's.asset_reg_id')
             ->join('asset_list AS a', 'a.asset_id', '=', 'ar.asset_id')
@@ -189,5 +189,38 @@ class MaintenanceController extends Controller
             ->get();
         return response()->json($dataList);
         // $results = DB::select('select * from users where id = ?', [1]);
+    }
+
+    function getIdentifyProblems(Request $request){
+        $tokenId = $request->tokenId;
+        $assetId = $request->assetId;
+
+        $dataList = DB::table('problem_list AS p')
+            ->selectRaw('p.problem_id, p.problem_name, ag.sub_group_name, ind.problem_id identified_problem_id')
+            ->join('asset_sub_group AS ag', 'ag.sub_group_id', '=', 'p.group_id')
+            ->leftJoin('service_problem_identify AS ind', function($join) use ($tokenId){
+                $join->on('ind.problem_id','=','p.problem_id');
+                $join->on('ind.token_id','=',DB::raw("'".$tokenId."'"));
+            })
+            ->where('p.group_id','=',$assetId)
+            // ->groupBy('companies.id')
+            // ->orderByDesc('avg_salary')
+            ->get();
+        return response()->json($dataList);
+        // $results = DB::select('select * from users where id = ?', [1]);
+    }
+
+
+    function saveIdentifiedProblem(Request $request){
+
+        $array = [];
+        for ($i = 0; $i < count($request->problem_list); $i++) {
+            $array[] = [
+                'problem_id' => $request->problem_list[$i],
+                'token_id' => $request->token_id
+            ];
+        }
+        // print_r($array);
+        DB::table('service_problem_identify')->insert($array);
     }
 }
