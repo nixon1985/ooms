@@ -41,8 +41,9 @@
 
               <div class="board p-0 perfect-scrollbar nxscroll">
                 <!-- .list-group -->
-                <div class="list-group list-group-flush list-group-divider border-top" data-toggle="radiolist">
+                <div class="list-group list-group-flush list-group-divider border-top employeeList" data-toggle="radiolist">
 
+                  <?php /*
                   <!-- .list-group-item -->
                   <div class="list-group-item active" data-toggle="sidebar" data-sidebar="show" onclick="outletInfo('Mr. Jamal Hossen','profile.jpg')">
                     <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
@@ -57,194 +58,7 @@
                       <h4 class="list-group-item-title"> Mr. Jamal Hossen</h4>
                       <p class="list-group-item-text"> Branch Manager </p>
                     </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-
-
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show" onclick="outletInfo('Md. Kamal Hossen','uifaces15.jpg')">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                        <a href="#" class="user-avatar user-avatar-md" data-toggle="tooltip" title="Martha Myers">
-                            <img src="assets/images/avatars/uifaces15.jpg" alt="">
-                        </a>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Md. Kamal Hossen </h4>
-                      <p class="list-group-item-text"> Branch Manager </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show" onclick="outletInfo('Mrs. Raya Khan','uifaces19.jpg')">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                        <a href="#" class="user-avatar user-avatar-md" data-toggle="tooltip" title="Martha Myers">
-                            <img src="assets/images/avatars/uifaces19.jpg" alt="">
-                        </a>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Mrs. Raya Khan </h4>
-                      <p class="list-group-item-text"> Marketing Manager </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show" onclick="outletInfo('Mr. Sakil Hossen',1)">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-pink"> S </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Mr. Sakil Hossen </h4>
-                      <p class="list-group-item-text"> Marketing Manager </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-red"> R </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Ron-tech </h4>
-                      <p class="list-group-item-text"> Pekalongan, Indonesia </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-orange"> G </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Groovestreet </h4>
-                      <p class="list-group-item-text"> London, United Kingdom </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-yellow"> B </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Bioplex et Chandon </h4>
-                      <p class="list-group-item-text"> Hyderabad, India </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-green"> S </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Streethex </h4>
-                      <p class="list-group-item-text"> Mexico City, Mexico </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-teal"> H </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Hottechi Motor Company, Ltd </h4>
-                      <p class="list-group-item-text"> Jakarta, Indonesia </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-cyan"> N </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Newex </h4>
-                      <p class="list-group-item-text"> Tokyo, Japan </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-blue"> F </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Finjob </h4>
-                      <p class="list-group-item-text"> Paris, France </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-indigo"> S </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Sonron, Inc. </h4>
-                      <p class="list-group-item-text"> Beijing, China </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-purple"> D </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Doncon </h4>
-                      <p class="list-group-item-text"> Delhi, India </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-pink"> C </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> Conecom </h4>
-                      <p class="list-group-item-text"> São Paulo, Brazil </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-
-                  <!-- .list-group-item -->
-                  <div class="list-group-item" data-toggle="sidebar" data-sidebar="show">
-                    <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
-                    <div class="list-group-item-figure">
-                      <div class="tile tile-circle bg-red"> J </div>
-                    </div><!-- /.list-group-item-figure -->
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body">
-                      <h4 class="list-group-item-title"> J-Texon Systems, Inc. </h4>
-                      <p class="list-group-item-text"> New York City, United States </p>
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
-
-                  <!-- .list-group-item -->
-                  <div class="list-group-item">
-                    <!-- .list-group-item-body -->
-                    <div class="list-group-item-body text-center py-4">
-                      <!-- .spinner -->
-                      <div class="spinner-border text-primary" role="status">
-                        <span class="sr-only">Loading...</span>
-                      </div><!-- /.spinner -->
-                    </div><!-- /.list-group-item-body -->
-                  </div><!-- /.list-group-item -->
+                  </div><!-- /.list-group-item --> */ ?>
 
                 </div><!-- /.list-group -->
               </div><!-- /board -->
@@ -294,10 +108,10 @@
                       <a class="nav-link active show" data-toggle="tab" href="#client-billing-contact" onClick="storeTabId('basicInfo')">Basic Info</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#client-tasks" onClick="storeTabId('service')">Education</a>
+                      <a class="nav-link" data-toggle="tab" href="#client-projects" onClick="storeTabId('complain')">Employment List</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#client-projects" onClick="storeTabId('complain')">Employment</a>
+                      <a class="nav-link" data-toggle="tab" href="#client-tasks" onClick="storeTabId('service')">Education</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" data-toggle="tab" href="#client-invoices">Attendance</a>
@@ -333,12 +147,14 @@
                           </div>
 
                           <div class="masonry-item col-lg-6">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                      <h2 id="client-billing-contact-tab" class="card-title"> Contact Information </h2>
-                                    </div>
-                                    <strong>Mobile : 017700000000</strong>
-                                    <address> Email: manager@org.com
-                                    <br>Mobile: 01678-614819 <br> Bangladesh </address>
+                              <div class="d-flex justify-content-between align-items-center">
+                                <h2 id="client-billing-contact-tab" class="card-title"> Contact Information </h2>
+                              </div>
+                              <div class="employeeInfoContact">
+                                <strong>Mobile : 017700000000</strong>
+                                <address> Email: manager@org.com
+                                <br>Mobile: 01678-614819 <br> Bangladesh </address>
+                              </div>
                           </div>
 
                       </div>
@@ -985,18 +801,104 @@
 
 
     <script>
+          
+      $(document).ready(function(){
+          getAllEmployee();
+      });
+
+
+      function saveSubGroup(){
+          var groupId = $('#assetGroup').val();
+          var subGroupName = $('#assetSubGroup').val();
+
+          var actionlink = 'saveSubGroup';
+          $.ajax({
+              type: "POST",
+              url: actionlink,
+              data:{_token:'{{csrf_token()}}',group_id:groupId,sub_group_name:subGroupName},
+              context: document.body
+          }).done(function(result) {
+              if(result==1){
+                  $("#massageDiv").show();
+                  getAllEmployee();
+              }else{
+                  alert('Error');
+              }
+              // alert(result);
+          });
+      }
+
+      function getAllEmployee() {
+        var html = '';
+        $.ajax({
+            type: "GET",
+            url: 'getAllEmployee',
+            context: document.body
+        }).done(function(result) {
+            $.each(result, function(i,data) { 
+              // <!-- .list-group-item -->
+              html += "<div class='list-group-item active' data-toggle='sidebar' data-sidebar='show' onclick='outletInfo("+data.emp_id+")'>";
+              html += "<a href='#' class='stretched-link'></a>";
+              html += "<div class='list-group-item-figure'>";
+              html += "<a href='#' class='user-avatar user-avatar-md' data-toggle='tooltip' title="+data.emp_name+">";
+              html += "<img src='assets/images/avatars/profile.jpg' alt=''>";
+              html += "</a>";
+              html += "</div>";
+
+              html += "<div class='list-group-item-body'>";
+              html += "<h4 class='list-group-item-title'>"+data.emp_name+"</h4>";
+              html += "<p class='list-group-item-text'>"+data.designation_id+"</p>";
+              html += "</div>";
+              html += "</div>"; 
+            });
+            $('.employeeList').append(html);
+        });
+      }
+
+      function removeAssetSubGroup(subGroupId){
+          alert(subGroupId);
+          $.ajax({
+              type: "DELETE",
+              url: 'deleteSubGroup',
+              data:{_token:'{{csrf_token()}}',sub_group_id:subGroupId}
+          }).done(function(result) {
+              alert(result);
+          });
+      }
+      //////////// Employee crud ends
+
+
       var tabID='basicInfo';
 
-      function outletInfo(employee,photoId){
-          var photoPath = "assets/images/avatars/"+photoId;
-          var empHtml = '<a href="#" class="user-avatar user-avatar-md" data-toggle="tooltip" title="Martha Myers"><img src="'+photoPath+'" alt=""></a> ' + employee;
+      function outletInfo(emp_id) {
 
-          $("#title-outlet-name").html(empHtml);
+        var employeeInfoContactVar = ''; 
+          $.ajax({
+            type: "GET",
+            url: "employeeByID/" + emp_id, 
+            // data: { sales_ref: sales_ref},
+            dataType: 'json',
+            success: function (data) { 
+                if (data) {  
 
+                    var photoPath = "assets/images/avatars/"+data.photo_path;
+                    var empHtml = '<a href="#" class="user-avatar user-avatar-md" data-toggle="tooltip" title="Martha Myers"><img src="'+photoPath+'" alt=""></a> ' + data.emp_name;
 
-          var profileTitle = '<a href="#" class="user-avatar user-avatar-xxl"><img src="'+photoPath+'" alt=""></a><h2 class="h4 mt-2 mb-0"> '+ employee+' </h2> <p class="text-muted"> Branch Manager </p>';
-          $("#profile-photo").html(profileTitle);
+                    $("#title-outlet-name").html(empHtml);
 
+                    var profileTitle = '<a href="#" class="user-avatar user-avatar-xxl"><img src="'+photoPath+'" alt=""></a><h2 class="h4 mt-2 mb-0"> '+ data.emp_name +' </h2> <p class="text-muted"> Branch Manager </p>';
+                    $("#profile-photo").html(profileTitle);
+
+                    employeeInfoContactVar += "<strong>Mobile : "+data.contact_no+"</strong>";
+                    employeeInfoContactVar += "<address> Email: "+data.email_id;
+                    employeeInfoContactVar += "<br>Mobile: "+data.contact_no+" <br> "+data.joining_date+" </address>";
+                    $(".employeeInfoContact").html(employeeInfoContactVar);
+                } else { 
+                    // $('#customer_id').val(''); 
+                    // $("#territory_id").trigger("change"); 
+                }
+            }
+          });
 
         // Call Tab containt loading function
         // storeTabId(tabID);

@@ -4,6 +4,8 @@ use App\Http\Controllers\maintenance\MaintenanceController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Http\Request;
 use App\Http\Controllers\Config\OutletController;
+use App\Http\Controllers\hr\EmployeeClr; 
+
 use App\Http\Controllers\assets\AssetGroupController;
 use App\Http\Controllers\assets\AssetConfigController;
 use App\Http\Controllers\assets\AssetRegisterController;
@@ -46,9 +48,9 @@ Route::get('/dashboard2', function () {
 //     return view('outlet.outletinfo');
 //});
 
-Route::get('/empinfo', function () {
-    return view('hr.empinfo');
-});
+// Route::get('/empinfo', function () {
+//     return view('hr.empinfo');
+// });
 
 Route::get('/servicing', function () {
     return view('servicing.schedule_service');
@@ -70,18 +72,37 @@ Route::get('/getAllOutlet',[OutletController::class,'getAllOutlet'])->name('getA
 
 
 
+//// HRM starts
+Route::get('/employeeInfo',[EmployeeClr::class,'employeeInfo'])->name('employeeInfo');
+
+Route::get('/getAllEmployee',[EmployeeClr::class,'getAllEmployee'])->name('getAllEmployee');
+Route::get('/employeeByID/{id}',[EmployeeClr::class,'employeeByID'])->name('employeeByID');
+// Route::get('/assetGroup',[AssetGroupController::class,'assetSubGroup'])->name('assetSubGroup');
+// Route::get('/getAllAssetGroup',[AssetGroupController::class,'getAllAssetGroup'])->name('getAllAssetGroup');
+// Route::get('/getAllAssetList',[AssetGroupController::class,'getAllAssetList'])->name('getAllAssetList');
+
+// Route::post('/saveAssetGroup',[AssetGroupController::class,'saveAssetGroup'])->name('saveAssetGroup');
+// Route::post('/saveSubGroup',[AssetGroupController::class,'saveSubGroup'])->name('saveSubGroup');
+// Route::post('/saveAssets',[AssetGroupController::class,'saveAssets'])->name('saveAssets');
+
+// Route::delete('/deleteAssetGroup',[AssetGroupController::class,'deleteAssetGroup'])->name('deleteAssetGroup');
+// Route::delete('/deleteSubGroup',[AssetGroupController::class,'deleteSubGroup'])->name('deleteSubGroup');
+// Route::delete('/deleteAsset',[AssetGroupController::class,'deleteAsset'])->name('deleteAsset');
+//// HRM ends
+
+
 //__ Asset Config __//
 Route::get('/assetConfigUi',[AssetConfigController::class,'assetConfigUi'])->name('assetConfigUi');
 
 Route::get('/assetGroup',[AssetGroupController::class,'assetSubGroup'])->name('assetSubGroup');
 Route::get('/getAllAssetGroup',[AssetGroupController::class,'getAllAssetGroup'])->name('getAllAssetGroup');
+Route::get('/getAllAssetSubGroup',[AssetGroupController::class,'getAllAssetSubGroup'])->name('getAllAssetSubGroup');
 Route::get('/getAllAssetList',[AssetGroupController::class,'getAllAssetList'])->name('getAllAssetList');
 
 Route::post('/saveAssetGroup',[AssetGroupController::class,'saveAssetGroup'])->name('saveAssetGroup');
 Route::post('/saveSubGroup',[AssetGroupController::class,'saveSubGroup'])->name('saveSubGroup');
 Route::post('/saveAssets',[AssetGroupController::class,'saveAssets'])->name('saveAssets');
-//__Get Sub-group__//
-Route::get('/getAllAssetSubGroup',[AssetGroupController::class,'getAllAssetSubGroup'])->name('getAllAssetSubGroup');
+
 //__Delete Sub-group __//
 // Route::get('/deleteSubGroup/{id}', function () {
 //    echo "hello";

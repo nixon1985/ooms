@@ -25,7 +25,7 @@
                   <a href="#" class="menu-link"><span class="menu-icon oi oi-person"></span> <span class="menu-text">HR</span> <span class="badge badge-warning">New</span></a> <!-- child menu -->
                   <ul class="menu">
                     <li class="menu-item">
-                      <a href="#" class="menu-link" onClick="loadRemotePage('empinfo');" >Employee Info</a>
+                      <a href="#" class="menu-link" onClick="loadRemotePage('employeeInfo');" >Employee Info</a>
                     </li>
 
                     <li class="menu-item">
