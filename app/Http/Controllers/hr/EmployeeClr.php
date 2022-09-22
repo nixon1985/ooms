@@ -19,11 +19,18 @@ class EmployeeClr extends Controller
     }
 
     public function getAllEmployee() {
-        $getAllEmployeeDta=Employee::all();
+        // $getAllEmployeeDta=Employee::all();
+        $getAllEmployeeDta = DB::table('emp_info AS ei')
+        ->join('emp_designation AS ed', 'ed.designation_id', '=', 'ei.designation_id') 
+        ->select('ei.*', 'ed.designation_name')->get(); 
+
         return response()->json($getAllEmployeeDta);
     }
     public function employeeByID($emp_id) {
-        $dtaa = Employee::find($emp_id);
+        // $dtaa = Employee::find($emp_id);
+        $dtaa = DB::table('emp_info AS ei')
+        ->join('emp_designation AS ed', 'ed.designation_id', '=', 'ei.designation_id') 
+        ->select('ei.*', 'ed.designation_name')->where('ei.emp_id', $emp_id)->first(); 
         return response()->json($dtaa);
     }
     /**

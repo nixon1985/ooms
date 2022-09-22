@@ -1,0 +1,20 @@
+ALTER TABLE `emp_info`   
+  ADD COLUMN `photo_path` VARCHAR(222) NULL AFTER `joining_date`;
+
+
+CREATE TABLE `emp_designation`(  
+  `post_id` INT NOT NULL AUTO_INCREMENT,
+  `post_name` VARCHAR(250),
+  `post_level` INT,
+  `grade_id` INT,
+  `added_on` DATETIME,
+  `added_by` INT,
+  `edited_on` DATETIME,
+  `edited_by` INT,
+  PRIMARY KEY (`post_id`)
+);
+
+ALTER TABLE `emp_designation`   
+  CHANGE `post_id` `designation_id` INT(11) NOT NULL AUTO_INCREMENT,
+  CHANGE `post_name` `designation_name` VARCHAR(250) CHARSET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+

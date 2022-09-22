@@ -616,7 +616,8 @@
                       <div class="form-row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label for="cnContactName">Contact name</label> <input type="text" id="cnContactName" class="form-control">
+                            <label for="cnContactName">Contact name</label> 
+                            <input type="text" id="cnContactName" class="form-control">
                           </div>
                         </div>
                         <div class="col-md-12">
@@ -649,7 +650,8 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label for="cnCity">City</label> <select id="cnCity" class="custom-select d-block w-100">
+                            <label for="cnCity">City</label> 
+                            <select id="cnCity" class="custom-select d-block w-100">
                               <option value=""> Choose... </option>
                               <option> San Francisco </option>
                             </select>
@@ -847,7 +849,7 @@
 
               html += "<div class='list-group-item-body'>";
               html += "<h4 class='list-group-item-title'>"+data.emp_name+"</h4>";
-              html += "<p class='list-group-item-text'>"+data.designation_id+"</p>";
+              html += "<p class='list-group-item-text'>"+data.designation_name+"</p>";
               html += "</div>";
               html += "</div>"; 
             });
