@@ -226,15 +226,85 @@ class MaintenanceController extends Controller
 
 
     function saveIdentifiedProblem(Request $request){
-
         $array = [];
-        for ($i = 0; $i < count($request->problem_list); $i++) {
-            $array[] = [
-                'problem_id' => $request->problem_list[$i],
+        if(!empty($request->removeProblem)){
+            $this->removeIdentifiedProblem($request->removeProblem,$request->token_id);
+            $returnData['message']=1;
+        }
+
+        if(!empty($request->addedProblem)){
+
+            for ($i = 0; $i < count($request->addedProblem); $i++) {
+                $array[] = [
+                    'problem_id' => $request->addedProblem[$i],
+                    'token_id' => $request->token_id
+                ];
+            }
+            if(DB::table('service_problem_identify')->insert($array)){
+                $returnData['message']=1;
+            }else{
+                $returnData['message']=0;
+            }
+        }
+        return response()->json($returnData);
+    }
+
+
+    /* Removed Selected Problem */
+    public function removeIdentifiedProblem($problemList,$token_id){
+        foreach ($problemList as $value){
+            DB::table("service_problem_identify")
+                ->where('problem_id',$value)
+                ->where('token_id',$token_id)
+                ->delete();
+        }
+    }
+
+
+
+    function getSolutionForProblem(Request $request){
+        $tokenId = $request->tokenId;
+        $assetId = $request->assetId;
+
+
+        $dataList = DB::table('service_problem_identify AS idp')
+            ->selectRaw('p.problem_id, p.problem_name, s.solution_id solution_id, s.solution_name, ss.solution_id take_solution')
+            ->join('problem_list AS p', 'p.problem_id', '=', 'idp.problem_id')
+            ->leftjoin('problem_solution_list AS s', 's.problem_id', '=', 'p.problem_id')
+            ->leftJoin('service_problem_solution AS ss', function($join) use ($tokenId){
+                $join->on('ss.solution_id','=','s.solution_id');
+                $join->on('ss.token_id','=',DB::raw("'".$tokenId."'"));
+            })
+            ->where('idp.token_id','=',$tokenId)
+            // ->groupBy('companies.id')
+            ->orderBy('p.problem_id')
+            ->get();
+        return response()->json($dataList);
+        // $results = DB::select('select * from users where id = ?', [1]);
+    }
+
+
+
+    function saveAppliedSolution(Request $request){
+
+        $newSolution = [];
+        for ($i = 0; $i < count($request->addedSolutionList); $i++) {
+            $newSolution[] = [
+                'solution_id' => $request->addedSolutionList[$i],
                 'token_id' => $request->token_id
             ];
         }
         // print_r($array);
-        DB::table('service_problem_identify')->insert($array);
+        if(DB::table('service_problem_solution')->insert($newSolution)){
+            $returnData['message']=1;
+        }else{
+            $returnData['message']=0;
+        }
+        return response()->json($returnData);
+    }
+
+    public function removeSelectedSolution(Request $id){
+        $deleted = DB::table('service_problem_solution')->where('action_id', 'IN', $id->parts_id)->delete();
+        return $deleted;
     }
 }

@@ -167,6 +167,7 @@
             <!-- .modal-header -->
             <div class="modal-header">
                 <h6 id="repairPopUpLabel" class="modal-title"> Repair </h6>
+                <div id="massageDiv-forProblem"></div>
             </div><!-- /.modal-header -->
             <!-- .modal-body -->
             <div class="modal-body px-0">
@@ -224,6 +225,7 @@
             <!-- .modal-header -->
             <div class="modal-header">
                 <h6 id="repairPopUpLabel" class="modal-title"> Solution </h6>
+                <div id="massageDiv-forSolution"></div>
             </div><!-- /.modal-header -->
             <!-- .modal-body -->
             <div class="modal-body px-0">
@@ -237,7 +239,7 @@
                             <div class="form-row">
                                 <div class="col-md-12 mb-3">
                                     <!-- .list-group -->
-                                    <div class="list-group list-group-flush list-group-bordered" id="identified_problem_list"></div>
+                                    <div class="list-group list-group-flush list-group-bordered" id="take_solution_list"></div>
                                     <!-- /.list-group -->
                                 </div>
 
@@ -258,7 +260,7 @@
 
             <!-- .modal-footer -->
             <div class="modal-footer">
-                <button class="btn btn-primary" type="submit" onclick="saveIdentifiedProblem()">Save</button>
+                <button class="btn btn-primary" type="submit" onclick="saveSolutionOfProblem()">Save</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
             </div><!-- /.modal-footer -->
         </div>
@@ -290,6 +292,13 @@
     var serviceInProgressList = '';
     var gServiceableItemIndex='';
     var gSelectedTokenId = '';
+
+    /* Array Compare vereable */
+    var temp_identifiedProblemList=[];
+    var temp_changesProblemList=[];
+    var temp_selectedSolutionList=[];
+    var temp_changesSolutionList=[];
+
 
     function getIncomingService(){
         var html = '';
@@ -576,6 +585,7 @@
 
 
     function problemIdentifyPopUpForm(index){
+        temp_identifiedProblemList=[];
         gSelectedTokenId = serviceInProgressList[index].token_id;
         var assetId = serviceInProgressList[index].asset_id;
         var html = '<div class="list-group-header"> Problem List </div>';
@@ -589,16 +599,20 @@
             context: document.body
         }).done(function(result) {
             var isChecked='';
+            var j = 0;
             $.each(result, function(i,data) {
 
                 if(data.identified_problem_id){
                     isChecked='checked';
+                    temp_identifiedProblemList.push(parseInt(data.identified_problem_id));
+                    // temp_identifiedProblemList[j]=data.identified_problem_id;
+                    j++;
                 }else{
                     isChecked='';
                 }
                 html +='<label class="list-group-item custom-control custom-checkbox mb-0">'+
                     '<input name="problem_id" type="checkbox" class="custom-control-input" value="'+data.problem_id+'" '+isChecked+' >'+
-                    '<span class="custom-control-label">'+data.problem_name+'</span>'+
+                    '<span class="custom-control-label">['+data.problem_id+']'+data.problem_name+'</span>'+
                     '</label>';
             });
             $('#identified_problem_list').html(html);
@@ -646,20 +660,127 @@
         var problemList = [];
         var i = 0;
         $.each($("input[name='problem_id']:checked"), function(){
-           // problemList.push($(this).val());
+            temp_changesProblemList.push(parseInt($(this).val()));
+            // temp_changesProblemList[i]= parseInt($(this).val());
             problemList[i] = $(this).val();
             i++;
         });
+
+        var willDelete = findDifferencBetweenTwoArray(temp_identifiedProblemList,temp_changesProblemList);
+        var willInsert = findDifferencBetweenTwoArray(temp_changesProblemList,temp_identifiedProblemList);
+
+        alert("first: "+temp_identifiedProblemList+" \nSecond "+temp_changesProblemList+"\nDelete: "+willDelete+" \nInsert "+willInsert);
+        /* Reset Global variable */
+        temp_changesProblemList=[];
+        temp_identifiedProblemList=[];
+
         $.ajax({
             type: "POST",
             url: 'saveIdentifiedProblem',
             data:{_token:'{{csrf_token()}}',
-                problem_list:problemList,
+                addedProblem:willInsert,
+                removeProblem:willDelete,
                 token_id:gSelectedTokenId
             },
             context: document.body
         }).done(function(result) {
-            alert('seve event');
+            var massageHtml='';
+            if(result.message==1){
+                massageHtml = '<div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">×</button><strong>Well done!</strong> Successfully Identified the problem.</div>';
+                // $("#massageDiv-forProblem").html(massageHtml);
+                $("#identified_problem_list").html(massageHtml);
+            }else{
+                alert('Error');
+            }
+
+        });
+        // alert(problemList);
+    }
+/*
+    function solutionPanelPopUp(index){
+        var tokenId = serviceInProgressList[index].token_id;
+
+
+    }
+*/
+
+    function solutionPanelPopUp(index){
+        temp_selectedSolutionList=[];
+        /* Clear message field */
+        $("#massageDiv-forSolution").html('');
+
+        gSelectedTokenId = serviceInProgressList[index].token_id;
+        var assetId = serviceInProgressList[index].asset_id;
+        var html = '';
+        var identifiedProblmeId = '';
+        $.ajax({
+            type: "GET",
+            url: 'getSolutionForProblem',
+            data:{
+                tokenId:gSelectedTokenId,
+                assetId:assetId
+            },
+            context: document.body
+        }).done(function(result) {
+            var isChecked='';
+            $.each(result, function(i,data) {
+
+                if(data.take_solution){
+                    temp_selectedSolutionList.push(parseInt(data.take_solution));
+                    isChecked='checked';
+                }else{
+                    isChecked='';
+                }
+                if(data.problem_id!=identifiedProblmeId){
+                    html += '<div class="list-group-header">'+ data.problem_name +'</div>';
+                    identifiedProblmeId = data.problem_id;
+                }
+                html +='<label class="list-group-item custom-control custom-checkbox mb-0">'+
+                    '<input name="solution_id" type="checkbox" class="custom-control-input" value="'+data.solution_id+'" '+isChecked+' >'+
+                    '<span class="custom-control-label">'+data.solution_id+' - '+data.solution_name+'</span>'+
+                    '</label>';
+            });
+            $('#take_solution_list').html(html);
+        });
+
+        // loadProblemList();
+        // loadPartsList();
+        $("#solutionPanelPopUp").modal('show');
+    }
+
+    function saveSolutionOfProblem(){
+        var solutionList = [];
+        var i = 0;
+        $.each($("input[name='solution_id']:checked"), function(){
+            temp_changesSolutionList.push(parseInt($(this).val()));
+            // temp_changesProblemList[i]= parseInt($(this).val());
+            solutionList[i] = $(this).val();
+            i++;
+        });
+
+        var willDeleteSolution = findDifferencBetweenTwoArray(temp_selectedSolutionList,temp_changesSolutionList);
+        var willInsertSolution = findDifferencBetweenTwoArray(temp_changesSolutionList,temp_selectedSolutionList);
+
+
+        alert("first: "+temp_selectedSolutionList+" \nSecond "+temp_changesSolutionList+"\nDelete: "+willDeleteSolution+" \nInsert "+willInsertSolution);
+        temp_changesSolutionList=[];
+
+        $.ajax({
+            type: "POST",
+            url: 'saveAppliedSolution',
+            data:{_token:'{{csrf_token()}}',
+                addedSolutionList:willInsertSolution,
+                removeSolutionList:willDeleteSolution,
+                token_id:gSelectedTokenId
+            },
+            context: document.body
+        }).done(function(result) {
+            if(result.message==1){
+                var massageTest = '<div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">×</button><strong>Well done!</strong> You successfully saved new solution.</div>';
+                $("#massageDiv-forSolution").html(massageTest);
+            }else{
+                alert('Error .....');
+            }
             // if(result.success){
             //     alert('test');
             //     getIncomingService();
@@ -673,12 +794,16 @@
         // alert(problemList);
     }
 
-    function solutionPanelPopUp(index){
-        var tokenId = serviceInProgressList[index].token_id;
-        alert(tokenId);
-        // gServiceableItemIndex = index;
-        $("#solutionPanelPopUp").modal('show');
+
+    function findDifferencBetweenTwoArray(firstArray,secondArray){
+        var difference = firstArray.filter(element => !secondArray.includes(element));
+        // const willDelete = firstArray.filter(element => !secondArray.includes(element));
+        // const willInsert = secondArray.filter(element => !firstArray.includes(element));
+        return difference;
     }
+
+
+
 
 
 </script>

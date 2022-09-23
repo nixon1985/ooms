@@ -4,7 +4,7 @@ use App\Http\Controllers\maintenance\MaintenanceController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Http\Request;
 use App\Http\Controllers\Config\OutletController;
-use App\Http\Controllers\hr\EmployeeClr; 
+use App\Http\Controllers\hr\EmployeeClr;
 
 use App\Http\Controllers\assets\AssetGroupController;
 use App\Http\Controllers\assets\AssetConfigController;
@@ -142,10 +142,14 @@ Route::get('/getIncomingService',[MaintenanceController::class,'getIncomingServi
 Route::post('/updateReqSeenStatus',[MaintenanceController::class,'updateReqSeenStatus'])->name('updateReqSeenStatus');
 Route::post('/addServiceMaintenance',[MaintenanceController::class,'addServiceMaintenance'])->name('addServiceMaintenance');
 Route::get('/getServiceInProgressData',[MaintenanceController::class,'getServiceInProgressData'])->name('getServiceInProgressData');
+Route::get('/getSolutionForProblem',[MaintenanceController::class,'getSolutionForProblem'])->name('getSolutionForProblem');
 
 // Problems Identify
 Route::get('/getIdentifyProblems',[MaintenanceController::class,'getIdentifyProblems'])->name('getIdentifyProblems');
 Route::post('/saveIdentifiedProblem',[MaintenanceController::class,'saveIdentifiedProblem'])->name('saveIdentifiedProblem');
+
+// Applied Solution
+Route::post('/saveAppliedSolution',[MaintenanceController::class,'saveAppliedSolution'])->name('saveAppliedSolution');
 
 
 
