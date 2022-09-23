@@ -1,6 +1,9 @@
 ALTER TABLE `emp_info`   
   ADD COLUMN `photo_path` VARCHAR(222) NULL AFTER `joining_date`;
 
+insert into `emp_info` (`emp_id`, `emp_name`, `emp_dob`, `contact_no`, `email_id`, `joining_date`, `designation_id`, `photo_path`, `outlet_id`, `active_status`, `last_rec_id`, `created_by`, `created_on`, `updated_by`, `updated_on`) 
+values('11','test name','1982-09-16','01545454545','noorcse1@gmail.com','2022-09-16','11',NULL,'11','1',NULL,'0','2022-09-16 17:50:00',NULL,'2022-09-16 17:50:00');
+
 
 CREATE TABLE `emp_designation`(  
   `post_id` INT NOT NULL AUTO_INCREMENT,
@@ -17,4 +20,8 @@ CREATE TABLE `emp_designation`(
 ALTER TABLE `emp_designation`   
   CHANGE `post_id` `designation_id` INT(11) NOT NULL AUTO_INCREMENT,
   CHANGE `post_name` `designation_name` VARCHAR(250) CHARSET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+
+
+insert into `emp_designation` (`designation_id`, `designation_name`, `post_level`, `grade_id`, `added_on`, `added_by`, `edited_on`, `edited_by`) 
+values('11','Manager','1001','11','2022-09-22 18:42:55','11','2022-09-22 18:43:01',NULL);
 
