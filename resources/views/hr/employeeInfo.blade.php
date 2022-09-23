@@ -94,10 +94,13 @@
               <!-- Title Name -->
                 <h1 class="page-title" id="title-outlet-name">
                     <a href="#" class="user-avatar user-avatar-md" data-toggle="tooltip" title="Martha Myers">
-                        <img src="assets/images/avatars/profile.jpg" alt="">
+                        <!-- <img src="assets/images/avatars/profile.jpg" alt=""> -->
                     </a>
-                    Mr. Jamal Hossen </h1>
-                <p class="text-muted" id="title-outlet-address"> Branch Manager. </p><!-- .nav-scroller -->
+                    <!-- Mr. Jamal Hossen  -->
+                  </h1>
+                <p class="text-muted" id="title-outlet-address">
+                <!-- Branch Manager.  -->
+                </p><!-- .nav-scroller -->
 
 
 
@@ -139,21 +142,25 @@
                           <div class="masonry-item col-lg-3">
                               <div class="text-center" id="profile-photo">
                                   <a href="user-profile.html" class="user-avatar user-avatar-xxl">
-                                      <img src="assets/images/avatars/profile.jpg" alt="">
+                                      <!-- <img src="assets/images/avatars/profile.jpg" alt=""> -->
                                   </a>
-                                  <h2 class="h4 mt-2 mb-0"> Mr. Jamal Hossen </h2>
-                                  <p class="text-muted"> Branch Manager </p>
+                                  <h2 class="h4 mt-2 mb-0">
+                                  <!-- Mr. Jamal Hossen  -->
+                                  </h2>
+                                  <p class="text-muted">
+                                  <!-- Branch Manager -->
+                                  </p>
                               </div>
                           </div>
 
                           <div class="masonry-item col-lg-6">
                               <div class="d-flex justify-content-between align-items-center">
-                                <h2 id="client-billing-contact-tab" class="card-title"> Contact Information </h2>
+                                <h2 id="client-billing-contact-tab" class="card-title">
+                                <!-- Contact Information -->
+                                </h2>
                               </div>
                               <div class="employeeInfoContact">
-                                <strong>Mobile : 017700000000</strong>
-                                <address> Email: manager@org.com
-                                <br>Mobile: 01678-614819 <br> Bangladesh </address>
+                                
                               </div>
                           </div>
 
@@ -179,16 +186,24 @@
 
                               <div class="masonry-item col-lg-6">
                                   <div class="d-flex justify-content-between align-items-center">
-                                      <h2 id="client-billing-contact-tab" class="card-title"> Present Address </h2>
+                                      <h2 id="client-billing-contact-tab" class="card-title card-title111">
+                                      <!-- Present Address -->
+                                      </h2>
                                   </div>
-                                  <address> House:02, Road:08, Block:B, Section-10<br>Mirpur, Dhaka <br> Bangladesh </address>
+                                  <address class="preAddr">
+
+                                  </address>
                               </div>
 
                               <div class="masonry-item col-lg-6">
                                   <div class="d-flex justify-content-between align-items-center">
-                                      <h2 id="client-billing-contact-tab" class="card-title"> Parmanent Address </h2>
+                                      <h2 id="client-billing-contact-tab" class="card-title card-title222">
+                                      <!-- Parmanent Address -->
+                                      </h2>
                                   </div>
-                                  <address> Vill: Shalgaria Talbagan, Pabna<br>Pabna Sodor <br> Bangladesh </address>
+                                  <address class="perAddr">
+                                    
+                                  </address>
                               </div>
 
                           </div>
@@ -601,53 +616,89 @@
             <form id="clientNewForm" name="clientNewForm">
               <div class="modal fade" id="clientNewModal" tabindex="-1" role="dialog" aria-labelledby="clientNewModalLabel" aria-hidden="true">
                 <!-- .modal-dialog -->
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog" role="document" style="max-width:60% !important">
                   <!-- .modal-content -->
                   <div class="modal-content">
                     <!-- .modal-header -->
                     <div class="modal-header">
-                      <h6 id="clientNewModalLabel" class="modal-title inline-editable">
-                        <span class="sr-only">Client name</span> <input type="text" class="form-control form-control-lg" placeholder="E.g. Stilearning, Inc." required="">
-                      </h6>
+                      <h4 id="clientNewModalLabel" class="modal-title inline-editable">
+                        Employee Entry Form
+                      </h4>
                     </div><!-- /.modal-header -->
                     <!-- .modal-body -->
                     <div class="modal-body">
                       <!-- .form-row -->
                       <div class="form-row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                           <div class="form-group">
-                            <label for="cnContactName">Contact name</label> 
-                            <input type="text" id="cnContactName" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="cnContactEmail">Contact email</label> <input type="email" id="cnContactEmail" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="cnStreet">Street</label> <input type="text" id="cnStreet" class="form-control">
+                            <label for="emp_name">Employee name</label> 
+                            <input autocomplete="off" name="emp_name" type="text" id="emp_name" class="form-control">
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label for="cnSuite">Suite</label> <input type="text" id="cnSuite" class="form-control">
+                            <label for="contact_no">Contact No.</label> 
+                            <input autocomplete="off" name="contact_no" type="text" id="contact_no" class="form-control">
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label for="cnZip">Zip</label> <input type="text" id="cnZip" class="form-control">
+                            <label for="email_id">Contact email</label> 
+                            <input autocomplete="off" name="email_id" type="email" id="email_id" class="form-control">
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label for="cnCountry">Country</label> <select id="cnCountry" class="custom-select d-block w-100">
-                              <option value=""> Choose... </option>
-                              <option> United States </option>
-                            </select>
+                            <label for="photo_path">Image</label> 
+                            <input name="photo_path" type="file" id="photo_path" class="form-control">
                           </div>
                         </div>
+                        
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="present_address">Parmanent Address</label> 
+                            <input autocomplete="off" name="present_address" type="text" id="present_address" class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="permanent_address">Parmanent Address</label> 
+                            <input autocomplete="off" name="permanent_address" type="text" id="permanent_address" class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="emp_dob">Date Of Birth</label> 
+                            <input autocomplete="off" name="emp_dob" type="date" id="emp_dob" class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="joining_date">Join Date</label> 
+                            <input autocomplete="off" name="joining_date" type="date" id="joining_date" class="form-control">
+                          </div>
+                        </div>
+
+                        <!-- <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="cnStreet">Street</label> 
+                            <input autocomplete="off" name="emp_name" type="text" id="cnStreet" class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="cnSuite">Suite</label> 
+                            <input autocomplete="off" name="emp_name" type="text" id="cnSuite" class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="cnZip">Zip</label> 
+                            <input autocomplete="off" name="emp_name" type="text" id="cnZip" class="form-control">
+                          </div>
+                        </div> 
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="cnCity">City</label> 
@@ -656,12 +707,13 @@
                               <option> San Francisco </option>
                             </select>
                           </div>
-                        </div>
+                        </div> -->
                       </div><!-- /.form-row -->
                     </div><!-- /.modal-body -->
                     <!-- .modal-footer -->
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Save</button> <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save</button> 
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div><!-- /.modal-footer -->
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
@@ -875,6 +927,8 @@
       function outletInfo(emp_id) {
 
         var employeeInfoContactVar = ''; 
+        var preAddr = ''; 
+        var perAddr = ''; 
           $.ajax({
             type: "GET",
             url: "employeeByID/" + emp_id, 
@@ -888,13 +942,22 @@
 
                     $("#title-outlet-name").html(empHtml);
 
-                    var profileTitle = '<a href="#" class="user-avatar user-avatar-xxl"><img src="'+photoPath+'" alt=""></a><h2 class="h4 mt-2 mb-0"> '+ data.emp_name +' </h2> <p class="text-muted"> Branch Manager </p>';
+                    var profileTitle = '<a href="#" class="user-avatar user-avatar-xxl"><img src="'+photoPath+'" alt=""></a><h2 class="h4 mt-2 mb-0"> '+ data.emp_name +' </h2> <p class="text-muted"> '+ data.designation_name +' </p>';
                     $("#profile-photo").html(profileTitle);
 
                     employeeInfoContactVar += "<strong>Mobile : "+data.contact_no+"</strong>";
                     employeeInfoContactVar += "<address> Email: "+data.email_id;
                     employeeInfoContactVar += "<br>Mobile: "+data.contact_no+" <br> "+data.joining_date+" </address>";
                     $(".employeeInfoContact").html(employeeInfoContactVar);
+                    
+                    preAddr += data.present_address;
+                    perAddr += data.permanent_address;
+
+                    $(".preAddr").html(preAddr);
+                    $(".perAddr").html(perAddr);
+                    $(".card-title111").html('Parmanent Address');
+                    $(".card-title222").html('Parmanent Address'); 
+
                 } else { 
                     // $('#customer_id').val(''); 
                     // $("#territory_id").trigger("change"); 

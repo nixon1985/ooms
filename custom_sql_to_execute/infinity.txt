@@ -25,3 +25,6 @@ ALTER TABLE `emp_designation`
 insert into `emp_designation` (`designation_id`, `designation_name`, `post_level`, `grade_id`, `added_on`, `added_by`, `edited_on`, `edited_by`) 
 values('11','Manager','1001','11','2022-09-22 18:42:55','11','2022-09-22 18:43:01',NULL);
 
+ALTER TABLE `emp_info`   
+  ADD COLUMN `present_address` VARCHAR(555) NULL AFTER `outlet_id`,
+  ADD COLUMN `permanent_address` VARCHAR(555) NULL AFTER `present_address`;
