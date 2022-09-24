@@ -4,7 +4,7 @@
 /storage/*.key
 /public/asset_image
 /vendor
-/route/web.php
+/routes/web.php
 .env
 .env.backup
 .phpunit.result.cache
