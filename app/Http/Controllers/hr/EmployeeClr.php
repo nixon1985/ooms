@@ -45,7 +45,14 @@ class EmployeeClr extends Controller
         // $dtaa = Employee::find($emp_id);
         $dtaa = DB::table('emp_info AS ei')
         ->join('emp_designation AS ed', 'ed.designation_id', '=', 'ei.designation_id')
-        ->select('ei.*', 'ed.designation_name')->where('ei.emp_id', $emp_id)->first();
+        ->select('ei.*','ed.designation_name')->where('ei.emp_id', $emp_id)->first();
+        return response()->json($dtaa);
+    }
+
+    // joiningByID
+    public function joiningByID($emp_id) {
+        // $dtaa = Employee::find($emp_id);
+        $dtaa = DB::table('emp_record_info')->where('emp_record_info.emp_id', $emp_id)->get();
         return response()->json($dtaa);
     }
 
@@ -71,6 +78,27 @@ class EmployeeClr extends Controller
         );
         // return $data;
         if(DB::table('emp_info')->insert($data)){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+
+    // saveEmployeeJoiningInfo
+    public function saveEmployeeJoiningInfo(Request $request){
+        $data=array(
+            'emp_id'            => $request->emp_id,
+            'emp_type'          => "1",
+            'designation_id'    => $request->designation_id,
+            'outlet_id'         => $request->outlet_id,
+            'joining_date'      => $request->joining_date,
+            'subordinate_id'    => "1",
+            'created_by'        => "1",
+            'created_by'        => "1"
+        );
+
+        if(DB::table('emp_record_info')->insert($data)){
             return 1;
         }else{
             return 0;

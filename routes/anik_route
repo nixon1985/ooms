@@ -4,8 +4,11 @@ Route::post('/saveEmployeeBasicInfo',[EmployeeClr::class,'saveEmployeeBasicInfo'
 24-09-2022
 -------------------------
 Route::get('/getAllDesignation',[EmployeeClr::class,'getAllDesignation'])->name('getAllDesignation');
+Route::post('/saveEmployeeJoiningInfo',[EmployeeClr::class,'saveEmployeeJoiningInfo'])->name('saveEmployeeJoiningInfo');
 
 Alter emp_info table**********
 present_address
 permanent_address
+
+ALTER TABLE `emp_record_info` CHANGE `outlet_id` `outlet_id` INT(11) NOT NULL, CHANGE `joining_date` `joining_date` DATE NOT NULL;
 

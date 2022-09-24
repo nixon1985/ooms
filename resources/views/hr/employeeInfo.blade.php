@@ -111,7 +111,7 @@
                       <a class="nav-link active show" data-toggle="tab" href="#client-billing-contact" onClick="storeTabId('basicInfo')">Basic Info</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#joining-info" onClick="storeTabId('complain')">Joining Info</a>
+                      <a class="nav-link" data-toggle="tab" onclick="getJoiningData()" href="#joining-info" onClick="storeTabId('complain')">Joining Info</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" data-toggle="tab" href="#client-tasks" onClick="storeTabId('service')">Education</a>
@@ -180,10 +180,7 @@
                       <div class="card">
                       <!-- .card-body -->
                       <div class="card-body">
-
-
                           <div class="masonry-layout">
-
                               <div class="masonry-item col-lg-6">
                                   <div class="d-flex justify-content-between align-items-center">
                                       <h2 id="client-billing-contact-tab" class="card-title card-title111">
@@ -191,10 +188,8 @@
                                       </h2>
                                   </div>
                                   <address class="preAddr">
-
                                   </address>
                               </div>
-
                               <div class="masonry-item col-lg-6">
                                   <div class="d-flex justify-content-between align-items-center">
                                       <h2 id="client-billing-contact-tab" class="card-title card-title222">
@@ -202,40 +197,20 @@
                                       </h2>
                                   </div>
                                   <address class="perAddr">
-
                                   </address>
                               </div>
-
                           </div>
-
                       </div><!-- /.card-body -->
                   </div><!-- /.card -->
-
-
-
-                      <!-- / Basic information detail -->
-
-
-
+                <!-- / Basic information detail -->
 
                   </div><!-- /.tab-pane -->
-
-
-
-
                   <!-- .tab-pane -->
                   <div class="tab-pane fade" id="client-tasks" role="tabpanel" aria-labelledby="client-tasks-tab">
                     <!-- .card -->
                     <div class="card">
                       <!-- .card-header -->
                       <div class="card-header d-flex">
-                        <!-- .dropdown -->
-                        <div class="dropdown">
-                          <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-filter mr-1"></i> All (3) <i class="fa fa-caret-down"></i></button> <!-- .dropdown-menu -->
-                          <div class="dropdown-menu stop-propagation">
-                            <h6 id="joining-info-tab" class="dropdown-header"> Projects </h6><label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="0" checked> <span class="custom-control-label">All (3)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="1"> <span class="custom-control-label">On Going (1)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="2"> <span class="custom-control-label">Completed (2)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="3"> <span class="custom-control-label">Archived (0)</span></label>
-                          </div><!-- /.dropdown-menu -->
-                        </div><!-- /.dropdown -->
                         <button type="button" class="btn btn-primary ml-auto">Add</button>
                       </div><!-- /.card-header -->
                       <!-- .table-responsive -->
@@ -248,20 +223,15 @@
 
 
 
-                  <!-- .tab-pane -->
+                  <!-- joining-info .tab-pane -->
                   <div class="tab-pane fade" id="joining-info" role="tabpanel" aria-labelledby="joining-info-tab">
                     <!-- .card -->
                     <div class="card">
                       <!-- .card-header -->
                       <div class="card-header d-flex">
-                        <!-- .dropdown -->
-                        <div class="dropdown">
-                          <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-filter mr-1"></i> All (3) <i class="fa fa-caret-down"></i></button> <!-- .dropdown-menu -->
-                          <div class="dropdown-menu stop-propagation">
-                            <h6 id="joining-info-tab" class="dropdown-header"> Projects </h6><label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="0" checked> <span class="custom-control-label">All (3)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="1"> <span class="custom-control-label">On Going (1)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="2"> <span class="custom-control-label">Completed (2)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="3"> <span class="custom-control-label">Archived (0)</span></label>
-                          </div><!-- /.dropdown-menu -->
-                        </div><!-- /.dropdown -->
-                        <button type="button" class="btn btn-primary ml-auto">Add project</button>
+
+                        <button type="button" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#empJoiningModal" title="Add New">Add New</button>
+
                       </div><!-- /.card-header -->
                       <!-- .table-responsive -->
                       <div class="table-responsive">
@@ -270,9 +240,10 @@
                           <!-- thead -->
                           <thead>
                             <tr>
-                              <th style="min-width:260px"> Project </th>
+                              <th> Outlet </th>
+                              <th> Designation </th>
                               <th> Start </th>
-                              <th> Due </th>
+                              <th> End </th>
                               <th> Status </th>
                               <th></th>
                             </tr>
@@ -281,9 +252,10 @@
                           <tbody>
                             <!-- tr -->
                             <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#" class="tile bg-pink text-white mr-2">SP</a><a href="#">Syrena Project</a>
+                              <td class="align-middle">
+                                Syrena Project
                               </td>
+                              <td class="align-middle">Manager </td>
                               <td class="align-middle"> 04/10/2018 </td>
                               <td class="align-middle"> 08/18/2018 </td>
                               <td class="align-middle">
@@ -299,49 +271,15 @@
                               </td>
                             </tr><!-- /tr -->
                             <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#" class="tile bg-green text-white mr-2">MG</a> <a href="#">Mobile App Gex</a>
-                              </td>
-                              <td class="align-middle"> 06/12/2018 </td>
-                              <td class="align-middle"> 07/03/2018 </td>
-                              <td class="align-middle">
-                                <span class="badge badge-success">Completed</span>
-                              </td>
-                              <td class="align-middle text-right">
-                                <div class="dropdown">
-                                  <button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><i class="fa fa-ellipsis-h"></i> <span class="sr-only">Actions</span></button>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-arrow mr-n1"></div><button class="dropdown-item" type="button">Edit</button> <button class="dropdown-item" type="button">Delete</button>
-                                  </div>
-                                </div>
-                              </td>
-                            </tr><!-- /tr -->
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#" class="tile bg-red text-white mr-2">LB</a> <a href="#">Landing Page Booster</a>
-                              </td>
-                              <td class="align-middle"> 09/29/2018 </td>
-                              <td class="align-middle"> 11/24/2018 </td>
-                              <td class="align-middle">
-                                <span class="badge badge-success">Completed</span>
-                              </td>
-                              <td class="align-middle text-right">
-                                <div class="dropdown">
-                                  <button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><i class="fa fa-ellipsis-h"></i> <span class="sr-only">Actions</span></button>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-arrow mr-n1"></div><button class="dropdown-item" type="button">Edit</button> <button class="dropdown-item" type="button">Delete</button>
-                                  </div>
-                                </div>
-                              </td>
-                            </tr><!-- /tr -->
                           </tbody><!-- /tbody -->
                         </table><!-- /.table -->
                       </div><!-- /.table-responsive -->
                     </div><!-- /.card -->
                   </div><!-- /.tab-pane -->
-                  <!-- .tab-pane -->
+                  <!-- joining-info .tab-pane -->
+
+
+
                   <div class="tab-pane fade" id="client-invoices" role="tabpanel" aria-labelledby="client-invoices-tab">
                     <!-- .card -->
                     <div class="card">
@@ -709,6 +647,71 @@
               </form>
               <!-- /.Employee Entry Form -->
 
+            <!-- .Employee Joining Form -->
+            <form id="employee_joining_form" enctype="multipart/form-data">
+                <div class="modal fade" id="empJoiningModal" tabindex="-1" role="dialog" aria-labelledby="empJoiningModalLabel" aria-hidden="true">
+                  <!-- .modal-dialog -->
+                  <div class="modal-dialog " role="document" style="max-width:60% !important">
+                    <!-- .modal-content -->
+                    <div class="modal-content">
+                        <div class="form-row" id="massageDiv"></div>
+                      <!-- .modal-header -->
+                      <div class="modal-header">
+                        <h4 id="empJoiningModalLabel" class="modal-title inline-editable">
+                          Employee Joining Form
+                        </h4>
+                      </div><!-- /.modal-header -->
+                      <!-- .modal-body -->
+                      <div class="modal-body">
+                        <!-- .form-row -->
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="start_joining_date">Join Date</label>
+                                  <input autocomplete="off" name="start_joining_date" type="date" id="start_joining_date" class="form-control" required>
+                                  <input  name="joining_emp_id" type="hidden" id="joining_emp_id" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <label for="end_date">End Date</label>
+                                <input autocomplete="off" name="end_date" type="date" id="end_date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="joining_designation_id">Designation <abbr title="Required">*</abbr></label>
+                                    <select class="custom-select d-block w-100" id="joining_designation_id" required="">
+                                        <option value=""> Choose... </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="joining_outlet_id">Outlet <abbr title="Required">*</abbr></label>
+                                    <select class="custom-select d-block w-100" id="joining_outlet_id" required="">
+                                        <option value=""> Choose... </option>
+                                    </select>
+                                </div>
+                          </div>
+
+
+
+                        </div><!-- /.form-row -->
+                      </div><!-- /.modal-body -->
+
+
+                      <!-- .modal-footer -->
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" onclick="saveEmpJoining()">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                      </div><!-- /.modal-footer -->
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div>
+            </form>
+            <!-- /.Employee Joining Form -->
+
             <!-- .modal -->
             <form id="clientBillingEditForm" name="clientBillingEditForm">
               <div class="modal fade" id="clientBillingEditModal" tabindex="-1" role="dialog" aria-labelledby="clientBillingEditModalLabel" aria-hidden="true">
@@ -853,29 +856,11 @@
       });
 
         $("#employee_entry_form").submit(function(e) {
-        e.preventDefault();
-    });
-
-    //   function saveSubGroup(){
-    //       var groupId = $('#assetGroup').val();
-    //       var subGroupName = $('#assetSubGroup').val();
-
-    //       var actionlink = 'saveSubGroup';
-    //       $.ajax({
-    //           type: "POST",
-    //           url: actionlink,
-    //           data:{_token:'{{csrf_token()}}',group_id:groupId,sub_group_name:subGroupName},
-    //           context: document.body
-    //       }).done(function(result) {
-    //           if(result==1){
-    //               $("#massageDiv").show();
-    //               getAllEmployee();
-    //           }else{
-    //               alert('Error');
-    //           }
-    //           // alert(result);
-    //       });
-    //   }
+            e.preventDefault();
+        });
+        $("#employee_joining_form").submit(function(e) {
+            e.preventDefault();
+        });
 
     // outlet
     function getAlloutlet(){
@@ -891,6 +876,7 @@
                 html +='<option value="'+data.outlet_id+'">'+data.outlet_name+'</option>';
             });
             $('#outlet_id').html(html);
+            $('#joining_outlet_id').html(html);
             // assetGroupCombo(result);
         });
     }
@@ -909,6 +895,7 @@
                 html +='<option value="'+data.designation_id+'">'+data.designation_name+'</option>';
             });
             $('#designation_id').html(html);
+            $('#joining_designation_id').html(html);
         });
     }
     //  Save Employee Entry Form
@@ -928,7 +915,6 @@
         $.ajax({
             type: "POST",
             url: actionlink,
-            // emp_name:empName,emp_dob:empDob,contact_no:empContact,email_id:empEmail,joining_date:empJoin
             data:{
                 _token:'{{csrf_token()}}',
                 emp_name:empName,
@@ -968,6 +954,48 @@
         });
     }
 
+    //  Save Employee Joining Form
+    function saveEmpJoining(){
+        var empId               = $('#joining_emp_id').val();
+        var empDesignation      = $('#joining_designation_id').val();
+        var empOutlet           = $('#joining_outlet_id').val();
+        var empJoin             = $('#start_joining_date').val();
+        var empEnd             = $('#end_date').val();
+
+        var actionlink = 'saveEmployeeJoiningInfo';
+        $.ajax({
+            type: "POST",
+            url: actionlink,
+            data:{
+                _token:'{{csrf_token()}}',
+                emp_id:empId,
+                designation_id:empDesignation,
+                outlet_id:empOutlet,
+                joining_date:empJoin,
+            },
+
+            context: document.body
+        }).done(function(result) {
+            if(result==1){
+                $("#massageDiv").show();
+                $('#emp_id').val("");
+                $('#designation_id').val("");
+                $('#outlet_id').val("");
+                $('#joining_date').val("");
+                $('#empJoiningModal').modal('toggle');
+
+            }else{
+                alert('Error');
+            }
+        });
+    }
+
+    // getJoiningData
+    function getJoiningData()
+    {
+        var empId = $('#joining_emp_id').val();
+        alert(empId);
+    }
 
       function getAllEmployee() {
         var html = '';
@@ -1023,6 +1051,7 @@
             // data: { sales_ref: sales_ref},
             dataType: 'json',
             success: function (data) {
+                // console.log(data)
                 if (data) {
 
                     var photoPath = "assets/images/avatars/"+data.photo_path;
@@ -1045,6 +1074,8 @@
                     $(".perAddr").html(perAddr);
                     $(".card-title111").html('Parmanent Address');
                     $(".card-title222").html('Parmanent Address');
+                    $('#joining_emp_id').val(data.emp_id);
+
 
                 } else {
                     // $('#customer_id').val('');
