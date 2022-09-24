@@ -111,7 +111,7 @@
                       <a class="nav-link active show" data-toggle="tab" href="#client-billing-contact" onClick="storeTabId('basicInfo')">Basic Info</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#client-projects" onClick="storeTabId('complain')">Employment List</a>
+                      <a class="nav-link" data-toggle="tab" href="#joining-info" onClick="storeTabId('complain')">Joining Info</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" data-toggle="tab" href="#client-tasks" onClick="storeTabId('service')">Education</a>
@@ -160,7 +160,7 @@
                                 </h2>
                               </div>
                               <div class="employeeInfoContact">
-                                
+
                               </div>
                           </div>
 
@@ -202,7 +202,7 @@
                                       </h2>
                                   </div>
                                   <address class="perAddr">
-                                    
+
                                   </address>
                               </div>
 
@@ -233,7 +233,7 @@
                         <div class="dropdown">
                           <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-filter mr-1"></i> All (3) <i class="fa fa-caret-down"></i></button> <!-- .dropdown-menu -->
                           <div class="dropdown-menu stop-propagation">
-                            <h6 id="client-projects-tab" class="dropdown-header"> Projects </h6><label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="0" checked> <span class="custom-control-label">All (3)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="1"> <span class="custom-control-label">On Going (1)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="2"> <span class="custom-control-label">Completed (2)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="3"> <span class="custom-control-label">Archived (0)</span></label>
+                            <h6 id="joining-info-tab" class="dropdown-header"> Projects </h6><label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="0" checked> <span class="custom-control-label">All (3)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="1"> <span class="custom-control-label">On Going (1)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="2"> <span class="custom-control-label">Completed (2)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="3"> <span class="custom-control-label">Archived (0)</span></label>
                           </div><!-- /.dropdown-menu -->
                         </div><!-- /.dropdown -->
                         <button type="button" class="btn btn-primary ml-auto">Add</button>
@@ -249,7 +249,7 @@
 
 
                   <!-- .tab-pane -->
-                  <div class="tab-pane fade" id="client-projects" role="tabpanel" aria-labelledby="client-projects-tab">
+                  <div class="tab-pane fade" id="joining-info" role="tabpanel" aria-labelledby="joining-info-tab">
                     <!-- .card -->
                     <div class="card">
                       <!-- .card-header -->
@@ -258,7 +258,7 @@
                         <div class="dropdown">
                           <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-filter mr-1"></i> All (3) <i class="fa fa-caret-down"></i></button> <!-- .dropdown-menu -->
                           <div class="dropdown-menu stop-propagation">
-                            <h6 id="client-projects-tab" class="dropdown-header"> Projects </h6><label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="0" checked> <span class="custom-control-label">All (3)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="1"> <span class="custom-control-label">On Going (1)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="2"> <span class="custom-control-label">Completed (2)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="3"> <span class="custom-control-label">Archived (0)</span></label>
+                            <h6 id="joining-info-tab" class="dropdown-header"> Projects </h6><label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="0" checked> <span class="custom-control-label">All (3)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="1"> <span class="custom-control-label">On Going (1)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="2"> <span class="custom-control-label">Completed (2)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientProjectFilter" value="3"> <span class="custom-control-label">Archived (0)</span></label>
                           </div><!-- /.dropdown-menu -->
                         </div><!-- /.dropdown -->
                         <button type="button" class="btn btn-primary ml-auto">Add project</button>
@@ -607,118 +607,108 @@
             </div><!-- /.page-sidebar -->
             <!-- Keep in mind that modals should be placed outsite of page sidebar -->
 
+            <!-- .Employee Entry Form -->
+            <form id="employee_entry_form" enctype="multipart/form-data">
+                <div class="modal fade" id="clientNewModal" tabindex="-1" role="dialog" aria-labelledby="clientNewModalLabel" aria-hidden="true">
+                  <!-- .modal-dialog -->
+                  <div class="modal-dialog " role="document" style="max-width:60% !important">
+                    <!-- .modal-content -->
+                    <div class="modal-content">
+                        <div class="form-row" id="massageDiv"></div>
+                      <!-- .modal-header -->
+                      <div class="modal-header">
+                        <h4 id="clientNewModalLabel" class="modal-title inline-editable">
+                          Employee Entry Form
+                        </h4>
+                      </div><!-- /.modal-header -->
+                      <!-- .modal-body -->
+                      <div class="modal-body">
+                        <!-- .form-row -->
+                        <div class="form-row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="emp_name">Employee name</label>
+                              <input autocomplete="off" name="emp_name" type="text" id="emp_name" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="contact_no">Contact No.</label>
+                              <input autocomplete="off" name="contact_no" type="number" min="0" id="contact_no" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="email_id">Contact email</label>
+                              <input autocomplete="off" name="email_id" type="email" id="email_id" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="photo_path">Image</label>
+                              <input name="photo_path" type="file" id="photo_path" class="form-control">
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="present_address">Present Address</label>
+                              <input autocomplete="off" name="present_address" type="text" id="present_address" class="form-control">
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="permanent_address">Parmanent Address</label>
+                              <input autocomplete="off" name="permanent_address" type="text" id="permanent_address" class="form-control">
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="emp_dob">Date Of Birth</label>
+                              <input autocomplete="off" name="emp_dob" type="date" id="emp_dob" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="designation_id">Designation <abbr title="Required">*</abbr></label>
+                                <select class="custom-select d-block w-100" id="designation_id" required="">
+                                    <option value=""> Choose... </option>
+                                </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="outlet_id">Outlet <abbr title="Required">*</abbr></label>
+                                <select class="custom-select d-block w-100" id="outlet_id" required="">
+                                    <option value=""> Choose... </option>
+                                </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="joining_date">Join Date</label>
+                              <input autocomplete="off" name="joining_date" type="date" id="joining_date" class="form-control">
+                            </div>
+                          </div>
 
 
+                        </div><!-- /.form-row -->
+                      </div><!-- /.modal-body -->
 
 
+                      <!-- .modal-footer -->
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" onclick="saveEmpBasic()">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                      </div><!-- /.modal-footer -->
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div>
+              </form>
+              <!-- /.Employee Entry Form -->
 
-            <!-- .modal -->
-            <form id="clientNewForm" name="clientNewForm">
-              <div class="modal fade" id="clientNewModal" tabindex="-1" role="dialog" aria-labelledby="clientNewModalLabel" aria-hidden="true">
-                <!-- .modal-dialog -->
-                <div class="modal-dialog" role="document" style="max-width:60% !important">
-                  <!-- .modal-content -->
-                  <div class="modal-content">
-                    <!-- .modal-header -->
-                    <div class="modal-header">
-                      <h4 id="clientNewModalLabel" class="modal-title inline-editable">
-                        Employee Entry Form
-                      </h4>
-                    </div><!-- /.modal-header -->
-                    <!-- .modal-body -->
-                    <div class="modal-body">
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="emp_name">Employee name</label> 
-                            <input autocomplete="off" name="emp_name" type="text" id="emp_name" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="contact_no">Contact No.</label> 
-                            <input autocomplete="off" name="contact_no" type="text" id="contact_no" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="email_id">Contact email</label> 
-                            <input autocomplete="off" name="email_id" type="email" id="email_id" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="photo_path">Image</label> 
-                            <input name="photo_path" type="file" id="photo_path" class="form-control">
-                          </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="present_address">Parmanent Address</label> 
-                            <input autocomplete="off" name="present_address" type="text" id="present_address" class="form-control">
-                          </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="permanent_address">Parmanent Address</label> 
-                            <input autocomplete="off" name="permanent_address" type="text" id="permanent_address" class="form-control">
-                          </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="emp_dob">Date Of Birth</label> 
-                            <input autocomplete="off" name="emp_dob" type="date" id="emp_dob" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="joining_date">Join Date</label> 
-                            <input autocomplete="off" name="joining_date" type="date" id="joining_date" class="form-control">
-                          </div>
-                        </div>
-
-                        <!-- <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="cnStreet">Street</label> 
-                            <input autocomplete="off" name="emp_name" type="text" id="cnStreet" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="cnSuite">Suite</label> 
-                            <input autocomplete="off" name="emp_name" type="text" id="cnSuite" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="cnZip">Zip</label> 
-                            <input autocomplete="off" name="emp_name" type="text" id="cnZip" class="form-control">
-                          </div>
-                        </div> 
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="cnCity">City</label> 
-                            <select id="cnCity" class="custom-select d-block w-100">
-                              <option value=""> Choose... </option>
-                              <option> San Francisco </option>
-                            </select>
-                          </div>
-                        </div> -->
-                      </div><!-- /.form-row -->
-                    </div><!-- /.modal-body -->
-                    <!-- .modal-footer -->
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Save</button> 
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div><!-- /.modal-footer -->
-                  </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-              </div>
-            </form><!-- /.modal -->
             <!-- .modal -->
             <form id="clientBillingEditForm" name="clientBillingEditForm">
               <div class="modal fade" id="clientBillingEditModal" tabindex="-1" role="dialog" aria-labelledby="clientBillingEditModalLabel" aria-hidden="true">
@@ -855,32 +845,129 @@
 
 
     <script>
-          
+
       $(document).ready(function(){
           getAllEmployee();
+          getAlloutlet();
+          getAllDesignation();
       });
 
+        $("#employee_entry_form").submit(function(e) {
+        e.preventDefault();
+    });
 
-      function saveSubGroup(){
-          var groupId = $('#assetGroup').val();
-          var subGroupName = $('#assetSubGroup').val();
+    //   function saveSubGroup(){
+    //       var groupId = $('#assetGroup').val();
+    //       var subGroupName = $('#assetSubGroup').val();
 
-          var actionlink = 'saveSubGroup';
-          $.ajax({
-              type: "POST",
-              url: actionlink,
-              data:{_token:'{{csrf_token()}}',group_id:groupId,sub_group_name:subGroupName},
-              context: document.body
-          }).done(function(result) {
-              if(result==1){
-                  $("#massageDiv").show();
-                  getAllEmployee();
-              }else{
-                  alert('Error');
-              }
-              // alert(result);
-          });
-      }
+    //       var actionlink = 'saveSubGroup';
+    //       $.ajax({
+    //           type: "POST",
+    //           url: actionlink,
+    //           data:{_token:'{{csrf_token()}}',group_id:groupId,sub_group_name:subGroupName},
+    //           context: document.body
+    //       }).done(function(result) {
+    //           if(result==1){
+    //               $("#massageDiv").show();
+    //               getAllEmployee();
+    //           }else{
+    //               alert('Error');
+    //           }
+    //           // alert(result);
+    //       });
+    //   }
+
+    // outlet
+    function getAlloutlet(){
+        var html = '';
+        $.ajax({
+            type: "GET",
+            url: 'getAllOutlet',
+            context: document.body
+        }).done(function(result) {
+            console.log(result);
+            var html = '<option value="">Choose... </option>';
+            $.each(result, function(i,data) {
+                html +='<option value="'+data.outlet_id+'">'+data.outlet_name+'</option>';
+            });
+            $('#outlet_id').html(html);
+            // assetGroupCombo(result);
+        });
+    }
+
+    // Designation
+    function getAllDesignation(){
+        var html = '';
+        $.ajax({
+            type: "GET",
+            url: 'getAllDesignation',
+            context: document.body
+        }).done(function(result) {
+            console.log(result);
+            var html = '<option value="">Choose... </option>';
+            $.each(result, function(i,data) {
+                html +='<option value="'+data.designation_id+'">'+data.designation_name+'</option>';
+            });
+            $('#designation_id').html(html);
+        });
+    }
+    //  Save Employee Entry Form
+    function saveEmpBasic(){
+        var empName             = $('#emp_name').val();
+        var empContact          = $('#contact_no').val();
+        var empEmail            = $('#email_id').val();
+        var empPresentAddress   = $('#present_address').val();
+        var empPermanentAddress = $('#permanent_address').val();
+        var empDob              = $('#emp_dob').val();
+        var empDesignation      = $('#designation_id').val();
+        var empOutlet           = $('#outlet_id').val();
+        var empJoin             = $('#joining_date').val();
+        var empPhoto             = $('#photo_path').val();
+
+        var actionlink = 'saveEmployeeBasicInfo';
+        $.ajax({
+            type: "POST",
+            url: actionlink,
+            // emp_name:empName,emp_dob:empDob,contact_no:empContact,email_id:empEmail,joining_date:empJoin
+            data:{
+                _token:'{{csrf_token()}}',
+                emp_name:empName,
+                emp_dob:empDob,
+                contact_no:empContact,
+                email_id:empEmail,
+                present_address:empPresentAddress,
+                permanent_address:empPermanentAddress,
+                designation_id:empDesignation,
+                outlet_id:empOutlet,
+                joining_date:empJoin,
+                photo_path:empPhoto
+            },
+
+            context: document.body
+        }).done(function(result) {
+            if(result==1){
+                $("#massageDiv").show();
+                $('#emp_name').val("");
+                $('#contact_no').val("");
+                $('#email_id').val("");
+                $('#present_address').val("");
+                $('#permanent_address').val("");
+                $('#emp_dob').val("");
+                $('#designation_id').val("");
+                $('#outlet_id').val("");
+                $('#joining_date').val("");
+                $('#photo_path').val("");
+                $('#clientNewModal').modal('toggle');
+                getAllEmployee();
+
+
+            }else{
+                alert('Error');
+            }
+            // alert(result);
+        });
+    }
+
 
       function getAllEmployee() {
         var html = '';
@@ -889,7 +976,8 @@
             url: 'getAllEmployee',
             context: document.body
         }).done(function(result) {
-            $.each(result, function(i,data) { 
+            $('.employeeList').html("");
+            $.each(result, function(i,data) {
               // <!-- .list-group-item -->
               html += "<div class='list-group-item active' data-toggle='sidebar' data-sidebar='show' onclick='outletInfo("+data.emp_id+")'>";
               html += "<a href='#' class='stretched-link'></a>";
@@ -903,7 +991,7 @@
               html += "<h4 class='list-group-item-title'>"+data.emp_name+"</h4>";
               html += "<p class='list-group-item-text'>"+data.designation_name+"</p>";
               html += "</div>";
-              html += "</div>"; 
+              html += "</div>";
             });
             $('.employeeList').append(html);
         });
@@ -926,16 +1014,16 @@
 
       function outletInfo(emp_id) {
 
-        var employeeInfoContactVar = ''; 
-        var preAddr = ''; 
-        var perAddr = ''; 
+        var employeeInfoContactVar = '';
+        var preAddr = '';
+        var perAddr = '';
           $.ajax({
             type: "GET",
-            url: "employeeByID/" + emp_id, 
+            url: "employeeByID/" + emp_id,
             // data: { sales_ref: sales_ref},
             dataType: 'json',
-            success: function (data) { 
-                if (data) {  
+            success: function (data) {
+                if (data) {
 
                     var photoPath = "assets/images/avatars/"+data.photo_path;
                     var empHtml = '<a href="#" class="user-avatar user-avatar-md" data-toggle="tooltip" title="Martha Myers"><img src="'+photoPath+'" alt=""></a> ' + data.emp_name;
@@ -947,20 +1035,20 @@
 
                     employeeInfoContactVar += "<strong>Mobile : "+data.contact_no+"</strong>";
                     employeeInfoContactVar += "<address> Email: "+data.email_id;
-                    employeeInfoContactVar += "<br>Mobile: "+data.contact_no+" <br> "+data.joining_date+" </address>";
+                    employeeInfoContactVar += "<br>Mobile: "+data.contact_no+" <br> Join Date: "+data.joining_date+" </address>";
                     $(".employeeInfoContact").html(employeeInfoContactVar);
-                    
+
                     preAddr += data.present_address;
                     perAddr += data.permanent_address;
 
                     $(".preAddr").html(preAddr);
                     $(".perAddr").html(perAddr);
                     $(".card-title111").html('Parmanent Address');
-                    $(".card-title222").html('Parmanent Address'); 
+                    $(".card-title222").html('Parmanent Address');
 
-                } else { 
-                    // $('#customer_id').val(''); 
-                    // $("#territory_id").trigger("change"); 
+                } else {
+                    // $('#customer_id').val('');
+                    // $("#territory_id").trigger("change");
                 }
             }
           });

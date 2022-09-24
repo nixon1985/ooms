@@ -1,0 +1,11 @@
+23-09-2022
+-------------------------
+Route::post('/saveEmployeeBasicInfo',[EmployeeClr::class,'saveEmployeeBasicInfo'])->name('saveEmployeeBasicInfo');
+24-09-2022
+-------------------------
+Route::get('/getAllDesignation',[EmployeeClr::class,'getAllDesignation'])->name('getAllDesignation');
+
+Alter emp_info table**********
+present_address
+permanent_address
+

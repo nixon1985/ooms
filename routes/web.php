@@ -4,7 +4,7 @@ use App\Http\Controllers\maintenance\MaintenanceController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Http\Request;
 use App\Http\Controllers\Config\OutletController;
-use App\Http\Controllers\hr\EmployeeClr; 
+use App\Http\Controllers\hr\EmployeeClr;
 
 use App\Http\Controllers\assets\AssetGroupController;
 use App\Http\Controllers\assets\AssetConfigController;
@@ -76,6 +76,8 @@ Route::get('/getAllOutlet',[OutletController::class,'getAllOutlet'])->name('getA
 Route::get('/employeeInfo',[EmployeeClr::class,'employeeInfo'])->name('employeeInfo');
 
 Route::get('/getAllEmployee',[EmployeeClr::class,'getAllEmployee'])->name('getAllEmployee');
+Route::get('/getAllDesignation',[EmployeeClr::class,'getAllDesignation'])->name('getAllDesignation');
+Route::post('/saveEmployeeBasicInfo',[EmployeeClr::class,'saveEmployeeBasicInfo'])->name('saveEmployeeBasicInfo');
 Route::get('/employeeByID/{id}',[EmployeeClr::class,'employeeByID'])->name('employeeByID');
 // Route::get('/assetGroup',[AssetGroupController::class,'assetSubGroup'])->name('assetSubGroup');
 // Route::get('/getAllAssetGroup',[AssetGroupController::class,'getAllAssetGroup'])->name('getAllAssetGroup');
