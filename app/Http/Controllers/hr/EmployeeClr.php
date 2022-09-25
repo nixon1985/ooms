@@ -51,9 +51,28 @@ class EmployeeClr extends Controller
 
     // joiningByID
     public function joiningByID($emp_id) {
-        // $dtaa = Employee::find($emp_id);
-        $dtaa = DB::table('emp_record_info')->where('emp_record_info.emp_id', $emp_id)->get();
-        return response()->json($dtaa);
+        $data = DB::table('emp_record_info')
+                ->where('emp_record_info.emp_id', $emp_id)
+                ->join('emp_designation AS ed', 'ed.designation_id', '=', 'emp_record_info.designation_id')
+                ->join('outlet_info AS oi', 'oi.outlet_id', '=', 'emp_record_info.outlet_id')
+                ->select('emp_record_info.*', 'ed.designation_name as designation','oi.outlet_name as outlet')->get();
+        return response()->json($data);
+    }
+
+    // educationByID
+    public function eduByID($emp_id) {
+        $data = DB::table('emp_education')->where('emp_education.emp_id', $emp_id)->get();
+        return response()->json($data);
+    }
+
+     // deleteEducationInfo
+     public function deleteEducationInfo($emp_id){
+
+        if(DB::table('emp_education')->delete($emp_id)){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
     // saveEmployeeBasicInfo
@@ -85,6 +104,8 @@ class EmployeeClr extends Controller
     }
 
 
+
+
     // saveEmployeeJoiningInfo
     public function saveEmployeeJoiningInfo(Request $request){
         $data=array(
@@ -105,6 +126,25 @@ class EmployeeClr extends Controller
         }
     }
 
+    // saveEmployeeEduInfo
+    function saveEmployeeEduInfo(Request $request){
+        $data=array(
+            'emp_id'        => $request->emp_id,
+            'degree_name'   => $request->degree_name,
+            'major'         => $request->major,
+            'institute'     => $request->institute,
+            'board'         => $request->board,
+            'year'          => $request->year,
+            'result'        => $request->result,
+            'created_by'    => "1"
+        );
+
+        if(DB::table('emp_education')->insert($data)){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *

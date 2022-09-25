@@ -111,10 +111,10 @@
                       <a class="nav-link active show" data-toggle="tab" href="#client-billing-contact" onClick="storeTabId('basicInfo')">Basic Info</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" onclick="getJoiningData()" href="#joining-info" onClick="storeTabId('complain')">Joining Info</a>
+                      <a class="nav-link" data-toggle="tab" onclick="getJoiningList()" href="#joining-info">Joining Info</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#client-tasks" onClick="storeTabId('service')">Education</a>
+                      <a class="nav-link" data-toggle="tab" href="#emp_edu" onclick="getEduList()">Education</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" data-toggle="tab" href="#client-invoices">Attendance</a>
@@ -122,13 +122,9 @@
                   </ul><!-- /.nav-tabs -->
                 </div><!-- /.nav-scroller -->
 
-
-
-
-
                 <!-- .tab-content -->
                 <div class="tab-content pt-4" id="clientDetailsTabs">
-                  <!-- .tab-pane -->
+
                   <div class="tab-pane fade show active" id="client-billing-contact" role="tabpanel" aria-labelledby="client-billing-contact-tab">
 
                     <!-- New -->
@@ -171,7 +167,7 @@
 
 
                       </div><!-- /.card-body -->
-                    </div><!-- /.card -->
+                    </div>
                     <!-- End New  -->
 
 
@@ -201,33 +197,19 @@
                               </div>
                           </div>
                       </div><!-- /.card-body -->
-                  </div><!-- /.card -->
+                  </div>
                 <!-- / Basic information detail -->
 
-                  </div><!-- /.tab-pane -->
-                  <!-- .tab-pane -->
-                  <div class="tab-pane fade" id="client-tasks" role="tabpanel" aria-labelledby="client-tasks-tab">
-                    <!-- .card -->
-                    <div class="card">
-                      <!-- .card-header -->
-                      <div class="card-header d-flex">
-                        <button type="button" class="btn btn-primary ml-auto">Add</button>
-                      </div><!-- /.card-header -->
-                      <!-- .table-responsive -->
-                      <div class="table-responsive">
-                       <h1>Employee Education Info</h1>
-                      </div><!-- /.table-responsive -->
-                    </div><!-- /.card -->
-                  </div><!-- /.tab-pane -->
+                  </div>
 
 
 
 
                   <!-- joining-info .tab-pane -->
                   <div class="tab-pane fade" id="joining-info" role="tabpanel" aria-labelledby="joining-info-tab">
-                    <!-- .card -->
+
                     <div class="card">
-                      <!-- .card-header -->
+
                       <div class="card-header d-flex">
 
                         <button type="button" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#empJoiningModal" title="Add New">Add New</button>
@@ -236,56 +218,64 @@
                       <!-- .table-responsive -->
                       <div class="table-responsive">
                         <!-- .table -->
-                        <table class="table">
+                        <table class="table" id="employee_joining_grid">
                           <!-- thead -->
                           <thead>
                             <tr>
                               <th> Outlet </th>
                               <th> Designation </th>
                               <th> Start </th>
-                              <th> End </th>
+                              {{-- <th> End </th> --}}
                               <th> Status </th>
                               <th></th>
                             </tr>
                           </thead><!-- /thead -->
                           <!-- tbody -->
                           <tbody>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle">
-                                Syrena Project
-                              </td>
-                              <td class="align-middle">Manager </td>
-                              <td class="align-middle"> 04/10/2018 </td>
-                              <td class="align-middle"> 08/18/2018 </td>
-                              <td class="align-middle">
-                                <span class="badge badge-warning">On Going</span>
-                              </td>
-                              <td class="align-middle text-right">
-                                <div class="dropdown">
-                                  <button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><i class="fa fa-ellipsis-h"></i> <span class="sr-only">Actions</span></button>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-arrow mr-n1"></div><button class="dropdown-item" type="button">Edit</button> <button class="dropdown-item" type="button">Delete</button>
-                                  </div>
-                                </div>
-                              </td>
-                            </tr><!-- /tr -->
-                            <!-- tr -->
-                          </tbody><!-- /tbody -->
-                        </table><!-- /.table -->
-                      </div><!-- /.table-responsive -->
-                    </div><!-- /.card -->
-                  </div><!-- /.tab-pane -->
-                  <!-- joining-info .tab-pane -->
 
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- joining-info .tab-pane -->
+                  <!-- education-info .tab-pane start-->
+                  <div class="tab-pane fade" id="emp_edu" role="tabpanel" aria-labelledby="emp_edu-tab">
+
+                    <div class="card">
+                        <div class="form-row" id="massageDivEdu"></div>
+                      <div class="card-header d-flex">
+                        <button type="button" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#empEduModal" title="Add New">Add New</button>
+                      </div>
+                      <div class="table-responsive">
+                        <table class="table" id="employee_education_grid">
+                          <thead>
+                            <tr>
+                              <th> Exam Title </th>
+                              <th> Concentration/Major </th>
+                              <th> Institute </th>
+                              <th> Result </th>
+                              <th> Pass.Year </th>
+                              <th></th>
+                            </tr>
+                          </thead><!-- /thead -->
+                          <!-- tbody -->
+                          <tbody>
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                <!-- education-info .tab-pane End-->
 
 
                   <div class="tab-pane fade" id="client-invoices" role="tabpanel" aria-labelledby="client-invoices-tab">
-                    <!-- .card -->
+
                     <div class="card">
-                      <!-- .card-header -->
+
                       <div class="card-header d-flex">
-                        <!-- .dropdown -->
+
                         <div class="dropdown">
                           <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-filter mr-1"></i> All (5) <i class="fa fa-caret-down"></i></button> <!-- .dropdown-menu -->
                           <div class="dropdown-menu stop-propagation">
@@ -338,7 +328,7 @@
                                   </div>
                                 </div>
                               </td>
-                            </tr><!-- /tr -->
+                            </tr>
                             <!-- tr -->
                             <tr>
                               <td class="align-middle text-truncate">
@@ -364,7 +354,7 @@
                                   </div>
                                 </div>
                               </td>
-                            </tr><!-- /tr -->
+                            </tr>
                             <!-- tr -->
                             <tr>
                               <td class="align-middle text-truncate">
@@ -392,7 +382,7 @@
                                   </div>
                                 </div>
                               </td>
-                            </tr><!-- /tr -->
+                            </tr>
                             <!-- tr -->
                             <tr>
                               <td class="align-middle text-truncate">
@@ -418,19 +408,19 @@
                                   </div>
                                 </div>
                               </td>
-                            </tr><!-- /tr -->
-                          </tbody><!-- /tbody -->
-                        </table><!-- /.table -->
-                      </div><!-- /.table-responsive -->
-                    </div><!-- /.card -->
-                  </div><!-- /.tab-pane -->
-                  <!-- .tab-pane -->
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="tab-pane fade" id="client-expenses" role="tabpanel" aria-labelledby="client-expenses-tab">
-                    <!-- .card -->
+
                     <div class="card">
-                      <!-- .card-header -->
+
                       <div class="card-header d-flex">
-                        <!-- .dropdown -->
+
                         <div class="dropdown">
                           <button class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>This Year</span> <i class="fa fa-fw fa-caret-down"></i></button> <!-- .dropdown-menu -->
                           <div class="dropdown-menu dropdown-menu-md stop-propagation">
@@ -494,7 +484,7 @@
                                   </div>
                                 </div>
                               </td>
-                            </tr><!-- /tr -->
+                            </tr>
                             <!-- tr -->
                             <tr>
                               <td class="align-middle"> 09/15/2019 </td>
@@ -514,7 +504,7 @@
                                   </div>
                                 </div>
                               </td>
-                            </tr><!-- /tr -->
+                            </tr>
                             <!-- tr -->
                             <tr>
                               <td class="align-middle"> 10/11/2019 </td>
@@ -534,34 +524,34 @@
                                   </div>
                                 </div>
                               </td>
-                            </tr><!-- /tr -->
-                          </tbody><!-- /tbody -->
-                        </table><!-- /.table -->
-                      </div><!-- /.table-responsive -->
-                    </div><!-- /.card -->
-                  </div><!-- /.tab-pane -->
-                </div><!-- /.tab-content -->
-              </div><!-- /.sidebar-section -->
-            </div><!-- /.page-sidebar -->
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <!-- Keep in mind that modals should be placed outsite of page sidebar -->
 
-            <!-- .Employee Entry Form -->
+            <!-- .Employee Entry Form Start-->
             <form id="employee_entry_form" enctype="multipart/form-data">
                 <div class="modal fade" id="clientNewModal" tabindex="-1" role="dialog" aria-labelledby="clientNewModalLabel" aria-hidden="true">
-                  <!-- .modal-dialog -->
+
                   <div class="modal-dialog " role="document" style="max-width:60% !important">
-                    <!-- .modal-content -->
+
                     <div class="modal-content">
                         <div class="form-row" id="massageDiv"></div>
-                      <!-- .modal-header -->
+
                       <div class="modal-header">
                         <h4 id="clientNewModalLabel" class="modal-title inline-editable">
                           Employee Entry Form
                         </h4>
-                      </div><!-- /.modal-header -->
-                      <!-- .modal-body -->
+                      </div>
+
                       <div class="modal-body">
-                        <!-- .form-row -->
+
                         <div class="form-row">
                           <div class="col-md-6">
                             <div class="form-group">
@@ -632,38 +622,34 @@
                           </div>
 
 
-                        </div><!-- /.form-row -->
-                      </div><!-- /.modal-body -->
-
-
-                      <!-- .modal-footer -->
+                        </div>
+                      </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" onclick="saveEmpBasic()">Save</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                      </div><!-- /.modal-footer -->
-                    </div><!-- /.modal-content -->
-                  </div><!-- /.modal-dialog -->
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </form>
-              <!-- /.Employee Entry Form -->
-
-            <!-- .Employee Joining Form -->
+            </form>
+            <!-- /.Employee Entry Form End-->
+            <!-- .Employee Joining Form Start-->
             <form id="employee_joining_form" enctype="multipart/form-data">
                 <div class="modal fade" id="empJoiningModal" tabindex="-1" role="dialog" aria-labelledby="empJoiningModalLabel" aria-hidden="true">
-                  <!-- .modal-dialog -->
+
                   <div class="modal-dialog " role="document" style="max-width:60% !important">
-                    <!-- .modal-content -->
+
                     <div class="modal-content">
                         <div class="form-row" id="massageDiv"></div>
-                      <!-- .modal-header -->
+
                       <div class="modal-header">
                         <h4 id="empJoiningModalLabel" class="modal-title inline-editable">
                           Employee Joining Form
                         </h4>
-                      </div><!-- /.modal-header -->
-                      <!-- .modal-body -->
+                      </div>
+
                       <div class="modal-body">
-                        <!-- .form-row -->
+
                         <div class="form-row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -697,37 +683,126 @@
 
 
 
-                        </div><!-- /.form-row -->
-                      </div><!-- /.modal-body -->
+                        </div>
+                      </div>
 
 
-                      <!-- .modal-footer -->
+
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" onclick="saveEmpJoining()">Save</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                      </div><!-- /.modal-footer -->
-                    </div><!-- /.modal-content -->
-                  </div><!-- /.modal-dialog -->
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </form>
-            <!-- /.Employee Joining Form -->
+            <!-- /.Employee Joining Form End-->
+             <!-- .Employee Edu Form Start-->
+             <form id="employee_edu_form" enctype="multipart/form-data">
+                <div class="modal fade" id="empEduModal" tabindex="-1" role="dialog" aria-labelledby="empEduModalLabel" aria-hidden="true">
 
-            <!-- .modal -->
+                  <div class="modal-dialog " role="document" style="max-width:60% !important">
+
+                    <div class="modal-content">
+
+
+                      <div class="modal-header">
+                        <h4 id="empEduModalLabel" class="modal-title inline-editable">
+                          Employee Education Form
+                        </h4>
+                      </div>
+
+                      <div class="modal-body">
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="degree_name">Exam Title</label>
+                                  <input autocomplete="off" name="degree_name" type="text" id="degree_name" class="form-control" placeholder="Degree" required>
+                                  <input  name="edu_emp_id" type="hidden" id="edu_emp_id" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="major">Concentration/Major</label>
+                                  <input autocomplete="off" name="major" type="text" id="major" class="form-control" placeholder="Concentration/Major" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="institute">Institute</label>
+                                  <input autocomplete="off" name="institute" type="text" id="institute" class="form-control" placeholder="Institute" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="board">Board</label>
+                                    <select class="custom-select d-block w-100" id="board" required="">
+                                        <option value=""> Choose... </option>
+                                        <option value="Barishal">Barishal</option>
+                                        <option value="Barishal">Barishal</option>
+                                        <option value="Cumilla">Cumilla</option>
+                                        <option value="Dhaka">Dhaka</option>
+                                        <option value="Dinajpur">Dinajpur</option>
+                                        <option value="Jashore">Jashore</option>
+                                        <option value="Mymensingh">Mymensingh</option>
+                                        <option value="Mymensingh">Mymensingh</option>
+                                        <option value="Sylhet">Sylhet</option>
+                                        <option value="Madrasah">Madrasah</option>
+                                        <option value="Technical">Technical</option>
+                                        <option value="BOU">BOU</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="year">Year</label>
+                                    <select class="custom-select d-block w-100" id="year" required="">
+                                        <option value=""> Choose... </option>
+                                       @for ($m = 1980; $m < date('Y'); $m++)
+                                        <option value="{{$m}}"> {{$m}}</option>
+                                       @endfor
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="result">Result</label>
+                                  <input autocomplete="off" name="result" type="text" id="result" class="form-control" placeholder="5" required>
+
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" onclick="saveEmpEdu()">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </form>
+            <!-- /.Employee Edu Form End-->
             <form id="clientBillingEditForm" name="clientBillingEditForm">
               <div class="modal fade" id="clientBillingEditModal" tabindex="-1" role="dialog" aria-labelledby="clientBillingEditModalLabel" aria-hidden="true">
-                <!-- .modal-dialog -->
+
                 <div class="modal-dialog" role="document">
-                  <!-- .modal-content -->
+
                   <div class="modal-content">
-                    <!-- .modal-header -->
+
                     <div class="modal-header">
                       <h6 id="clientBillingEditModalLabel" class="modal-title inline-editable">
                         <span class="sr-only">Client name</span> <input type="text" class="form-control form-control-lg" value="Zathunicon, Inc." placeholder="E.g. Stilearning, Inc." required="">
                       </h6>
-                    </div><!-- /.modal-header -->
-                    <!-- .modal-body -->
+                    </div>
+
                     <div class="modal-body">
-                      <!-- .form-row -->
+
                       <div class="form-row">
                         <div class="col-md-12">
                           <div class="form-group">
@@ -760,89 +835,89 @@
                             </select>
                           </div>
                         </div>
-                      </div><!-- /.form-row -->
-                    </div><!-- /.modal-body -->
-                    <!-- .modal-footer -->
+                      </div>
+                    </div>
+
                     <div class="modal-footer">
                       <button type="submit" class="btn btn-primary">Save</button> <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                    </div><!-- /.modal-footer -->
-                  </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
+                    </div>
+                  </div>
+                </div>
               </div>
-            </form><!-- /.modal -->
-            <!-- .modal -->
+            </form>
+
             <form id="clientContactNewForm" name="clientContactNewForm">
               <div class="modal fade" id="clientContactNewModal" tabindex="-1" role="dialog" aria-labelledby="clientContactNewModalLabel" aria-hidden="true">
-                <!-- .modal-dialog -->
+
                 <div class="modal-dialog" role="document">
-                  <!-- .modal-content -->
+
                   <div class="modal-content">
-                    <!-- .modal-header -->
+
                     <div class="modal-header">
                       <h6 id="clientContactNewModalLabel" class="modal-title inline-editable">
                         <span class="sr-only">Contact name</span> <input type="text" class="form-control form-control-lg" placeholder="Name (e.g. John Doe)" required="">
                       </h6>
-                    </div><!-- /.modal-header -->
-                    <!-- .modal-body -->
+                    </div>
+
                     <div class="modal-body">
-                      <!-- .form-group -->
+
                       <div class="form-group">
                         <div class="form-label-group">
                           <input type="email" id="cnEmail" class="form-control" placeholder="Email" required=""> <label for="cnEmail">Email</label>
                         </div>
-                      </div><!-- /.form-group -->
-                      <!-- .form-group -->
+                      </div>
+
                       <div class="form-group">
                         <div class="form-label-group">
                           <input type="tel" id="cnPhone" class="form-control" placeholder="Phone"> <label for="cnPhone">Phone</label>
                         </div>
-                      </div><!-- /.form-group -->
-                    </div><!-- /.modal-body -->
-                    <!-- .modal-footer -->
+                      </div>
+                    </div>
+
                     <div class="modal-footer">
                       <button type="submit" class="btn btn-primary">Save</button> <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                    </div><!-- /.modal-footer -->
-                  </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
+                    </div>
+                  </div>
+                </div>
               </div>
-            </form><!-- /.modal -->
-            <!-- .modal -->
+            </form>
+
             <form id="clientContactEditForm" name="clientContactEditForm">
               <div class="modal fade" id="clientContactEditModal" tabindex="-1" role="dialog" aria-labelledby="clientContactEditModalLabel" aria-hidden="true">
-                <!-- .modal-dialog -->
+
                 <div class="modal-dialog" role="document">
-                  <!-- .modal-content -->
+
                   <div class="modal-content">
-                    <!-- .modal-header -->
+
                     <div class="modal-header">
                       <h6 id="clientContactEditModalLabel" class="modal-title inline-editable">
                         <span class="sr-only">Contact name</span> <input type="text" class="form-control form-control-lg" value="Alexane Collins" placeholder="Name (e.g. John Doe)" required="">
                       </h6>
-                    </div><!-- /.modal-header -->
-                    <!-- .modal-body -->
+                    </div>
+
                     <div class="modal-body">
-                      <!-- .form-group -->
+
                       <div class="form-group">
                         <div class="form-label-group">
                           <input type="email" id="ceEmail" class="form-control" value="fhauck@gmail.com" placeholder="Email" required=""> <label for="ceEmail">Email</label>
                         </div>
-                      </div><!-- /.form-group -->
-                      <!-- .form-group -->
+                      </div>
+
                       <div class="form-group">
                         <div class="form-label-group">
                           <input type="tel" id="cePhone" class="form-control" value="0621099222" placeholder="Phone"> <label for="cePhone">Phone</label>
                         </div>
-                      </div><!-- /.form-group -->
-                    </div><!-- /.modal-body -->
-                    <!-- .modal-footer -->
+                      </div>
+                    </div>
+
                     <div class="modal-footer">
                       <button type="submit" class="btn btn-primary">Save</button> <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                    </div><!-- /.modal-footer -->
-                  </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
+                    </div>
+                  </div>
+                </div>
               </div>
-            </form><!-- /.modal -->
-          </div><!-- /.page -->
+            </form>
+          </div>
 
 
 
@@ -859,6 +934,9 @@
             e.preventDefault();
         });
         $("#employee_joining_form").submit(function(e) {
+            e.preventDefault();
+        });
+        $("#employee_edu_form").submit(function(e) {
             e.preventDefault();
         });
 
@@ -983,6 +1061,51 @@
                 $('#outlet_id').val("");
                 $('#joining_date').val("");
                 $('#empJoiningModal').modal('toggle');
+                getJoiningList();
+
+            }else{
+                alert('Error');
+            }
+        });
+    }
+    //  Save Employee Education Form
+    function saveEmpEdu(){
+        var empId          = $('#edu_emp_id').val();
+        var empDegree      = $('#degree_name').val();
+        var empMajor       = $('#major').val();
+        var empInstitute   = $('#institute').val();
+        var empBoard       = $('#board').val();
+        var empYear        = $('#year').val();
+        var empResult      = $('#result').val();
+
+        var actionlink = 'saveEmployeeEduInfo';
+        $.ajax({
+            type: "POST",
+            url: actionlink,
+            data:{
+                _token:'{{csrf_token()}}',
+                emp_id:empId,
+                degree_name:empDegree,
+                major:empMajor,
+                institute:empInstitute,
+                board:empBoard,
+                year:empYear,
+                result:empResult
+            },
+
+            context: document.body
+        }).done(function(result) {
+            if(result==1){
+                $("#massageDivEdu").show();
+                $('#edu_emp_id').val("");
+                $('#degree_name').val("");
+                $('#major').val("");
+                $('#institute').val("");
+                $('#board').val("");
+                $('#year').val("");
+                $('#result').val("");
+                $('#empEduModal').modal('toggle');
+                getEduList();
 
             }else{
                 alert('Error');
@@ -990,51 +1113,99 @@
         });
     }
 
-    // getJoiningData
-    function getJoiningData()
-    {
-        var empId = $('#joining_emp_id').val();
-        alert(empId);
-    }
 
-      function getAllEmployee() {
+    // getJoiningList
+    function getJoiningList()
+    {
         var html = '';
+        $('#employee_joining_grid tbody').html("");
+        var empId = $('#joining_emp_id').val();
+
         $.ajax({
             type: "GET",
-            url: 'getAllEmployee',
+            url: 'joiningByID/'+empId,
             context: document.body
         }).done(function(result) {
-            $('.employeeList').html("");
             $.each(result, function(i,data) {
-              // <!-- .list-group-item -->
-              html += "<div class='list-group-item active' data-toggle='sidebar' data-sidebar='show' onclick='outletInfo("+data.emp_id+")'>";
-              html += "<a href='#' class='stretched-link'></a>";
-              html += "<div class='list-group-item-figure'>";
-              html += "<a href='#' class='user-avatar user-avatar-md' data-toggle='tooltip' title="+data.emp_name+">";
-              html += "<img src='assets/images/avatars/profile.jpg' alt=''>";
-              html += "</a>";
-              html += "</div>";
-
-              html += "<div class='list-group-item-body'>";
-              html += "<h4 class='list-group-item-title'>"+data.emp_name+"</h4>";
-              html += "<p class='list-group-item-text'>"+data.designation_name+"</p>";
-              html += "</div>";
-              html += "</div>";
+                html += "<tr>";
+                // html +="<td class='align-middle'>"+i+"</td>";
+                html +="<td class='align-middle'>"+data.outlet+"</td>";
+                html +="<td class='align-middle'>"+data.designation+"</td>";
+                html +="<td class='align-middle'>"+data.joining_date+"</td>";
+                html +="<td class='align-middle'>"+data.created_by+"</td>";
+                html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeProblem('+data.emp_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html += '</tr>';
             });
-            $('.employeeList').append(html);
+            $('#employee_joining_grid tbody').html(html);
         });
-      }
+    }
 
-      function removeAssetSubGroup(subGroupId){
-          alert(subGroupId);
-          $.ajax({
-              type: "DELETE",
-              url: 'deleteSubGroup',
-              data:{_token:'{{csrf_token()}}',sub_group_id:subGroupId}
-          }).done(function(result) {
-              alert(result);
-          });
-      }
+    function getAllEmployee() {
+    var html = '';
+    $.ajax({
+        type: "GET",
+        url: 'getAllEmployee',
+        context: document.body
+    }).done(function(result) {
+        $('.employeeList').html("");
+        $.each(result, function(i,data) {
+            // <!-- .list-group-item -->
+            html += "<div class='list-group-item active' data-toggle='sidebar' data-sidebar='show' onclick='outletInfo("+data.emp_id+")'>";
+            html += "<a href='#' class='stretched-link'></a>";
+            html += "<div class='list-group-item-figure'>";
+            html += "<a href='#' class='user-avatar user-avatar-md' data-toggle='tooltip' title="+data.emp_name+">";
+            html += "<img src='assets/images/avatars/profile.jpg' alt=''>";
+            html += "</a>";
+            html += "</div>";
+
+            html += "<div class='list-group-item-body'>";
+            html += "<h4 class='list-group-item-title'>"+data.emp_name+"</h4>";
+            html += "<p class='list-group-item-text'>"+data.designation_name+"</p>";
+            html += "</div>";
+            html += "</div>";
+        });
+        $('.employeeList').append(html);
+    });
+    }
+
+    // getEduList
+    function getEduList()
+    {
+        var html = '';
+        // $('#employee_education_grid tbody').html("");
+        var empId = $('#edu_emp_id').val();
+        // getEduList(empId);
+        $.ajax({
+            type: "GET",
+            url: 'eduByID/'+empId,
+            context: document.body
+        }).done(function(result) {
+            $.each(result, function(i,data) {
+                html += "<tr>";
+                // html +="<td class='align-middle'>"+i+"</td>";
+                html +="<td class='align-middle'>"+data.degree_name+"</td>";
+                html +="<td class='align-middle'>"+data.major+"</td>";
+                html +="<td class='align-middle'>"+data.institute+"</td>";
+                html +="<td class='align-middle'>"+data.year+"</td>";
+                html +="<td class='align-middle'>"+data.result+"</td>";
+                html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeProblem('+data.emp_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html += '</tr>';
+            });
+            $('#employee_education_grid tbody').html(html);
+
+        });
+    }
+
+    function removeAssetSubGroup(subGroupId){
+        alert(subGroupId);
+        $.ajax({
+            type: "DELETE",
+            url: 'deleteSubGroup',
+            data:{_token:'{{csrf_token()}}',sub_group_id:subGroupId}
+        }).done(function(result) {
+            alert(result);
+        });
+    }
       //////////// Employee crud ends
 
 
@@ -1075,6 +1246,7 @@
                     $(".card-title111").html('Parmanent Address');
                     $(".card-title222").html('Parmanent Address');
                     $('#joining_emp_id').val(data.emp_id);
+                    $('#edu_emp_id').val(data.emp_id);
 
 
                 } else {

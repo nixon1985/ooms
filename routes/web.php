@@ -77,10 +77,15 @@ Route::get('/employeeInfo',[EmployeeClr::class,'employeeInfo'])->name('employeeI
 
 Route::get('/getAllEmployee',[EmployeeClr::class,'getAllEmployee'])->name('getAllEmployee');
 Route::get('/getAllDesignation',[EmployeeClr::class,'getAllDesignation'])->name('getAllDesignation');
+
 Route::post('/saveEmployeeBasicInfo',[EmployeeClr::class,'saveEmployeeBasicInfo'])->name('saveEmployeeBasicInfo');
 Route::post('/saveEmployeeJoiningInfo',[EmployeeClr::class,'saveEmployeeJoiningInfo'])->name('saveEmployeeJoiningInfo');
+Route::post('/saveEmployeeEduInfo',[EmployeeClr::class,'saveEmployeeEduInfo'])->name('saveEmployeeEduInfo');
+
 Route::get('/employeeByID/{id}',[EmployeeClr::class,'employeeByID'])->name('employeeByID');
 Route::get('/joiningByID/{id}',[EmployeeClr::class,'joiningByID'])->name('joiningByID');
+Route::get('/eduByID/{id}',[EmployeeClr::class,'eduByID'])->name('eduByID');
+Route::get('/deleteEducationInfo/{id}',[EmployeeClr::class,'deleteEducationInfo'])->name('deleteEducationInfo');
 // Route::get('/assetGroup',[AssetGroupController::class,'assetSubGroup'])->name('assetSubGroup');
 // Route::get('/getAllAssetGroup',[AssetGroupController::class,'getAllAssetGroup'])->name('getAllAssetGroup');
 // Route::get('/getAllAssetList',[AssetGroupController::class,'getAllAssetList'])->name('getAllAssetList');
