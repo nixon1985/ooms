@@ -272,6 +272,101 @@
 
 
 
+<div class="modal fade" id="usedPartsPanelPopUp" tabindex="-1" role="dialog" aria-labelledby="solutionPanelPopUpLabel" aria-hidden="true">
+    <!-- .modal-dialog -->
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <!-- .modal-content -->
+        <div class="modal-content">
+            <!-- .modal-header -->
+            <div class="modal-header">
+                <h6 id="repairPopUpLabel" class="modal-title"> Solution </h6>
+                <div id="massageDiv-forParts"></div>
+            </div><!-- /.modal-header -->
+            <!-- .modal-body -->
+            <div class="modal-body px-0">
+
+                <!-- .card -->
+                <div class="card">
+                    <!-- .card-body -->
+                    <div class="card-body">
+                        <form class="needs-validation" novalidate="">
+                            <!-- .form-row -->
+                            <div class="form-row">
+
+
+
+                                <div class="col-md-12 mb-3">
+                                    <!-- .form-group -->
+                                    <div class="form-group">
+                                        <label for="partsList">Parts<abbr title="Required">*</abbr></label>
+                                        <select class="custom-select d-block w-100" id="partsList" required="">
+                                            <option value=""> Choose... </option>
+                                            <option value="1"> Electric </option>
+                                            <option value="2"> Glass </option>
+                                            <option value="3"> General </option>
+                                        </select>
+                                    </div><!-- /.form-group -->
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <!-- .form-group -->
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="parts_qty" placeholder="Parts Qty" value="" required="">
+                                    </div><!-- /.form-group -->
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <!-- .form-group -->
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" type="button" onclick="addPartsIntoDevice()">Save</button>
+                                    </div><!-- /.form-group -->
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <div class="list-group list-group-flush" id="take_solution_list"></div>
+                                    <table class="table table-sm mb-0 table-striped">
+                                        <!-- thead -->
+                                        <thead class="thead-">
+                                        <tr>
+                                            <th style="min-width:200px"> Used parts </th>
+                                            <th> Unit </th>
+                                            <th> Qty </th>
+                                        </tr>
+                                        </thead><!-- /thead -->
+                                        <!-- tbody -->
+                                        <tbody>
+                                        <!-- tr -->
+                                        <tr>
+                                            <td> Wine - Chateau Bonnet </td>
+                                            <td> 113 </td>
+                                            <td> $22.38 </td>
+                                        </tr><!-- /tr -->
+                                        <!-- tr -->
+                                        <tr>
+                                            <td> Cookie - Oatmeal </td>
+                                            <td> 216 </td>
+                                            <td> $21.90 </td>
+                                        </tr><!-- /tr -->
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div><!-- /.form-row -->
+                        </form><!-- /form .needs-validation -->
+                    </div><!-- /.card-body -->
+                </div><!-- /.card -->
+            </div><!-- /.modal-body -->
+
+            <!-- .modal-footer -->
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit" onclick="saveSolutionOfProblem()">Save</button>
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+            </div><!-- /.modal-footer -->
+        </div>
+    </div>
+</div>
+
+
+
+
 <style>
     .seenStatus {
         font-weight: bold;
@@ -507,6 +602,7 @@
                 '<div class="el-example">'+
                 '<button type="button" class="btn btn-danger" data-toggle="repairStatusPanel" onclick="problemIdentifyPopUpForm('+i+')">Identified Problem </button>'+
                 '<button type="button" class="btn btn-success" data-toggle="solutionPanel" onclick="solutionPanelPopUp('+i+')">Solution </button>'+
+                '<button type="button" class="btn btn-success" data-toggle="solutionPanel" onclick="usedPartsPanelPopUp('+i+')">Parts</button>'+
                 '</div>'+
                 '</div>'+
                 '</div>'+
@@ -800,6 +896,59 @@
         // const willDelete = firstArray.filter(element => !secondArray.includes(element));
         // const willInsert = secondArray.filter(element => !firstArray.includes(element));
         return difference;
+    }
+
+
+
+    /* =========================== */
+    // Parts Panel
+    /*****************************/
+
+    function usedPartsPanelPopUp(index){
+
+        $("#massageDiv-forParts").html('');
+
+        gSelectedTokenId = serviceInProgressList[index].token_id;
+        var assetId = serviceInProgressList[index].asset_id;
+        var html = '';
+        $.ajax({
+            type: "GET",
+            url: 'getUsedPartsList',
+            data:{
+                tokenId:gSelectedTokenId,
+                assetId:assetId
+            },
+            context: document.body
+        }).done(function(result) {
+
+            var html = '<option value="">Choose... </option>';
+            $.each(result.partsList, function(i,data) {
+                html +='<option value="'+data.parts_id+'">'+data.parts_name+'</option>';
+            });
+            $('#partsList').html(html);
+        });
+
+        // loadProblemList();
+        // loadPartsList();
+        $("#usedPartsPanelPopUp").modal('show');
+    }
+
+
+    function addPartsIntoDevice(){
+        var partsId = $('#partsList').val();
+        var partsQty = $('#parts_qty').val();
+
+
+        $.ajax({
+            type: "POST",
+            url: 'addPartsIntoDevice',
+            data:{_token:'{{csrf_token()}}',partsId:partsId,partsQty:partsQty,token_id:gSelectedTokenId},
+            context: document.body
+        }).done(function(result) {
+            // alert(result);
+        });
+
+
     }
 
 

@@ -307,4 +307,39 @@ class MaintenanceController extends Controller
         $deleted = DB::table('service_problem_solution')->where('action_id', 'IN', $id->parts_id)->delete();
         return $deleted;
     }
+
+    public function getUsedPartsList(){
+        $tokenId = $_GET['tokenId'];
+        $assetId = $_GET['assetId'];
+        // echo $tokenId;die();
+        // $assetId = 11;//$request->assetId;
+        // $data = [];
+        $dataList = DB::table('asset_list AS a')
+            ->selectRaw('p.parts_id, p.parts_name')
+            ->join('asset_parts AS p', 'p.group_id', '=', 'a.sub_group_id')
+            ->where('a.asset_id','=',$assetId)
+            ->orderBy('p.parts_id')
+            ->get();
+
+        $data['partsList']=$dataList;
+        return response()->json($data);
+    }
+
+    function addPartsIntoDevice(Request $request){
+
+        $partsList=array(
+            'parts_id' => $request->partsId,
+            'parts_qty'=> $request->partsQty,
+            'token_id' => $request->token_id
+        );
+
+        // print_r($array);
+        if(DB::table('service_parts_used')->insert($partsList)){
+            $returnData['message']=1;
+        }else{
+            $returnData['message']=0;
+        }
+        return response()->json($returnData);
+    }
+
 }

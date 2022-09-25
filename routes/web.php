@@ -151,6 +151,10 @@ Route::post('/saveIdentifiedProblem',[MaintenanceController::class,'saveIdentifi
 // Applied Solution
 Route::post('/saveAppliedSolution',[MaintenanceController::class,'saveAppliedSolution'])->name('saveAppliedSolution');
 
+// Used Part
+Route::get('/getUsedPartsList',[MaintenanceController::class,'getUsedPartsList'])->name('getUsedPartsList');
+Route::post('/addPartsIntoDevice',[MaintenanceController::class,'addPartsIntoDevice'])->name('addPartsIntoDevice');
+
 
 
 
