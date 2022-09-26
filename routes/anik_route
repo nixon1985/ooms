@@ -29,3 +29,11 @@ CREATE TABLE `emp_education` (
   `created_on` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+26-09-2022
+-------------------------
+Route::delete('/deleteEmpJoiningInfo/{id}',[EmployeeClr::class,'deleteEmpJoiningInfo'])->name('deleteEmpJoiningInfo');
+Route::delete('/deleteEmpEduInfo/{id}',[EmployeeClr::class,'deleteEmpEduInfo'])->name('deleteEmpEduInfo');
+Route::get('/joiningByID/{id}',[EmployeeClr::class,'joiningByID'])->name('joiningByID');
+
+CREATE TABLE `db_ooms`.`emp_attendance` ( `attend_id` INT NOT NULL AUTO_INCREMENT , `emp_id` INT NOT NULL , `attend_date` DATE NOT NULL , `in_time` VARCHAR(10) NOT NULL , `out_time` VARCHAR(10) NOT NULL , `created_by` INT NULL DEFAULT NULL , `created_on` TIMESTAMP NULL DEFAULT NULL , `updated_by` INT NULL DEFAULT NULL , `updated_on` TIMESTAMP NULL DEFAULT NULL , PRIMARY KEY (`attend_id`)) ENGINE = InnoDB;
+

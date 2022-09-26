@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\TryCatch;
+use Session;
 
 class EmployeeClr extends Controller
 {
@@ -65,16 +66,30 @@ class EmployeeClr extends Controller
         return response()->json($data);
     }
 
-     // deleteEducationInfo
-     public function deleteEducationInfo($emp_id){
+     // deleteEmpJoiningInfo
+     public function deleteEmpJoiningInfo($row_id){
 
-        if(DB::table('emp_education')->delete($emp_id)){
+        if( $data = DB::table('emp_record_info')->where('emp_rec_id',$row_id)->delete())
+        {
             return 1;
-        }else{
+        }
+        else{
+            return 0;
+        }
+    }
+    // deleteEmpEduInfo
+    public function deleteEmpEduInfo($row_id){
+
+        if( $data = DB::table('emp_education')->where('edu_id',$row_id)->delete())
+        {
+            return 1;
+        }
+        else{
             return 0;
         }
     }
 
+  
     // saveEmployeeBasicInfo
     public function saveEmployeeBasicInfo(Request $request){
         // emp_name:empName,emp_dob:empDob,contact_no:empContact,email_id:empEmail,joining_date:empJoin,designation_id

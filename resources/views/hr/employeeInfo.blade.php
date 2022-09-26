@@ -117,7 +117,7 @@
                       <a class="nav-link" data-toggle="tab" href="#emp_edu" onclick="getEduList()">Education</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#client-invoices">Attendance</a>
+                      <a class="nav-link" data-toggle="tab" href="#attendance">Attendance</a>
                     </li>
                   </ul><!-- /.nav-tabs -->
                 </div><!-- /.nav-scroller -->
@@ -169,8 +169,6 @@
                       </div><!-- /.card-body -->
                     </div>
                     <!-- End New  -->
-
-
 
                       <!-- Basic information detail -->
                       <div class="card">
@@ -239,6 +237,7 @@
                     </div>
                   </div>
                   <!-- joining-info .tab-pane -->
+
                   <!-- education-info .tab-pane start-->
                   <div class="tab-pane fade" id="emp_edu" role="tabpanel" aria-labelledby="emp_edu-tab">
 
@@ -267,153 +266,55 @@
                       </div>
                     </div>
                   </div>
-                <!-- education-info .tab-pane End-->
+                    <!-- education-info .tab-pane End-->
+
+                    <!-- attendance .tab-pane start-->
+                    <div class="tab-pane fade" id="attendance" role="tabpanel" aria-labelledby="attendance-tab">
+
+                        <div class="card">
+
+                        <div class="card-header d-flex">
+                            <button type="button" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#attendanceModal" title="Add New">Add Attendance</button>
+                        </div><!-- /.card-header -->
+                        <!-- .table-responsive -->
+                        <div class="table-responsive">
+                            <!-- .table -->
+                            <table class="table">
+                            <!-- thead -->
+                            <thead>
+                                <tr>
+                                <th>Employee</th>
+                                <th>Date</th>
+                                <th> In </th>
+                                <th> Out </th>
+                                <th>Action</th>
+                                </tr>
+                            </thead><!-- /thead -->
+                            <!-- tbody -->
+                            <tbody>
+                                <!-- tr -->
+                                <tr>
 
 
-                  <div class="tab-pane fade" id="client-invoices" role="tabpanel" aria-labelledby="client-invoices-tab">
-
-                    <div class="card">
-
-                      <div class="card-header d-flex">
-
-                        <div class="dropdown">
-                          <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-filter mr-1"></i> All (5) <i class="fa fa-caret-down"></i></button> <!-- .dropdown-menu -->
-                          <div class="dropdown-menu stop-propagation">
-                            <div class="dropdown-arrow"></div>
-                            <h6 id="client-invoices-tab" class="dropdown-header"> Invoices </h6><label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientInvoiceFilter" value="0" checked> <span class="custom-control-label">All (5)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientInvoiceFilter" value="1"> <span class="custom-control-label">Draft (1)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientInvoiceFilter" value="2"> <span class="custom-control-label">Send (2)</span></label> <label class="custom-control custom-radio"><input type="radio" class="custom-control-input" name="clientInvoiceFilter" value="3"> <span class="custom-control-label">Paid (0)</span></label>
-                          </div><!-- /.dropdown-menu -->
-                        </div><!-- /.dropdown -->
-                        <button type="button" class="btn btn-primary ml-auto">Add invoice</button>
-                      </div><!-- /.card-header -->
-                      <!-- .table-responsive -->
-                      <div class="table-responsive">
-                        <!-- .table -->
-                        <table class="table">
-                          <!-- thead -->
-                          <thead>
-                            <tr>
-                              <th style="min-width:256px"> Project </th>
-                              <th></th>
-                              <th> Due </th>
-                              <th> Amount </th>
-                              <th> Received </th>
-                              <th> Status </th>
-                              <th></th>
-                            </tr>
-                          </thead><!-- /thead -->
-                          <!-- tbody -->
-                          <tbody>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <div class="media align-items-center">
-                                  <a href="#" class="tile bg-pink text-white mr-2">SP</a>
-                                  <div class="media-body">
-                                    <a href="#">Syrena Project</a> <small class="d-block text-muted">Invoice #9463</small>
-                                  </div>
-                                </div>
-                              </td>
-                              <td class="align-middle"></td>
-                              <td class="align-middle"> 09/16/2018 </td>
-                              <td class="align-middle"> $1,500 </td>
-                              <td class="align-middle"> $1,500 </td>
-                              <td class="align-middle">
-                                <span class="badge badge-success">Paid</span>
-                              </td>
-                              <td class="align-middle text-right">
-                                <div class="dropdown">
-                                  <button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><i class="fa fa-ellipsis-h"></i> <span class="sr-only">Actions</span></button>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-arrow mr-n1"></div><button class="dropdown-item" type="button">Edit</button> <button class="dropdown-item" type="button">Delete</button>
-                                  </div>
-                                </div>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <div class="media align-items-center">
-                                  <a href="#" class="tile bg-purple text-white mr-2">BA</a>
-                                  <div class="media-body">
-                                    <a href="#">Mobile App Gex</a> <small class="d-block text-muted">Invoice #0754</small>
-                                  </div>
-                                </div>
-                              </td>
-                              <td class="align-middle"></td>
-                              <td class="align-middle"> 12/13/2018 </td>
-                              <td class="align-middle"> $1,000 </td>
-                              <td class="align-middle"> - </td>
-                              <td class="align-middle">
-                                <span class="badge badge-warning">Outstanding</span>
-                              </td>
-                              <td class="align-middle text-right">
-                                <div class="dropdown">
-                                  <button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><i class="fa fa-ellipsis-h"></i> <span class="sr-only">Actions</span></button>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-arrow mr-n1"></div><button class="dropdown-item" type="button">Edit</button> <button class="dropdown-item" type="button">Delete</button>
-                                  </div>
-                                </div>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <div class="media align-items-center">
-                                  <a href="#" class="tile bg-teal text-white mr-2">SB</a>
-                                  <div class="media-body">
-                                    <a href="#">SVG Icon Bundle</a> <small class="d-block text-muted">Invoice #8613</small>
-                                  </div>
-                                </div>
-                              </td>
-                              <td class="align-middle">
-                                <i class="fa fa-paperclip text-muted"></i>
-                              </td>
-                              <td class="align-middle"> 02/09/2019 </td>
-                              <td class="align-middle"> $3,000 </td>
-                              <td class="align-middle"> $500 </td>
-                              <td class="align-middle">
-                                <span class="badge badge-warning">Outstanding</span>
-                              </td>
-                              <td class="align-middle text-right">
-                                <div class="dropdown">
-                                  <button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><i class="fa fa-ellipsis-h"></i> <span class="sr-only">Actions</span></button>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-arrow mr-n1"></div><button class="dropdown-item" type="button">Edit</button> <button class="dropdown-item" type="button">Delete</button>
-                                  </div>
-                                </div>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <div class="media align-items-center">
-                                  <a href="#" class="tile bg-red text-white mr-2">LB</a>
-                                  <div class="media-body">
-                                    <a href="#">Landing Page Booster</a> <small class="d-block text-muted">Invoice #9458</small>
-                                  </div>
-                                </div>
-                              </td>
-                              <td class="align-middle"></td>
-                              <td class="align-middle"> 05/30/2018 </td>
-                              <td class="align-middle"> $499 </td>
-                              <td class="align-middle"> - </td>
-                              <td class="align-middle">
-                                <span class="badge badge-danger">Past Due</span>
-                              </td>
-                              <td class="align-middle text-right">
-                                <div class="dropdown">
-                                  <button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><i class="fa fa-ellipsis-h"></i> <span class="sr-only">Actions</span></button>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-arrow mr-n1"></div><button class="dropdown-item" type="button">Edit</button> <button class="dropdown-item" type="button">Delete</button>
-                                  </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                                    <td class="align-middle"> Emon </td>
+                                    <td class="align-middle"> 09/16/2018 </td>
+                                    <td class="align-middle"> $1,500 </td>
+                                    <td class="align-middle"> $1,500 </td>
+                                    <td class="align-middle">
+                                        <div class="dropdown">
+                                        <button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><i class="fa fa-ellipsis-h"></i> <span class="sr-only">Actions</span></button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <div class="dropdown-arrow mr-n1"></div><button class="dropdown-item" type="button">Edit</button> <button class="dropdown-item" type="button">Delete</button>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                        </div>
                     </div>
-                  </div>
+                    <!-- attendance .tab-pane End-->
 
                   <div class="tab-pane fade" id="client-expenses" role="tabpanel" aria-labelledby="client-expenses-tab">
 
@@ -633,10 +534,10 @@
                 </div>
             </form>
             <!-- /.Employee Entry Form End-->
+
             <!-- .Employee Joining Form Start-->
             <form id="employee_joining_form" enctype="multipart/form-data">
                 <div class="modal fade" id="empJoiningModal" tabindex="-1" role="dialog" aria-labelledby="empJoiningModalLabel" aria-hidden="true">
-
                   <div class="modal-dialog " role="document" style="max-width:60% !important">
 
                     <div class="modal-content">
@@ -685,9 +586,6 @@
 
                         </div>
                       </div>
-
-
-
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" onclick="saveEmpJoining()">Save</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -697,8 +595,9 @@
                 </div>
             </form>
             <!-- /.Employee Joining Form End-->
-             <!-- .Employee Edu Form Start-->
-             <form id="employee_edu_form" enctype="multipart/form-data">
+
+            <!-- .Employee Edu Form Start-->
+            <form id="employee_edu_form" enctype="multipart/form-data">
                 <div class="modal fade" id="empEduModal" tabindex="-1" role="dialog" aria-labelledby="empEduModalLabel" aria-hidden="true">
 
                   <div class="modal-dialog " role="document" style="max-width:60% !important">
@@ -788,6 +687,68 @@
                 </div>
             </form>
             <!-- /.Employee Edu Form End-->
+
+            <!-- .Employee Edu Form Start-->
+            <form id="employee_edu_form" enctype="multipart/form-data">
+                <div class="modal fade" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel" aria-hidden="true">
+
+                  <div class="modal-dialog " role="document" style="max-width:60% !important">
+
+                    <div class="modal-content">
+
+
+                      <div class="modal-header">
+                        <h4 id="attendanceModalLabel" class="modal-title inline-editable">
+                          Employee Attendance Form
+                        </h4>
+                      </div>
+
+                      <div class="modal-body">
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="attend_date">Date</label>
+                                  <input autocomplete="off" name="attend_date" type="date" id="attend_date" class="form-control" placeholder="22-01-2022" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="employee">Employee</label>
+                                  <select class="custom-select d-block w-100" id="employee" required="">
+                                    <option value=""> Choose... </option>
+                                </select>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="in_time">In Time</label>
+                                  <input autocomplete="off" name="in_time" type="time" id="in_time" class="form-control" placeholder="In Time" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="out_time">Out Time</label>
+                                  <input autocomplete="off" name="out_time" type="time" id="out_time" class="form-control" placeholder="Out Time" required>
+
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" onclick="saveEmpAtten()">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </form>
+            <!-- /.Employee Edu Form End-->
+
             <form id="clientBillingEditForm" name="clientBillingEditForm">
               <div class="modal fade" id="clientBillingEditModal" tabindex="-1" role="dialog" aria-labelledby="clientBillingEditModalLabel" aria-hidden="true">
 
@@ -940,6 +901,62 @@
             e.preventDefault();
         });
 
+        // employee details
+        function outletInfo(emp_id) {
+            var employeeInfoContactVar = '';
+            sessionStorage.clear();
+            var preAddr = '';
+            var perAddr = '';
+                $.ajax({
+                type: "GET",
+                url: "employeeByID/" + emp_id,
+                // data: { sales_ref: sales_ref},
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    if (data) {
+
+                        var photoPath = "assets/images/avatars/"+data.photo_path;
+                        var empHtml = '<a href="#" class="user-avatar user-avatar-md" data-toggle="tooltip" title="Martha Myers"><img src="'+photoPath+'" alt=""></a> ' + data.emp_name;
+
+                        $("#title-outlet-name").html(empHtml);
+
+                        var profileTitle = '<a href="#" class="user-avatar user-avatar-xxl"><img src="'+photoPath+'" alt=""></a><h2 class="h4 mt-2 mb-0"> '+ data.emp_name +' </h2> <p class="text-muted"> '+ data.designation_name +' </p>';
+                        $("#profile-photo").html(profileTitle);
+
+                        employeeInfoContactVar += "<strong>Mobile : "+data.contact_no+"</strong>";
+                        employeeInfoContactVar += "<address> Email: "+data.email_id;
+                        // employeeInfoContactVar += "<br>Mobile: "+data.contact_no+" <br> Join Date: "+data.joining_date+" </address>";
+                        employeeInfoContactVar += " <br> Join Date: "+data.joining_date+" </address>";
+                        $(".employeeInfoContact").html(employeeInfoContactVar);
+
+                        preAddr += data.present_address;
+                        perAddr += data.permanent_address;
+
+                        $(".preAddr").html(preAddr);
+                        $(".perAddr").html(perAddr);
+                        $(".card-title111").html('Parmanent Address');
+                        $(".card-title222").html('Parmanent Address');
+
+                        sessionStorage.setItem("joining_emp_id", data.emp_id);
+                        sessionStorage.setItem("edu_emp_id", data.emp_id);
+                        getJoiningList();
+                        getEduList();
+
+                        // console.log(sessionStorage.getItem("joining_emp_id"));
+                        // console.log(sessionStorage.getItem("edu_emp_id"));
+
+                    } else {
+                        // $('#customer_id').val('');
+                        // $("#territory_id").trigger("change");
+                    }
+                }
+                });
+
+            // Call Tab containt loading function
+            // storeTabId(tabID);
+
+            }
     // outlet
     function getAlloutlet(){
         var html = '';
@@ -961,6 +978,23 @@
 
     // Designation
     function getAllDesignation(){
+        var html = '';
+        $.ajax({
+            type: "GET",
+            url: 'getAllDesignation',
+            context: document.body
+        }).done(function(result) {
+            console.log(result);
+            var html = '<option value="">Choose... </option>';
+            $.each(result, function(i,data) {
+                html +='<option value="'+data.designation_id+'">'+data.designation_name+'</option>';
+            });
+            $('#designation_id').html(html);
+            $('#joining_designation_id').html(html);
+        });
+    }
+    // Employee
+    function getAllEmployee(){
         var html = '';
         $.ajax({
             type: "GET",
@@ -1034,11 +1068,11 @@
 
     //  Save Employee Joining Form
     function saveEmpJoining(){
-        var empId               = $('#joining_emp_id').val();
+        var empId               = sessionStorage.getItem("joining_emp_id");
         var empDesignation      = $('#joining_designation_id').val();
         var empOutlet           = $('#joining_outlet_id').val();
         var empJoin             = $('#start_joining_date').val();
-        var empEnd             = $('#end_date').val();
+        var empEnd              = $('#end_date').val();
 
         var actionlink = 'saveEmployeeJoiningInfo';
         $.ajax({
@@ -1056,12 +1090,17 @@
         }).done(function(result) {
             if(result==1){
                 $("#massageDiv").show();
-                $('#emp_id').val("");
-                $('#designation_id').val("");
-                $('#outlet_id').val("");
-                $('#joining_date').val("");
-                $('#empJoiningModal').modal('toggle');
+                $('#joining_emp_id').val("");
+                $('#joining_designation_id').val("");
+                $('#joining_outlet_id').val("");
+                $('#start_joining_date').val("");
+                $('#end_date').val("");
+
+                // setEmpId();
                 getJoiningList();
+                $('#empJoiningModal').modal('toggle');
+
+
 
             }else{
                 alert('Error');
@@ -1070,7 +1109,7 @@
     }
     //  Save Employee Education Form
     function saveEmpEdu(){
-        var empId          = $('#edu_emp_id').val();
+        var empId          = sessionStorage.getItem("edu_emp_id");
         var empDegree      = $('#degree_name').val();
         var empMajor       = $('#major').val();
         var empInstitute   = $('#institute').val();
@@ -1113,13 +1152,58 @@
         });
     }
 
+    // Save Employee Attendent
+    function saveEmpAtten()
+    {
+        var empId           = sessionStorage.getItem("edu_emp_id");
+        var empDate         = $('#attend_date').val();
+        var empInTime       = $('#in_time').val();
+        var empOutTime     = $('#out_time').val();
+
+
+        var actionlink = 'saveEmployeeEduInfo';
+        $.ajax({
+            type: "POST",
+            url: actionlink,
+            data:{
+                _token:'{{csrf_token()}}',
+                emp_id:empId,
+                degree_name:empDegree,
+                major:empMajor,
+                institute:empInstitute,
+                board:empBoard,
+                year:empYear,
+                result:empResult
+            },
+
+            context: document.body
+        }).done(function(result) {
+            if(result==1){
+                $("#massageDivEdu").show();
+                $('#edu_emp_id').val("");
+                $('#degree_name').val("");
+                $('#major').val("");
+                $('#institute').val("");
+                $('#board').val("");
+                $('#year').val("");
+                $('#result').val("");
+                $('#empEduModal').modal('toggle');
+                getEduList();
+
+            }else{
+                alert('Error');
+            }
+        });
+    }
 
     // getJoiningList
     function getJoiningList()
     {
+
         var html = '';
         $('#employee_joining_grid tbody').html("");
-        var empId = $('#joining_emp_id').val();
+        var empId = sessionStorage.getItem("joining_emp_id")
+
 
         $.ajax({
             type: "GET",
@@ -1127,19 +1211,22 @@
             context: document.body
         }).done(function(result) {
             $.each(result, function(i,data) {
+
                 html += "<tr>";
                 // html +="<td class='align-middle'>"+i+"</td>";
                 html +="<td class='align-middle'>"+data.outlet+"</td>";
                 html +="<td class='align-middle'>"+data.designation+"</td>";
                 html +="<td class='align-middle'>"+data.joining_date+"</td>";
                 html +="<td class='align-middle'>"+data.created_by+"</td>";
-                html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeProblem('+data.emp_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                // html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeJoining('+ data.emp_rec_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html +='<td class="alian-middle text-right"><button type="button" onclick="removeJoining('+ data.emp_rec_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
                 html += '</tr>';
             });
             $('#employee_joining_grid tbody').html(html);
         });
     }
 
+    //getAllEmployee
     function getAllEmployee() {
     var html = '';
     $.ajax({
@@ -1172,8 +1259,9 @@
     function getEduList()
     {
         var html = '';
-        // $('#employee_education_grid tbody').html("");
-        var empId = $('#edu_emp_id').val();
+        $('#employee_education_grid tbody').html("");
+
+        var empId = sessionStorage.getItem("edu_emp_id");
         // getEduList(empId);
         $.ajax({
             type: "GET",
@@ -1186,9 +1274,10 @@
                 html +="<td class='align-middle'>"+data.degree_name+"</td>";
                 html +="<td class='align-middle'>"+data.major+"</td>";
                 html +="<td class='align-middle'>"+data.institute+"</td>";
-                html +="<td class='align-middle'>"+data.year+"</td>";
                 html +="<td class='align-middle'>"+data.result+"</td>";
-                html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeProblem('+data.emp_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html +="<td class='align-middle'>"+data.year+"</td>";
+                // html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeEdu('+data.edu_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html +='<td class="alian-middle text-right"><button type="button" onclick="removeEdu('+data.edu_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
                 html += '</tr>';
             });
             $('#employee_education_grid tbody').html(html);
@@ -1196,14 +1285,31 @@
         });
     }
 
-    function removeAssetSubGroup(subGroupId){
-        alert(subGroupId);
+    // remove joining row
+    function removeJoining(rowId)
+    {
+        var html = '';
         $.ajax({
             type: "DELETE",
-            url: 'deleteSubGroup',
-            data:{_token:'{{csrf_token()}}',sub_group_id:subGroupId}
+            url: 'deleteEmpJoiningInfo/'+rowId,
+            data:{_token:'{{csrf_token()}}',row_id:rowId}
         }).done(function(result) {
-            alert(result);
+            $('#employee_joining_grid tbody').html("");
+            getJoiningList();
+        });
+    }
+
+    // remove education row
+    function removeEdu(rowId)
+    {
+        var html = '';
+        $.ajax({
+            type: "DELETE",
+            url: 'deleteEmpEduInfo/'+rowId,
+            data:{_token:'{{csrf_token()}}',row_id:rowId}
+        }).done(function(result) {
+            $('#employee_education_grid tbody').html("");
+            getEduList();
         });
     }
       //////////// Employee crud ends
@@ -1211,55 +1317,10 @@
 
       var tabID='basicInfo';
 
-      function outletInfo(emp_id) {
-
-        var employeeInfoContactVar = '';
-        var preAddr = '';
-        var perAddr = '';
-          $.ajax({
-            type: "GET",
-            url: "employeeByID/" + emp_id,
-            // data: { sales_ref: sales_ref},
-            dataType: 'json',
-            success: function (data) {
-                // console.log(data)
-                if (data) {
-
-                    var photoPath = "assets/images/avatars/"+data.photo_path;
-                    var empHtml = '<a href="#" class="user-avatar user-avatar-md" data-toggle="tooltip" title="Martha Myers"><img src="'+photoPath+'" alt=""></a> ' + data.emp_name;
-
-                    $("#title-outlet-name").html(empHtml);
-
-                    var profileTitle = '<a href="#" class="user-avatar user-avatar-xxl"><img src="'+photoPath+'" alt=""></a><h2 class="h4 mt-2 mb-0"> '+ data.emp_name +' </h2> <p class="text-muted"> '+ data.designation_name +' </p>';
-                    $("#profile-photo").html(profileTitle);
-
-                    employeeInfoContactVar += "<strong>Mobile : "+data.contact_no+"</strong>";
-                    employeeInfoContactVar += "<address> Email: "+data.email_id;
-                    employeeInfoContactVar += "<br>Mobile: "+data.contact_no+" <br> Join Date: "+data.joining_date+" </address>";
-                    $(".employeeInfoContact").html(employeeInfoContactVar);
-
-                    preAddr += data.present_address;
-                    perAddr += data.permanent_address;
-
-                    $(".preAddr").html(preAddr);
-                    $(".perAddr").html(perAddr);
-                    $(".card-title111").html('Parmanent Address');
-                    $(".card-title222").html('Parmanent Address');
-                    $('#joining_emp_id').val(data.emp_id);
-                    $('#edu_emp_id').val(data.emp_id);
 
 
-                } else {
-                    // $('#customer_id').val('');
-                    // $("#territory_id").trigger("change");
-                }
-            }
-          });
 
-        // Call Tab containt loading function
-        // storeTabId(tabID);
 
-      }
 
 
       // Load the Tab containt
