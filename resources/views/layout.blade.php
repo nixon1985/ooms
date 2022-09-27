@@ -8,6 +8,7 @@
     <title> Dashboard | Looper - Bootstrap 4 Admin Theme </title>
     <meta property="og:title" content="Dashboard">
     <meta name="author" content="Beni Arisandi">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta property="og:locale" content="en_US">
     <meta name="description" content="Responsive admin theme build on top of Bootstrap 4">
     <meta property="og:description" content="Responsive admin theme build on top of Bootstrap 4">

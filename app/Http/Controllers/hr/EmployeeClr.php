@@ -113,25 +113,65 @@ class EmployeeClr extends Controller
         // $fileName = imageUploadWithCustomSize($request->photo_path,"150","150","employee");
         // return  $request->file('photo_path');
         // $fileName = anyTypeFileUpload($request->file('photo_path'),"employee");
-        $data=array(
-            'emp_name'      => $request->emp_name,
-            'emp_dob'       => $request->emp_dob,
-            'contact_no'    => $request->contact_no,
-            'email_id'      => $request->email_id,
-            'present_address'     => $request->present_address,
-            'permanent_address'   => $request->permanent_address,
-            'designation_id'      => $request->designation_id,
-            'outlet_id'           => $request->outlet_id,
-            'photo_path'           => '$fileName',
-            'joining_date'  => $request->joining_date,
-            'created_by'    => "1"
-        );
-        // return $data;
-        if(DB::table('emp_info')->insert($data)){
-            return 1;
-        }else{
+        // $data=array(
+        //     'emp_name'      => $request->emp_name,
+        //     'emp_dob'       => $request->emp_dob,
+        //     'contact_no'    => $request->contact_no,
+        //     'email_id'      => $request->email_id,
+        //     'present_address'     => $request->present_address,
+        //     'permanent_address'   => $request->permanent_address,
+        //     'designation_id'      => $request->designation_id,
+        //     'outlet_id'           => $request->outlet_id,
+        //     'photo_path'           => '$fileName',
+        //     'joining_date'  => $request->joining_date,
+        //     'created_by'    => "1"
+        // );
+        // // return $data;
+        // if(DB::table('emp_info')->insert($data)){
+        //     return 1;
+        // }else{
+        //     return 0;
+        // }
+
+        // return $request;
+
+        if ($files = $request->file('photo_path')) {
+
+                //store file into document folder
+                // $file = $request->file->store('public/employee');
+                $fileName = imageUploadWithCustomSize($request->file('photo_path'),250,250,"employee");
+
+                //store your file into database
+                //$document = new Document();
+                //$document->title = $file;
+                //$document->save();
+
+
+                DB::table('emp_info')->insert([
+                    'emp_name'      => $request->emp_name,
+                    'emp_dob'       => $request->emp_dob,
+                    'contact_no'    => $request->contact_no,
+                    'email_id'      => $request->email_id,
+                    'present_address'     => $request->present_address,
+                    'permanent_address'   => $request->permanent_address,
+                    // 'designation_id'      => $request->designation_id,
+                    // 'outlet_id'           => $request->outlet_id,
+                    'designation_id'      => "11",
+                    'outlet_id'           => "6",
+                    'photo_path'           => $fileName,
+                    'joining_date'  => $request->joining_date,
+                    'created_by'    => "1"
+                ]);
+
+
+
+                return 1;
+
+            }
+
             return 0;
-        }
+
+
     }
 
 

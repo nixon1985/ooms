@@ -437,7 +437,8 @@
             <!-- Keep in mind that modals should be placed outsite of page sidebar -->
 
             <!-- .Employee Entry Form Start-->
-            <form id="employee_entry_form" enctype="multipart/form-data">
+            {{-- <form id="employee_entry_form" enctype="multipart/form-data"> --}}
+                <form method="POST" enctype="multipart/form-data" id="laravel-ajax-file-upload" action="javascript:void(0)" >
                 <div class="modal fade" id="clientNewModal" tabindex="-1" role="dialog" aria-labelledby="clientNewModalLabel" aria-hidden="true">
 
                   <div class="modal-dialog " role="document" style="max-width:60% !important">
@@ -526,7 +527,8 @@
                         </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" onclick="saveEmpBasic()">Save</button>
+                        {{-- <button type="submit" class="btn btn-primary" onclick="saveEmpBasic()">Save</button> --}}
+                        <button type="submit" class="btn btn-primary" >Save</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                       </div>
                     </div>
@@ -916,10 +918,10 @@
                 // data: { sales_ref: sales_ref},
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data)
+                    // console.log(data)
                     if (data) {
 
-                        var photoPath = "assets/images/avatars/"+data.photo_path;
+                        var photoPath = '{{ asset('storage/employee/')}}'+"/"+data.photo_path;
                         var empHtml = '<a href="#" class="user-avatar user-avatar-md" data-toggle="tooltip" title="Martha Myers"><img src="'+photoPath+'" alt=""></a> ' + data.emp_name;
 
                         $("#title-outlet-name").html(empHtml);
@@ -970,7 +972,7 @@
             url: 'getAllOutlet',
             context: document.body
         }).done(function(result) {
-            console.log(result);
+            // console.log(result);
             var html = '<option value="">Choose... </option>';
             $.each(result, function(i,data) {
                 html +='<option value="'+data.outlet_id+'">'+data.outlet_name+'</option>';
@@ -989,7 +991,7 @@
             url: 'getAllDesignation',
             context: document.body
         }).done(function(result) {
-            console.log(result);
+            // console.log(result);
             var html = '<option value="">Choose... </option>';
             $.each(result, function(i,data) {
                 html +='<option value="'+data.designation_id+'">'+data.designation_name+'</option>';
@@ -1006,7 +1008,7 @@
             url: 'getAllEmployee',
             context: document.body
         }).done(function(result) {
-            console.log(result);
+            // console.log(result);
             var html = '<option value="">Choose... </option>';
             $.each(result, function(i,data) {
                 html +='<option value="'+data.emp_id+'">'+data.emp_name+'</option>';
@@ -1069,6 +1071,9 @@
             // alert(result);
         });
     }
+
+
+
 
     //  Save Employee Joining Form
     function saveEmpJoining(){
@@ -1240,7 +1245,8 @@
             html += "<a href='#' class='stretched-link'></a>";
             html += "<div class='list-group-item-figure'>";
             html += "<a href='#' class='user-avatar user-avatar-md' data-toggle='tooltip' title="+data.emp_name+">";
-            html += "<img src='assets/images/avatars/profile.jpg' alt=''>";
+            // html += "<img src='http://ooms.test/storage/employee/"+data.photo_path+"' alt=''>";
+            html += "<img src='{{ asset('storage/employee')}}/"+data.photo_path+"' alt=''>";
             html += "</a>";
             html += "</div>";
 
@@ -1404,3 +1410,33 @@
 
 
     </script>
+{{-- save employee  --}}
+<script type="text/javascript">
+    $(document).ready(function (e) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+        });
+    $('#laravel-ajax-file-upload').submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+            type:'POST',
+            url: "{{ url('saveEmployeeBasicInfo')}}",
+            data: formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success: (data) => {
+                this.reset();
+                $('#clientNewModal').modal('toggle');
+                getAllEmployee();
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+        });
+    });
+</script>
