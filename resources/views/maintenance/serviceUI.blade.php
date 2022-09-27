@@ -279,8 +279,7 @@
         <div class="modal-content">
             <!-- .modal-header -->
             <div class="modal-header">
-                <h6 id="repairPopUpLabel" class="modal-title"> Solution </h6>
-                <div id="massageDiv-forParts"></div>
+                <h6 id="repairPopUpLabel" class="modal-title"> Used Parts </h6>
             </div><!-- /.modal-header -->
             <!-- .modal-body -->
             <div class="modal-body px-0">
@@ -293,7 +292,7 @@
                             <!-- .form-row -->
                             <div class="form-row">
 
-
+                                <div class="col-md-12 mb-3" id="massageDiv-forParts"></div>
 
                                 <div class="col-md-12 mb-3">
                                     <!-- .form-group -->
@@ -301,9 +300,6 @@
                                         <label for="partsList">Parts<abbr title="Required">*</abbr></label>
                                         <select class="custom-select d-block w-100" id="partsList" required="">
                                             <option value=""> Choose... </option>
-                                            <option value="1"> Electric </option>
-                                            <option value="2"> Glass </option>
-                                            <option value="3"> General </option>
                                         </select>
                                     </div><!-- /.form-group -->
                                 </div>
@@ -332,19 +328,7 @@
                                         </tr>
                                         </thead><!-- /thead -->
                                         <!-- tbody -->
-                                        <tbody>
-                                        <!-- tr -->
-                                        <tr>
-                                            <td> Wine - Chateau Bonnet </td>
-                                            <td> 113 </td>
-                                            <td> $22.38 </td>
-                                        </tr><!-- /tr -->
-                                        <!-- tr -->
-                                        <tr>
-                                            <td> Cookie - Oatmeal </td>
-                                            <td> 216 </td>
-                                            <td> $21.90 </td>
-                                        </tr><!-- /tr -->
+                                        <tbody id="usedPartsList">
                                         </tbody>
                                     </table>
                                 </div>
@@ -357,7 +341,6 @@
 
             <!-- .modal-footer -->
             <div class="modal-footer">
-                <button class="btn btn-primary" type="submit" onclick="saveSolutionOfProblem()">Save</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
             </div><!-- /.modal-footer -->
         </div>
@@ -531,7 +514,7 @@
         $.each(dataSet, function(i,data) {
             // var text = data.view_status;
             // var subStrs = text.substring(0,1);asset_name
-            //view Status control - Assign Css class
+            // view Status control - Assign Css class
             if(data.view_status==0){
                 vStatus = 'seenStatus';// CSS class
             }else{
@@ -562,7 +545,7 @@
                 '<h3 class="card-title mb-4"> 3948844 </h3>'+
                 '</div>'+
                 '<div class="col-md-7">'+
-                '<table class="table table-bordered">'+
+                '<table class="table table-sm mb-0 table-striped">'+
                 '<tr>'+
                 '<td> Model </td>'+
                 '<td>'+data.model_no+'</td>'+
@@ -926,10 +909,15 @@
                 html +='<option value="'+data.parts_id+'">'+data.parts_name+'</option>';
             });
             $('#partsList').html(html);
-        });
 
-        // loadProblemList();
-        // loadPartsList();
+            if(result.usedPartsList){
+                var html2 = '';
+                $.each(result.usedPartsList, function(i,data) {
+                    html2 +='<tr><td>'+data.parts_name+'</td><td>'+data.parts_qty+'</td><td><a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a></tr>';
+                });
+                $('#usedPartsList').html(html2);
+            }
+        });
         $("#usedPartsPanelPopUp").modal('show');
     }
 
@@ -945,7 +933,23 @@
             data:{_token:'{{csrf_token()}}',partsId:partsId,partsQty:partsQty,token_id:gSelectedTokenId},
             context: document.body
         }).done(function(result) {
-            // alert(result);
+
+            if(result.message==1){
+                var massageTest = '<div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">×</button><strong>Well done!</strong> You successfully saved.</div>';
+                $("#massageDiv-forParts").html(massageTest);
+            }else{
+                alert('Error .....');
+            }
+
+            if(result.dataList){
+                $('#partsList').val('');
+                $('#parts_qty').val('');
+                var html2 = '';
+                $.each(result.dataList, function(i,data) {
+                    html2 +='<tr><td>'+data.parts_name+'</td><td>'+data.parts_qty+'</td><td><a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a></tr>';
+                });
+                $('#usedPartsList').html(html2);
+            }
         });
 
 

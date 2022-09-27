@@ -321,9 +321,19 @@ class MaintenanceController extends Controller
             ->orderBy('p.parts_id')
             ->get();
 
+
+        $dataList2 = DB::table('service_parts_used AS p')
+            ->selectRaw('p.id, p.parts_id, ap.parts_name, p.parts_qty')
+            ->join('asset_parts AS ap', 'ap.parts_id', '=', 'p.parts_id')
+            ->where('p.token_id','=',$tokenId)
+            ->orderBy('p.id')
+            ->get();
+
         $data['partsList']=$dataList;
+        $data['usedPartsList']=$dataList2;
         return response()->json($data);
     }
+
 
     function addPartsIntoDevice(Request $request){
 
@@ -336,10 +346,22 @@ class MaintenanceController extends Controller
         // print_r($array);
         if(DB::table('service_parts_used')->insert($partsList)){
             $returnData['message']=1;
+            $returnData['dataList']=$this->getUsedPartsList2($request->token_id);
         }else{
             $returnData['message']=0;
         }
         return response()->json($returnData);
+    }
+
+    public function getUsedPartsList2($tokenId){
+        $dataList2 = DB::table('service_parts_used AS p')
+            ->selectRaw('p.id, p.parts_id, ap.parts_name, p.parts_qty')
+            ->join('asset_parts AS ap', 'ap.parts_id', '=', 'p.parts_id')
+            ->where('p.token_id','=',$tokenId)
+            ->orderBy('p.id')
+            ->get();
+
+        return $dataList2;
     }
 
 }
