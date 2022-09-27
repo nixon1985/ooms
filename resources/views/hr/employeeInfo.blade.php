@@ -268,53 +268,53 @@
                   </div>
                     <!-- education-info .tab-pane End-->
 
-                    <!-- attendance .tab-pane start-->
-                    <div class="tab-pane fade" id="attendance" role="tabpanel" aria-labelledby="attendance-tab">
+                <!-- attendance .tab-pane start-->
+                <div class="tab-pane fade" id="attendance" role="tabpanel" aria-labelledby="attendance-tab">
 
-                        <div class="card">
+                    <div class="card">
 
-                        <div class="card-header d-flex">
-                            <button type="button" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#attendanceModal" title="Add New">Add Attendance</button>
-                        </div><!-- /.card-header -->
-                        <!-- .table-responsive -->
-                        <div class="table-responsive">
-                            <!-- .table -->
-                            <table class="table">
-                            <!-- thead -->
-                            <thead>
-                                <tr>
-                                <th>Employee</th>
-                                <th>Date</th>
-                                <th> In </th>
-                                <th> Out </th>
-                                <th>Action</th>
-                                </tr>
-                            </thead><!-- /thead -->
-                            <!-- tbody -->
-                            <tbody>
-                                <!-- tr -->
-                                <tr>
+                    <div class="card-header d-flex">
+                        <button type="button" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#attendanceModal" title="Add New">Add Attendance</button>
+                    </div><!-- /.card-header -->
+                    <!-- .table-responsive -->
+                    <div class="table-responsive">
+                        <!-- .table -->
+                        <table class="table" id="employee_attend_grid">
+                        <!-- thead -->
+                        <thead>
+                            <tr>
+                            {{-- <th>Employee</th> --}}
+                            <th>Date</th>
+                            <th> In </th>
+                            <th> Out </th>
+                            <th>Action</th>
+                            </tr>
+                        </thead><!-- /thead -->
+                        <!-- tbody -->
+                        <tbody>
+                            <!-- tr -->
+                            <tr>
 
 
-                                    <td class="align-middle"> Emon </td>
-                                    <td class="align-middle"> 09/16/2018 </td>
-                                    <td class="align-middle"> $1,500 </td>
-                                    <td class="align-middle"> $1,500 </td>
-                                    <td class="align-middle">
-                                        <div class="dropdown">
-                                        <button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><i class="fa fa-ellipsis-h"></i> <span class="sr-only">Actions</span></button>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <div class="dropdown-arrow mr-n1"></div><button class="dropdown-item" type="button">Edit</button> <button class="dropdown-item" type="button">Delete</button>
-                                        </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            </table>
-                        </div>
-                        </div>
+                                {{-- <td class="align-middle"> Emon </td> --}}
+                                <td class="align-middle"> 09/16/2018 </td>
+                                <td class="align-middle"> $1,500 </td>
+                                <td class="align-middle"> $1,500 </td>
+                                <td class="align-middle">
+                                    <div class="dropdown">
+                                    <button type="button" class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><i class="fa fa-ellipsis-h"></i> <span class="sr-only">Actions</span></button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <div class="dropdown-arrow mr-n1"></div><button class="dropdown-item" type="button">Edit</button> <button class="dropdown-item" type="button">Delete</button>
+                                    </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
                     </div>
-                    <!-- attendance .tab-pane End-->
+                    </div>
+                </div>
+                <!-- attendance .tab-pane End-->
 
                   <div class="tab-pane fade" id="client-expenses" role="tabpanel" aria-labelledby="client-expenses-tab">
 
@@ -688,8 +688,8 @@
             </form>
             <!-- /.Employee Edu Form End-->
 
-            <!-- .Employee Edu Form Start-->
-            <form id="employee_edu_form" enctype="multipart/form-data">
+            <!-- .Attendance Edu Form Start-->
+            <form id="employee_attend_form" enctype="multipart/form-data">
                 <div class="modal fade" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel" aria-hidden="true">
 
                   <div class="modal-dialog " role="document" style="max-width:60% !important">
@@ -706,22 +706,22 @@
                       <div class="modal-body">
 
                         <div class="form-row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                   <label for="attend_date">Date</label>
                                   <input autocomplete="off" name="attend_date" type="date" id="attend_date" class="form-control" placeholder="22-01-2022" required>
 
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-group">
-                                  <label for="employee">Employee</label>
-                                  <select class="custom-select d-block w-100" id="employee" required="">
+                                  <label for="employee_id">Employee</label>
+                                  <select class="custom-select d-block w-100" id="employee_id" required="">
                                     <option value=""> Choose... </option>
                                 </select>
 
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="in_time">In Time</label>
@@ -732,7 +732,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="out_time">Out Time</label>
-                                  <input autocomplete="off" name="out_time" type="time" id="out_time" class="form-control" placeholder="Out Time" required>
+                                  <input autocomplete="off" name="out_time" type="time" id="out_time" class="form-control" placeholder="Out Time">
 
                                 </div>
                             </div>
@@ -747,7 +747,7 @@
                   </div>
                 </div>
             </form>
-            <!-- /.Employee Edu Form End-->
+            <!-- /.Attendance Edu Form End-->
 
             <form id="clientBillingEditForm" name="clientBillingEditForm">
               <div class="modal fade" id="clientBillingEditModal" tabindex="-1" role="dialog" aria-labelledby="clientBillingEditModalLabel" aria-hidden="true">
@@ -900,6 +900,9 @@
         $("#employee_edu_form").submit(function(e) {
             e.preventDefault();
         });
+        $("#employee_attend_form").submit(function(e) {
+            e.preventDefault();
+        });
 
         // employee details
         function outletInfo(emp_id) {
@@ -942,6 +945,8 @@
                         sessionStorage.setItem("edu_emp_id", data.emp_id);
                         getJoiningList();
                         getEduList();
+                        getAttendList();
+
 
                         // console.log(sessionStorage.getItem("joining_emp_id"));
                         // console.log(sessionStorage.getItem("edu_emp_id"));
@@ -993,21 +998,20 @@
             $('#joining_designation_id').html(html);
         });
     }
-    // Employee
-    function getAllEmployee(){
+    // Employee list for attendent
+    function getEmployeeList(){
         var html = '';
         $.ajax({
             type: "GET",
-            url: 'getAllDesignation',
+            url: 'getAllEmployee',
             context: document.body
         }).done(function(result) {
             console.log(result);
             var html = '<option value="">Choose... </option>';
             $.each(result, function(i,data) {
-                html +='<option value="'+data.designation_id+'">'+data.designation_name+'</option>';
+                html +='<option value="'+data.emp_id+'">'+data.emp_name+'</option>';
             });
-            $('#designation_id').html(html);
-            $('#joining_designation_id').html(html);
+            $('#employee_id').html(html);
         });
     }
     //  Save Employee Entry Form
@@ -1155,40 +1159,35 @@
     // Save Employee Attendent
     function saveEmpAtten()
     {
+        // var empId           = $('#employee_id').val();
         var empId           = sessionStorage.getItem("edu_emp_id");
         var empDate         = $('#attend_date').val();
         var empInTime       = $('#in_time').val();
         var empOutTime     = $('#out_time').val();
 
 
-        var actionlink = 'saveEmployeeEduInfo';
+        var actionlink = 'saveEmployeeAttendInfo';
         $.ajax({
             type: "POST",
             url: actionlink,
             data:{
                 _token:'{{csrf_token()}}',
                 emp_id:empId,
-                degree_name:empDegree,
-                major:empMajor,
-                institute:empInstitute,
-                board:empBoard,
-                year:empYear,
-                result:empResult
+                attend_date:empDate,
+                in_time:empInTime,
+                out_time:empOutTime,
             },
 
             context: document.body
         }).done(function(result) {
             if(result==1){
                 $("#massageDivEdu").show();
-                $('#edu_emp_id').val("");
-                $('#degree_name').val("");
-                $('#major').val("");
-                $('#institute').val("");
-                $('#board').val("");
-                $('#year').val("");
-                $('#result').val("");
-                $('#empEduModal').modal('toggle');
-                getEduList();
+                $('#employee_id').val("");
+                $('#attend_date').val("");
+                $('#in_time').val("");
+                $('#out_time').val("");
+                $('#attendanceModal').modal('toggle');
+                getAttendList();
 
             }else{
                 alert('Error');
@@ -1285,6 +1284,36 @@
         });
     }
 
+    // getAttendList
+    function getAttendList()
+    {
+        var html = '';
+        $('#employee_attend_grid tbody').html("");
+
+        var empId = sessionStorage.getItem("edu_emp_id");
+        // getEduList(empId);
+        $.ajax({
+            type: "GET",
+            url: 'attendByID/'+empId,
+            context: document.body
+        }).done(function(result) {
+            $.each(result, function(i,data) {
+                html += "<tr>";
+                // html +="<td class='align-middle'>"+i+"</td>";
+                // html +="<td class='align-middle'>"+data.emp_id+"</td>";
+                html +="<td class='align-middle'>"+data.attend_date+"</td>";
+                html +="<td class='align-middle'>"+data.in_time+"</td>";
+                html +="<td class='align-middle'>"+data.out_time+"</td>";
+                // html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeEdu('+data.edu_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html +='<td class="alian-middle text-right"><button type="button" onclick="removeAttend('+data.attend_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html += '</tr>';
+            });
+            $('#employee_attend_grid tbody').html(html);
+            // getEmployeeList();
+
+        });
+    }
+
     // remove joining row
     function removeJoining(rowId)
     {
@@ -1310,6 +1339,20 @@
         }).done(function(result) {
             $('#employee_education_grid tbody').html("");
             getEduList();
+        });
+    }
+
+    // remove attend row
+    function removeAttend(rowId)
+    {
+        var html = '';
+        $.ajax({
+            type: "DELETE",
+            url: 'deleteEmpAttendInfo/'+rowId,
+            data:{_token:'{{csrf_token()}}',row_id:rowId}
+        }).done(function(result) {
+            $('#employee_attend_grid tbody').html("");
+            getAttendList();
         });
     }
       //////////// Employee crud ends

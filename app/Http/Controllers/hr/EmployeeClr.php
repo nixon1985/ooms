@@ -65,6 +65,11 @@ class EmployeeClr extends Controller
         $data = DB::table('emp_education')->where('emp_education.emp_id', $emp_id)->get();
         return response()->json($data);
     }
+    // educationByID
+    public function attendByID($emp_id) {
+        $data = DB::table('emp_attendance')->where('emp_id', $emp_id)->get();
+        return response()->json($data);
+    }
 
      // deleteEmpJoiningInfo
      public function deleteEmpJoiningInfo($row_id){
@@ -88,8 +93,19 @@ class EmployeeClr extends Controller
             return 0;
         }
     }
+    // deleteEmpAttendInfo
+    public function deleteEmpAttendInfo($row_id){
 
-  
+        if( $data = DB::table('emp_attendance')->where('attend_id',$row_id)->delete())
+        {
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
+
     // saveEmployeeBasicInfo
     public function saveEmployeeBasicInfo(Request $request){
         // emp_name:empName,emp_dob:empDob,contact_no:empContact,email_id:empEmail,joining_date:empJoin,designation_id
@@ -155,6 +171,25 @@ class EmployeeClr extends Controller
         );
 
         if(DB::table('emp_education')->insert($data)){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    // saveEmployeeAttendInfo
+    function saveEmployeeAttendInfo(Request $request){
+        $data=array(
+            'emp_id'        => $request->emp_id,
+            'attend_date'   => $request->attend_date,
+            'in_time'       => $request->in_time,
+            'out_time'      => $request->out_time,
+            'created_by'    => "1",
+            'created_on'    => date('Y-m-d'),
+            'updated_by'    => "1",
+            'updated_on'    => date('Y-m-d'),
+        );
+
+        if(DB::table('emp_attendance')->insert($data)){
             return 1;
         }else{
             return 0;
