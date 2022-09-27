@@ -503,7 +503,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                                 <label for="designation_id">Designation <abbr title="Required">*</abbr></label>
-                                <select class="custom-select d-block w-100" id="designation_id" required="">
+                                <select class="custom-select d-block w-100" name="designation_id" id="designation_id" required="">
                                     <option value=""> Choose... </option>
                                 </select>
                             </div>
@@ -511,7 +511,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                                 <label for="outlet_id">Outlet <abbr title="Required">*</abbr></label>
-                                <select class="custom-select d-block w-100" id="outlet_id" required="">
+                                <select class="custom-select d-block w-100" name="outlet_id" id="outlet_id" required="">
                                     <option value=""> Choose... </option>
                                 </select>
                             </div>

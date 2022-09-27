@@ -154,10 +154,8 @@ class EmployeeClr extends Controller
                     'email_id'      => $request->email_id,
                     'present_address'     => $request->present_address,
                     'permanent_address'   => $request->permanent_address,
-                    // 'designation_id'      => $request->designation_id,
-                    // 'outlet_id'           => $request->outlet_id,
-                    'designation_id'      => "11",
-                    'outlet_id'           => "6",
+                    'designation_id'      => $request->designation_id,
+                    'outlet_id'           => $request->outlet_id,
                     'photo_path'           => $fileName,
                     'joining_date'  => $request->joining_date,
                     'created_by'    => "1"
