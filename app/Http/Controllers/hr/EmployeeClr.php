@@ -68,12 +68,21 @@ class EmployeeClr extends Controller
         return response()->json($data);
     }
 
+
     // educationByID
     public function eduByID($emp_id) {
         $data = DB::table('emp_education')->where('emp_education.emp_id', $emp_id)->get();
         return response()->json($data);
     }
-    // educationByID
+
+    // editEduByID
+    public function editEduByID($row_id) {
+        $data = DB::table('emp_education')
+                ->where('edu_id', $row_id)->first();
+
+        return response()->json($data);
+    }
+    // attendByID
     public function attendByID($emp_id) {
         $data = DB::table('emp_attendance')->where('emp_id', $emp_id)->get();
         return response()->json($data);
@@ -168,29 +177,6 @@ class EmployeeClr extends Controller
             }
         }
     }
-    // updateEmployeeJoiningInfo
-    public function updateEmployeeJoiningInfo(Request $request){
-        $data=array(
-
-            'emp_type'          => "1",
-            'designation_id'    => $request->edit_joining_designation_id,
-            'outlet_id'         => $request->outlet_id,
-            'joining_date'      => $request->edit_start_joining_date,
-            'subordinate_id'    => "1",
-            'created_by'        => "1",
-            'created_by'        => "1"
-        );
-
-
-        if(DB::table('emp_record_info')->where('',$request->edit_joining_id)->update($data)){
-            return 1;
-        }else{
-            return 0;
-        }
-
-    }
-
-
 
     // saveEmployeeEduInfo
     function saveEmployeeEduInfo(Request $request){
@@ -205,11 +191,23 @@ class EmployeeClr extends Controller
             'created_by'    => "1"
         );
 
-        if(DB::table('emp_education')->insert($data)){
-            return 1;
-        }else{
-            return 0;
+        if($request->edit_emp_id > 0)
+        {
+            if(DB::table('emp_education')->where('edu_id',$request->edit_emp_id)->update($data)){
+                return 1;
+            }else{
+                return 0;
+            }
         }
+        else
+        {
+            if(DB::table('emp_education')->insert($data)){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+
     }
     // saveEmployeeAttendInfo
     function saveEmployeeAttendInfo(Request $request){

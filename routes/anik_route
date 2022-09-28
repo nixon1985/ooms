@@ -41,4 +41,7 @@ CREATE TABLE `db_ooms`.`emp_attendance` ( `attend_id` INT NOT NULL AUTO_INCREMEN
 -------------------------
 Route::post('/saveEmployeeAttendInfo',[EmployeeClr::class,'saveEmployeeAttendInfo'])->name('saveEmployeeAttendInfo');
 Route::delete('/deleteEmpAttendInfo/{id}',[EmployeeClr::class,'deleteEmpAttendInfo'])->name('deleteEmpAttendInfo');
-
+28-09-2022
+-------------------------
+Route::get('/editJoiningByID/{id}',[EmployeeClr::class,'editJoiningByID'])->name('editJoiningByID');
+Route::get('/editEduByID/{id}',[EmployeeClr::class,'editEduByID'])->name('editEduByID');

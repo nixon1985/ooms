@@ -751,6 +751,98 @@
             </form>
             <!-- /.Employee Edu Form End-->
 
+            <!-- .Employee Edu Edit Form Start-->
+            <form id="employee_edu_edit_form" enctype="multipart/form-data">
+              <div class="modal fade" id="empEduEditModal" tabindex="-1" role="dialog" aria-labelledby="empEduEditModalLabel" aria-hidden="true">
+
+                <div class="modal-dialog " role="document" style="max-width:60% !important">
+
+                  <div class="modal-content">
+
+
+                    <div class="modal-header">
+                      <h4 id="empEduEditModalLabel" class="modal-title inline-editable">
+                        Employee Education Edit Form
+                      </h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                      <div class="form-row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="edit_degree_name">Exam Title</label>
+                                <input autocomplete="off" name="edit_degree_name" type="text" id="edit_degree_name" class="form-control" placeholder="Degree" required>
+                                <input autocomplete="off" name="edit_edu_id" type="hidden" id="edit_edu_id" class="form-control">
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="edit_major">Concentration/Major</label>
+                                <input autocomplete="off" name="edit_major" type="text" id="edit_major" class="form-control" placeholder="Concentration/Major" required>
+
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="edit_institute">Institute</label>
+                                <input autocomplete="off" name="edit_institute" type="text" id="edit_institute" class="form-control" placeholder="Institute" required>
+
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="edit_board">Board</label>
+                                  <select class="custom-select d-block w-100" id="edit_board" required="">
+                                      <option value=""> Choose... </option>
+                                      <option value="Barishal">Barishal</option>
+                                      <option value="Barishal">Barishal</option>
+                                      <option value="Cumilla">Cumilla</option>
+                                      <option value="Dhaka">Dhaka</option>
+                                      <option value="Dinajpur">Dinajpur</option>
+                                      <option value="Jashore">Jashore</option>
+                                      <option value="Mymensingh">Mymensingh</option>
+                                      <option value="Mymensingh">Mymensingh</option>
+                                      <option value="Sylhet">Sylhet</option>
+                                      <option value="Madrasah">Madrasah</option>
+                                      <option value="Technical">Technical</option>
+                                      <option value="BOU">BOU</option>
+                                  </select>
+
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="edit_year">Year</label>
+                                  <select class="custom-select d-block w-100" id="edit_year" required="">
+                                      <option value=""> Choose... </option>
+                                     @for ($m = 1980; $m < date('Y'); $m++)
+                                      <option value="{{$m}}"> {{$m}}</option>
+                                     @endfor
+                                  </select>
+
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="edit_result">Result</label>
+                                <input autocomplete="off" name="edit_result" type="text" id="edit_result" class="form-control" placeholder="5" required>
+
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary" onclick="updateEmpEdu()">Update</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </form>
+          <!-- /.Employee Edu Edit Form End-->
+
             <!-- .Attendance Edu Form Start-->
             <form id="employee_attend_form" enctype="multipart/form-data">
                 <div class="modal fade" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel" aria-hidden="true">
@@ -964,6 +1056,9 @@
             e.preventDefault();
         });
         $("#employee_edu_form").submit(function(e) {
+            e.preventDefault();
+        });
+        $("#employee_edu_edit_form").submit(function(e) {
             e.preventDefault();
         });
         $("#employee_attend_form").submit(function(e) {
@@ -1269,6 +1364,53 @@
         });
     }
 
+    //  Save Employee Education Form
+    function updateEmpEdu(){
+        var rowId          = $('#edit_edu_id').val();
+        var empId          = sessionStorage.getItem("edu_emp_id");
+        var empDegree      = $('#edit_degree_name').val();
+        var empMajor       = $('#edit_major').val();
+        var empInstitute   = $('#edit_institute').val();
+        var empBoard       = $('#edit_board').val();
+        var empYear        = $('#edit_year').val();
+        var empResult      = $('#edit_result').val();
+
+        var actionlink = 'saveEmployeeEduInfo';
+        $.ajax({
+            type: "POST",
+            url: actionlink,
+            data:{
+                _token:'{{csrf_token()}}',
+                emp_id:empId,
+                edit_emp_id:rowId,
+                degree_name:empDegree,
+                major:empMajor,
+                institute:empInstitute,
+                board:empBoard,
+                year:empYear,
+                result:empResult
+            },
+
+            context: document.body
+        }).done(function(result) {
+            if(result==1){
+                $("#massageDivEdu").show();
+
+                $('#edit_degree_name').val("");
+                $('#edit_major').val("");
+                $('#edit_institute').val("");
+                $('#edit_board').val("");
+                $('#edit_year').val("");
+                $('#edit_result').val("");
+                $('#empEduEditModal').modal('toggle');
+                getEduList();
+
+            }else{
+                alert('Error');
+            }
+        });
+    }
+
     // Save Employee Attendent
     function saveEmpAtten()
     {
@@ -1356,6 +1498,25 @@
             // $('#employee_joining_grid tbody').html(html);
         });
     }
+    // editEmpJoining
+    function editEmpEdu(row_id)
+    {
+        $('#empEduEditModal').modal('show');
+        $.ajax({
+            type: "GET",
+            url: 'editEduByID/'+row_id,
+            context: document.body
+        }).done(function(result) {
+                console.log(result);
+                $('#edit_edu_id').val(result.edu_id);
+                $('#edit_degree_name').val(result.degree_name);
+                $('#edit_major').val(result.major);
+                $('#edit_institute').val(result.institute);
+                $('#edit_board').val(result.board);
+                $('#edit_year').val(result.year);
+                $('#edit_result').val(result.result);
+        });
+    }
     //getAllEmployee
     function getAllEmployee() {
     var html = '';
@@ -1408,7 +1569,7 @@
                 html +="<td class='align-middle'>"+data.result+"</td>";
                 html +="<td class='align-middle'>"+data.year+"</td>";
                 // html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeEdu('+data.edu_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
-                html +='<td class="alian-middle text-right"><button type="button" onclick="removeEdu('+data.edu_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary" onclick="editEmpEdu('+data.edu_id+')"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeEdu('+data.edu_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
                 html += '</tr>';
             });
             $('#employee_education_grid tbody').html(html);
