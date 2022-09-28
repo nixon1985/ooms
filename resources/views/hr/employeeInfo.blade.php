@@ -137,7 +137,7 @@
 
                           <div class="masonry-item col-lg-3">
                               <div class="text-center" id="profile-photo">
-                                  <a href="user-profile.html" class="user-avatar user-avatar-xxl">
+                                  <a href="#" class="user-avatar user-avatar-xxl">
                                       <!-- <img src="assets/images/avatars/profile.jpg" alt=""> -->
                                   </a>
                                   <h2 class="h4 mt-2 mb-0">
@@ -597,6 +597,67 @@
                 </div>
             </form>
             <!-- /.Employee Joining Form End-->
+            <!-- .Employee Joining Edit Form Start-->
+            <form id="employee_joining_edit_form" enctype="multipart/form-data">
+                <div class="modal fade" id="empJoiningEditModal" tabindex="-1" role="dialog" aria-labelledby="empJoiningEditModalLabel" aria-hidden="true">
+                  <div class="modal-dialog " role="document" style="max-width:60% !important">
+
+                    <div class="modal-content">
+                        <div class="form-row" id="massageDiv"></div>
+
+                      <div class="modal-header">
+                        <h4 id="empJoiningEditModalLabel" class="modal-title inline-editable">
+                          Employee Joining Edit Form
+                        </h4>
+                      </div>
+
+                      <div class="modal-body">
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="edit_start_joining_date">Join Date</label>
+                                  <input autocomplete="off" name="edit_start_joining_date" type="date" id="edit_start_joining_date" class="form-control" required>
+                                  <input autocomplete="off" name="edit_joining_id" type="hidden" id="edit_joining_id" class="form-control">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <label for="edit_end_date">End Date</label>
+                                <input autocomplete="off" name="edit_end_date" type="date" id="edit_end_date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="edit_joining_designation_id">Designation <abbr title="Required">*</abbr></label>
+                                    <select class="custom-select d-block w-100" id="edit_joining_designation_id" required="">
+                                        <option value=""> Choose... </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="edit_joining_outlet_id">Outlet <abbr title="Required">*</abbr></label>
+                                    <select class="custom-select d-block w-100" id="edit_joining_outlet_id" required="">
+                                        <option value=""> Choose... </option>
+                                    </select>
+                                </div>
+                          </div>
+
+
+
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" onclick="updateEmpJoining()">Update</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </form>
+            <!-- /.Employee Joining Edit Form End-->
 
             <!-- .Employee Edu Form Start-->
             <form id="employee_edu_form" enctype="multipart/form-data">
@@ -899,6 +960,9 @@
         $("#employee_joining_form").submit(function(e) {
             e.preventDefault();
         });
+        $("#employee_joining_edit_form").submit(function(e) {
+            e.preventDefault();
+        });
         $("#employee_edu_form").submit(function(e) {
             e.preventDefault();
         });
@@ -906,8 +970,8 @@
             e.preventDefault();
         });
 
-        // employee details
-        function outletInfo(emp_id) {
+    // employee details
+    function outletInfo(emp_id) {
             var employeeInfoContactVar = '';
             sessionStorage.clear();
             var preAddr = '';
@@ -963,7 +1027,7 @@
             // Call Tab containt loading function
             // storeTabId(tabID);
 
-            }
+        }
     // outlet
     function getAlloutlet(){
         var html = '';
@@ -979,6 +1043,7 @@
             });
             $('#outlet_id').html(html);
             $('#joining_outlet_id').html(html);
+            $('#edit_joining_outlet_id').html(html);
             // assetGroupCombo(result);
         });
     }
@@ -998,6 +1063,7 @@
             });
             $('#designation_id').html(html);
             $('#joining_designation_id').html(html);
+            $('#edit_joining_designation_id').html(html);
         });
     }
     // Employee list for attendent
@@ -1073,9 +1139,7 @@
     }
 
 
-
-
-    //  Save Employee Joining Form
+    //  Employee Joining Form
     function saveEmpJoining(){
         var empId               = sessionStorage.getItem("joining_emp_id");
         var empDesignation      = $('#joining_designation_id').val();
@@ -1108,6 +1172,50 @@
                 // setEmpId();
                 getJoiningList();
                 $('#empJoiningModal').modal('toggle');
+
+
+
+            }else{
+                alert('Error');
+            }
+        });
+    }
+
+    //  Update Joining Form
+    function updateEmpJoining(){
+        var rowId               = $('#edit_joining_id').val();
+        var empId               = sessionStorage.getItem("joining_emp_id");
+        var empDesignation      = $('#edit_joining_designation_id').val();
+        var empOutlet           = $('#edit_joining_outlet_id').val();
+        var empJoin             = $('#edit_start_joining_date').val();
+        var empEnd              = $('#end_date').val();
+
+        var actionlink = 'saveEmployeeJoiningInfo';
+        $.ajax({
+            type: "POST",
+            url: actionlink,
+            data:{
+                _token:'{{csrf_token()}}',
+                emp_id:empId,
+                designation_id:empDesignation,
+                outlet_id:empOutlet,
+                joining_date:empJoin,
+                edit_joining_id:rowId,
+            },
+
+            context: document.body
+        }).done(function(result) {
+            if(result==1){
+                $("#massageDiv").show();
+                $('#joining_emp_id').val("");
+                $('#edit_joining_designation_id').val("");
+                $('#edit_joining_outlet_id').val("");
+                $('#edit_start_joining_date').val("");
+                $('#end_date').val("");
+
+                // setEmpId();
+                getJoiningList();
+                $('#empJoiningEditModal').modal('toggle');
 
 
 
@@ -1223,13 +1331,31 @@
                 html +="<td class='align-middle'>"+data.joining_date+"</td>";
                 html +="<td class='align-middle'>"+data.created_by+"</td>";
                 // html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeJoining('+ data.emp_rec_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
-                html +='<td class="alian-middle text-right"><button type="button" onclick="removeJoining('+ data.emp_rec_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary" onclick="editEmpJoining('+ data.emp_rec_id+')"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button> &nbsp;<button type="button" onclick="removeJoining('+ data.emp_rec_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
                 html += '</tr>';
             });
             $('#employee_joining_grid tbody').html(html);
         });
     }
 
+    // editEmpJoining
+    function editEmpJoining(row_id)
+    {
+        $('#empJoiningEditModal').modal('show');
+        $.ajax({
+            type: "GET",
+            url: 'editJoiningByID/'+row_id,
+            context: document.body
+        }).done(function(result) {
+                console.log(result);
+                $('#edit_joining_id').val(result.emp_rec_id);
+                $('#edit_start_joining_date').val(result.joining_date);
+                $('#edit_joining_designation_id').val(result.designation_id);
+                $('#edit_joining_outlet_id').val(result.outlet_id);
+                $('#end_date').val("");
+            // $('#employee_joining_grid tbody').html(html);
+        });
+    }
     //getAllEmployee
     function getAllEmployee() {
     var html = '';

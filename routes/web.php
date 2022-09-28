@@ -81,11 +81,13 @@ Route::get('/getAllDesignation',[EmployeeClr::class,'getAllDesignation'])->name(
 
 Route::post('/saveEmployeeBasicInfo',[EmployeeClr::class,'saveEmployeeBasicInfo'])->name('saveEmployeeBasicInfo');
 Route::post('/saveEmployeeJoiningInfo',[EmployeeClr::class,'saveEmployeeJoiningInfo'])->name('saveEmployeeJoiningInfo');
+Route::post('/updateEmployeeJoiningInfo',[EmployeeClr::class,'updateEmployeeJoiningInfo'])->name('updateEmployeeJoiningInfo');
 Route::post('/saveEmployeeEduInfo',[EmployeeClr::class,'saveEmployeeEduInfo'])->name('saveEmployeeEduInfo');
 Route::post('/saveEmployeeAttendInfo',[EmployeeClr::class,'saveEmployeeAttendInfo'])->name('saveEmployeeAttendInfo');
 
 Route::get('/employeeByID/{id}',[EmployeeClr::class,'employeeByID'])->name('employeeByID');
 Route::get('/joiningByID/{id}',[EmployeeClr::class,'joiningByID'])->name('joiningByID');
+Route::get('/editJoiningByID/{id}',[EmployeeClr::class,'editJoiningByID'])->name('editJoiningByID');
 Route::get('/eduByID/{id}',[EmployeeClr::class,'eduByID'])->name('eduByID');
 Route::get('/attendByID/{id}',[EmployeeClr::class,'attendByID'])->name('attendByID');
 Route::delete('/deleteEmpJoiningInfo/{id}',[EmployeeClr::class,'deleteEmpJoiningInfo'])->name('deleteEmpJoiningInfo');
