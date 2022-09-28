@@ -843,7 +843,7 @@
           </form>
           <!-- /.Employee Edu Edit Form End-->
 
-            <!-- .Attendance Edu Form Start-->
+            <!-- .Attendance  Form Start-->
             <form id="employee_attend_form" enctype="multipart/form-data">
                 <div class="modal fade" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel" aria-hidden="true">
 
@@ -902,7 +902,68 @@
                   </div>
                 </div>
             </form>
-            <!-- /.Attendance Edu Form End-->
+            <!-- /.Attendance  Form End-->
+            <!-- .Attendance Edit Form Start-->
+            <form id="employee_attend_edit_form" enctype="multipart/form-data">
+                <div class="modal fade" id="attendanceEditModal" tabindex="-1" role="dialog" aria-labelledby="attendanceEditModalLabel" aria-hidden="true">
+
+                  <div class="modal-dialog " role="document" style="max-width:60% !important">
+
+                    <div class="modal-content">
+
+
+                      <div class="modal-header">
+                        <h4 id="attendanceEditModalLabel" class="modal-title inline-editable">
+                          Employee Attendance Edit Form
+                        </h4>
+                      </div>
+
+                      <div class="modal-body">
+
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                  <label for="edit_attend_date">Date</label>
+                                  <input autocomplete="off" name="edit_attend_date" type="date" id="edit_attend_date" class="form-control" placeholder="22-01-2022" required>
+                                  <input autocomplete="off" name="attend_row_id" type="hidden" id="attend_row_id" class="form-control" >
+
+                                </div>
+                            </div>
+                            {{-- <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="employee_id">Employee</label>
+                                  <select class="custom-select d-block w-100" id="employee_id" required="">
+                                    <option value=""> Choose... </option>
+                                </select>
+
+                                </div>
+                            </div> --}}
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="edit_in_time">In Time</label>
+                                  <input autocomplete="off" name="edit_in_time" type="time" id="edit_in_time" class="form-control" placeholder="In Time" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="edit_out_time">Out Time</label>
+                                  <input autocomplete="off" name="edit_out_time" type="time" id="edit_out_time" class="form-control" placeholder="Out Time">
+
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" onclick="updateEmpAtten()">Update</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </form>
+            <!-- /.Attendance Edit Form End-->
 
             <form id="clientBillingEditForm" name="clientBillingEditForm">
               <div class="modal fade" id="clientBillingEditModal" tabindex="-1" role="dialog" aria-labelledby="clientBillingEditModalLabel" aria-hidden="true">
@@ -1062,6 +1123,9 @@
             e.preventDefault();
         });
         $("#employee_attend_form").submit(function(e) {
+            e.preventDefault();
+        });
+        $("#employee_attend_edit_form").submit(function(e) {
             e.preventDefault();
         });
 
@@ -1364,7 +1428,7 @@
         });
     }
 
-    //  Save Employee Education Form
+    //  Update Employee Education Form
     function updateEmpEdu(){
         var rowId          = $('#edit_edu_id').val();
         var empId          = sessionStorage.getItem("edu_emp_id");
@@ -1450,6 +1514,45 @@
         });
     }
 
+    // uUdate Employee Attendent
+    function updateEmpAtten()
+    {
+        var rowId           = $('#attend_row_id').val();
+        var empId           = sessionStorage.getItem("edu_emp_id");
+        var empDate         = $('#edit_attend_date').val();
+        var empInTime       = $('#edit_in_time').val();
+        var empOutTime     = $('#edit_out_time').val();
+
+
+        var actionlink = 'saveEmployeeAttendInfo';
+        $.ajax({
+            type: "POST",
+            url: actionlink,
+            data:{
+                _token:'{{csrf_token()}}',
+                row_id:rowId,
+                emp_id:empId,
+                attend_date:empDate,
+                in_time:empInTime,
+                out_time:empOutTime,
+            },
+
+            context: document.body
+        }).done(function(result) {
+            if(result==1){
+                $("#massageDivEdu").show();
+                $('#edit_attend_date').val("");
+                $('#edit_in_time').val("");
+                $('#edit_out_time').val("");
+                $('#attendanceEditModal').modal('toggle');
+                getAttendList();
+
+            }else{
+                alert('Error');
+            }
+        });
+    }
+
     // getJoiningList
     function getJoiningList()
     {
@@ -1489,7 +1592,6 @@
             url: 'editJoiningByID/'+row_id,
             context: document.body
         }).done(function(result) {
-                console.log(result);
                 $('#edit_joining_id').val(result.emp_rec_id);
                 $('#edit_start_joining_date').val(result.joining_date);
                 $('#edit_joining_designation_id').val(result.designation_id);
@@ -1498,7 +1600,7 @@
             // $('#employee_joining_grid tbody').html(html);
         });
     }
-    // editEmpJoining
+    // editEmpEdu
     function editEmpEdu(row_id)
     {
         $('#empEduEditModal').modal('show');
@@ -1507,7 +1609,6 @@
             url: 'editEduByID/'+row_id,
             context: document.body
         }).done(function(result) {
-                console.log(result);
                 $('#edit_edu_id').val(result.edu_id);
                 $('#edit_degree_name').val(result.degree_name);
                 $('#edit_major').val(result.major);
@@ -1515,6 +1616,22 @@
                 $('#edit_board').val(result.board);
                 $('#edit_year').val(result.year);
                 $('#edit_result').val(result.result);
+        });
+    }
+    // editAttend
+    function editAttend(row_id)
+    {
+        $('#attendanceEditModal').modal('show');
+        $.ajax({
+            type: "GET",
+            url: 'editAttendByID/'+row_id,
+            context: document.body
+        }).done(function(result) {
+                $('#attend_row_id').val(result.attend_id);
+                $('#edit_attend_date').val(result.attend_date);
+                $('#edit_in_time').val(result.in_time);
+                $('#edit_out_time').val(result.out_time);
+
         });
     }
     //getAllEmployee
@@ -1598,7 +1715,7 @@
                 html +="<td class='align-middle'>"+data.in_time+"</td>";
                 html +="<td class='align-middle'>"+data.out_time+"</td>";
                 // html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeEdu('+data.edu_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
-                html +='<td class="alian-middle text-right"><button type="button" onclick="removeAttend('+data.attend_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
+                html +='<td class="alian-middle text-right"><button type="button" class="btn btn-sm btn-icon btn-secondary" onclick="editAttend('+data.attend_id+')"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button type="button" onclick="removeAttend('+data.attend_id+')" class="btn btn-sm btn-icon btn-secondary"> <i class="far fa-trash-alt"></i><span class="sr-only">Remove</span> </button></td>';
                 html += '</tr>';
             });
             $('#employee_attend_grid tbody').html(html);

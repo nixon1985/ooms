@@ -41,7 +41,7 @@ class EmployeeClr extends Controller
         return response()->json($getDesignation);
     }
 
-
+    // employeeByID
     public function employeeByID($emp_id) {
         // $dtaa = Employee::find($emp_id);
         $dtaa = DB::table('emp_info AS ei')
@@ -79,6 +79,13 @@ class EmployeeClr extends Controller
     public function editEduByID($row_id) {
         $data = DB::table('emp_education')
                 ->where('edu_id', $row_id)->first();
+
+        return response()->json($data);
+    }
+    // editAttendByID
+    public function editAttendByID($row_id) {
+        $data = DB::table('emp_attendance')
+                ->where('attend_id', $row_id)->first();
 
         return response()->json($data);
     }
@@ -222,10 +229,20 @@ class EmployeeClr extends Controller
             'updated_on'    => date('Y-m-d'),
         );
 
-        if(DB::table('emp_attendance')->insert($data)){
-            return 1;
-        }else{
-            return 0;
+        if($request->row_id > 0)
+        {
+            if(DB::table('emp_attendance')->where('attend_id',$request->row_id)->update($data)){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+        else{
+            if(DB::table('emp_attendance')->insert($data)){
+                return 1;
+            }else{
+                return 0;
+            }
         }
     }
     /**

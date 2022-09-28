@@ -91,6 +91,7 @@ Route::get('/editJoiningByID/{id}',[EmployeeClr::class,'editJoiningByID'])->name
 Route::get('/eduByID/{id}',[EmployeeClr::class,'eduByID'])->name('eduByID');
 Route::get('/editEduByID/{id}',[EmployeeClr::class,'editEduByID'])->name('editEduByID');
 Route::get('/attendByID/{id}',[EmployeeClr::class,'attendByID'])->name('attendByID');
+Route::get('/editAttendByID/{id}',[EmployeeClr::class,'editAttendByID'])->name('editAttendByID');
 Route::delete('/deleteEmpJoiningInfo/{id}',[EmployeeClr::class,'deleteEmpJoiningInfo'])->name('deleteEmpJoiningInfo');
 Route::delete('/deleteEmpEduInfo/{id}',[EmployeeClr::class,'deleteEmpEduInfo'])->name('deleteEmpEduInfo');
 Route::delete('/deleteEmpAttendInfo/{id}',[EmployeeClr::class,'deleteEmpAttendInfo'])->name('deleteEmpAttendInfo');
