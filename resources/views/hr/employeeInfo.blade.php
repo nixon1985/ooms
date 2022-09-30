@@ -438,7 +438,7 @@
 
             <!-- .Employee Entry Form Start-->
             {{-- <form id="employee_entry_form" enctype="multipart/form-data"> --}}
-                <form method="POST" enctype="multipart/form-data" id="laravel-ajax-file-upload" action="javascript:void(0)" >
+                <form method="POST" enctype="multipart/form-data" id="employee_basic_information" action="javascript:void(0)" >
                 <div class="modal fade" id="clientNewModal" tabindex="-1" role="dialog" aria-labelledby="clientNewModalLabel" aria-hidden="true">
 
                   <div class="modal-dialog " role="document" style="max-width:60% !important">
@@ -523,9 +523,40 @@
                             </div>
                           </div>
 
+                          <script>
+                            $(function () {
+                                //show it when the checkbox is clicked
+                                $('input[name="make_user"]').on('click', function () {
+                                    if ($(this).prop('checked')) {
+                                        $('input[name="showthis"]').css("display","block");
 
+                                    } else {
+                                        $('input[name="showthis"]').css("display","none");
+                                    }
+                                });
+                            });
+                          </script>
+                          
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="make_user">Make User</label>
+                              <input type="checkbox"  name="make_user" id="make_user">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text" class="form-control showthis" name="password" id="password">
+                              </div>
+                          </div>
+
+                          <div class="col-md-6 ">
+                            <div class="form-group">
+                                <label for="cpassword" style="margin-top: 45px;">Confirm Password</label>
+                              <input type="password" class="form-control showthis" name="cpassword" id="cpassword">
+                            </div>
+                          </div>
                         </div>
                       </div>
+
                       <div class="modal-footer">
                         {{-- <button type="submit" class="btn btn-primary" onclick="saveEmpBasic()">Save</button> --}}
                         <button type="submit" class="btn btn-primary" >Save</button>
@@ -1822,7 +1853,7 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
         });
-    $('#laravel-ajax-file-upload').submit(function(e) {
+    $('#employee_basic_information').submit(function(e) {
         e.preventDefault();
         var formData = new FormData(this);
         $.ajax({

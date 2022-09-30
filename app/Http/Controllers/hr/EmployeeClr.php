@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\hr\Designation;
 use App\Models\hr\Employee;
 use App\Models\outlet\OutletInfo;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Stmt\TryCatch;
 use Session;
 
@@ -147,6 +149,17 @@ class EmployeeClr extends Controller
                     'joining_date'  => $request->joining_date,
                     'created_by'    => "1"
                 ]);
+
+                // insert into user table
+                if($request->password != NULL)
+                {
+                    $user = new User();
+                    $user->name = $request->emp_name;
+                    $user->username = $request->emp_name;
+                    $user->email = $request->email_id;
+                    $user->password = Hash::make($request->password);
+                    $user->save();
+                }
                 return 1;
             }
             return 0;
