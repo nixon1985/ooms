@@ -290,7 +290,10 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
-                  <div class="dropdown-divider"></div><a class="dropdown-item" href="#">Help Center</a> <a class="dropdown-item" href="#">Ask Forum</a> <a class="dropdown-item" href="#">Keyboard Shortcuts</a>
+                  <div class="dropdown-divider"></div>
+                  {{-- <a class="dropdown-item" href="#">Help Center</a>
+                  <a class="dropdown-item" href="#">Ask Forum</a>
+                  <a class="dropdown-item" href="#">Keyboard Shortcuts</a> --}}
 
 
                 </div><!-- /.dropdown-menu -->

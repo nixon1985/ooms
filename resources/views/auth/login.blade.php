@@ -11,36 +11,22 @@
     <meta property="og:locale" content="en_US">
     <meta name="description" content="Responsive admin theme build on top of Bootstrap 4">
     <meta property="og:description" content="Responsive admin theme build on top of Bootstrap 4">
-    <link rel="canonical" href="https://uselooper.com">
-    <meta property="og:url" content="https://uselooper.com">
+    {{-- <link rel="canonical" href="https://uselooper.com">
+    <meta property="og:url" content="https://uselooper.com"> --}}
     <meta property="og:site_name" content="Looper - Bootstrap 4 Admin Theme">
-    <script type="application/ld+json">
-      {
-        "name": "Looper - Bootstrap 4 Admin Theme",
-        "description": "Responsive admin theme build on top of Bootstrap 4",
-        "author":
-        {
-          "@type": "Person",
-          "name": "Beni Arisandi"
-        },
-        "@type": "WebSite",
-        "url": "",
-        "headline": "Sign In",
-        "@context": "http://schema.org"
-      }
-    </script><!-- End SEO tag -->
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-touch-icon.png">
     <link rel="shortcut icon" href="assets/favicon.ico">
     <meta name="theme-color" content="#3063A0"><!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet"><!-- End Google font -->
     <!-- BEGIN PLUGINS STYLES -->
-    <link rel="stylesheet" href="{{asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}"><!-- END PLUGINS STYLES -->
+    {{-- <link rel="stylesheet" href="{{asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}"><!-- END PLUGINS STYLES --> --}}
     <!-- BEGIN THEME STYLES -->
     <link rel="stylesheet" href="{{asset('assets/stylesheets/theme.min.css')}}" data-skin="default">
-    <link rel="stylesheet" href="{{asset('assets/stylesheets/theme-dark.min.css')}}" data-skin="dark">
-    <link rel="stylesheet" href="{{asset('assets/stylesheets/custom.css')}}">
-    <script>
+    {{-- <link rel="stylesheet" href="{{asset('assets/stylesheets/theme-dark.min.css')}}" data-skin="dark"> --}}
+    {{-- <link rel="stylesheet" href="{{asset('assets/stylesheets/custom.css')}}"> --}}
+    {{-- <script>
       var skin = localStorage.getItem('skin') || 'default';
       var isCompact = JSON.parse(localStorage.getItem('hasCompactMenu'));
       var disabledSkinStylesheet = document.querySelector('link[data-skin]:not([data-skin="' + skin + '"])');
@@ -49,7 +35,7 @@
       disabledSkinStylesheet.setAttribute('disabled', true);
       // add flag class to html immediately
       if (isCompact == true) document.querySelector('html').classList.add('preparing-compact-menu');
-    </script><!-- END THEME STYLES -->
+    </script><!-- END THEME STYLES --> --}}
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -61,54 +47,59 @@
         <h1>
         <img src="{{url('assets/images/logo/com-logo.png')}}" width="300" alt="">
     <!-- form -->
-      <form class="auth-form" action="{{ route('login') }}" method="POST">
-        @csrf
-      {{-- <form class="auth-form" action="{{url('dashboard')}}"> --}}
-        <!-- .form-group -->
-        <div class="form-group">
-          <div class="form-label-group">
-            <label for="inputUser">Email</label>
+    <div class="" style="margin-bottom: 12%">
+        <div class="row">
+            <div class="col-md-4 offset-4 mt-5 ">
+                <form class="auth-form" action="{{ route('login') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <label for="inputUser">Email</label>
 
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div><!-- /.form-group -->
+                    <!-- .form-group -->
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <label for="inputPassword">Password</label>
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                      </div>
+                    </div><!-- /.form-group -->
+                    <!-- .form-group -->
+                    <div class="form-group">
+                      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+                    </div><!-- /.form-group -->
+                    <!-- .form-group -->
+                    {{-- <div class="form-group text-center">
+                      <div class="custom-control custom-control-inline custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="remember-me"> <label class="custom-control-label" for="remember-me">Keep me sign in</label>
+                      </div>
+                    </div><!-- /.form-group --> --}}
+                    <!-- recovery links -->
+                    {{-- <div class="text-center pt-3">
+                      <a href="auth-recovery-username.html" class="link">Forgot Username?</a> <span class="mx-2">·</span> <a href="auth-recovery-password.html" class="link">Forgot Password?</a> --}}
+                    </div><!-- /recovery links -->
+                  </form><!-- /.auth-form -->
+                  {{-- <footer class="auth-footer"> © 2018 All Rights Reserved. <a href="#">Privacy</a> and <a href="#">Terms</a> --}}
+                  </footer>
+            </div>
         </div>
-        </div><!-- /.form-group -->
-        <!-- .form-group -->
-        <div class="form-group">
-          <div class="form-label-group">
-            <label for="inputPassword">Password</label>
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+    </div>
 
-            @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-          </div>
-        </div><!-- /.form-group -->
-        <!-- .form-group -->
-        <div class="form-group">
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
-        </div><!-- /.form-group -->
-        <!-- .form-group -->
-        <div class="form-group text-center">
-          <div class="custom-control custom-control-inline custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="remember-me"> <label class="custom-control-label" for="remember-me">Keep me sign in</label>
-          </div>
-        </div><!-- /.form-group -->
-        <!-- recovery links -->
-        <div class="text-center pt-3">
-          <a href="auth-recovery-username.html" class="link">Forgot Username?</a> <span class="mx-2">·</span> <a href="auth-recovery-password.html" class="link">Forgot Password?</a>
-        </div><!-- /recovery links -->
-      </form><!-- /.auth-form -->
       <!-- copyright -->
-      <footer class="auth-footer"> © 2018 All Rights Reserved. <a href="#">Privacy</a> and <a href="#">Terms</a>
-      </footer>
+
     </main><!-- /.auth -->
     <!-- BEGIN BASE JS -->
     <script src="assets/vendor/jquery/jquery.min.js"></script>
