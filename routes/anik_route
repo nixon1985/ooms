@@ -61,3 +61,285 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+==========================================
+Attendance table
+==========================================
+
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Sep 23, 2022 at 05:36 PM
+-- Server version: 10.5.17-MariaDB
+-- PHP Version: 7.4.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `progressive_model_school`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `academic_calendar`
+--
+
+CREATE TABLE `hr_leave_type` (
+  `lTypeId` int(11) NOT NULL,
+  `leave_type_name` varchar(100) DEFAULT NULL,
+  `leave_days` int(11) DEFAULT NULL,
+  `status` enum('Active','Inactive') DEFAULT NULL,
+  `create_at` date DEFAULT NULL,
+  `update_at` date DEFAULT NULL,
+  `user_id` decimal(5,0) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `hr_leave_type`
+--
+
+INSERT INTO `hr_leave_type` (`lTypeId`, `leave_type_name`, `leave_days`, `status`, `create_at`, `update_at`, `user_id`) VALUES
+(2, 'Casual Leave', 12, 'Active', '2017-08-20', '2021-09-03', '1000'),
+(3, 'Medical Leave', 30, 'Active', '2017-08-20', '2021-04-06', '1010'),
+(6, 'Leave without pay', 22, 'Active', '2017-08-20', '2021-09-03', '1000');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `hr_leave_type`
+--
+ALTER TABLE `hr_leave_type`
+  ADD PRIMARY KEY (`lTypeId`);
+
+
+CREATE TABLE `academic_calendar` (
+  `hd_id` int(11) NOT NULL,
+  `adate` date DEFAULT NULL COMMENT 'leave start date',
+  `adate2` date DEFAULT NULL COMMENT 'leave end date',
+  `academic_id` tinyint(4) DEFAULT NULL COMMENT 'academic year id',
+  `org_id` smallint(6) NOT NULL,
+  `atext` varchar(250) NOT NULL,
+  `file_path` varchar(1000) DEFAULT NULL,
+  `file_names` varchar(1000) DEFAULT NULL,
+  `approval_status` tinyint(1) DEFAULT NULL COMMENT '1=approved, 0 = not approved',
+  `added_on` datetime DEFAULT NULL,
+  `added_by` decimal(5,0) NOT NULL COMMENT 'user_id',
+  `edited_on` datetime DEFAULT NULL,
+  `edited_by` decimal(5,0) DEFAULT NULL COMMENT 'user_id'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Academic Calendar';
+
+--
+-- Dumping data for table `academic_calendar`
+--
+
+INSERT INTO `academic_calendar` (`hd_id`, `adate`, `adate2`, `academic_id`, `org_id`, `atext`, `file_path`, `file_names`, `approval_status`, `added_on`, `added_by`, `edited_on`, `edited_by`) VALUES
+(11, NULL, NULL, 7, 3, 'A', 'upl/n_n_m/20220509_1652052760.pdf', NULL, 1, '2022-05-07 14:36:02', '1010', '2022-05-09 12:31:50', '1000');
+
+--
+-- Triggers `academic_calendar`
+--
+DELIMITER $$
+CREATE TRIGGER `academic_calendar_hd_id` BEFORE INSERT ON `academic_calendar` FOR EACH ROW BEGIN
+	declare max_id int(11);
+	select max(hd_id) into max_id from academic_calendar;
+	  if max_id is not null then
+	    set new.hd_id = max_id+1;
+	  else
+	    set new.hd_id = 11;
+	  end if;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `academic_calendar_details`
+--
+
+CREATE TABLE `academic_calendar_details` (
+  `dtl_id` bigint(20) DEFAULT NULL,
+  `hd_id` int(11) DEFAULT NULL,
+  `holiday` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Triggers `academic_calendar_details`
+--
+DELIMITER $$
+CREATE TRIGGER `academic_calendar_details_dtl_id` BEFORE INSERT ON `academic_calendar_details` FOR EACH ROW BEGIN
+	declare max_id bigint(20);
+	select max(dtl_id) into max_id from academic_calendar_details;
+	  if max_id is not null then
+	    set new.dtl_id = max_id+1;
+	  else
+	    set new.dtl_id = 11;
+	  end if;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emp_leave_apps`
+--
+
+CREATE TABLE `emp_leave_apps` (
+  `ela_id` int(11) NOT NULL,
+  `rec_id` int(11) DEFAULT NULL COMMENT 'employee record id',
+  `responsible_emp_id` int(11) DEFAULT NULL COMMENT 'Responsible person rec id',
+  `lTypeId` int(11) DEFAULT NULL,
+  `leave_start` date DEFAULT NULL,
+  `leave_end` date DEFAULT NULL,
+  `leave_dates` text NOT NULL,
+  `total_days` float NOT NULL,
+  `leave_description` text NOT NULL,
+  `file_path` varchar(100) NOT NULL,
+  `academic_id` tinyint(4) NOT NULL,
+  `lStatus` tinyint(1) NOT NULL COMMENT '0=Not Approve, 1=Approve',
+  `created_at` date NOT NULL,
+  `added_by` decimal(5,0) DEFAULT NULL,
+  `edited_by` decimal(5,0) DEFAULT NULL,
+  `edited_on` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emp_leave_apps_details`
+--
+
+CREATE TABLE `emp_leave_apps_details` (
+  `dt_id` bigint(20) NOT NULL,
+  `ela_id` int(11) DEFAULT NULL,
+  `leavedate` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff_attendance`
+--
+
+CREATE TABLE `staff_attendance` (
+  `att_id` decimal(60,0) NOT NULL,
+  `att_date` datetime DEFAULT NULL,
+  `academic_id` tinyint(4) DEFAULT NULL COMMENT 'Year or Session ID',
+  `reg_id` decimal(10,0) DEFAULT NULL COMMENT 'Employee id',
+  `att_status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0 absent , 1 present',
+  `reporting_id` varchar(35) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `staff_attendance`
+--
+
+--
+-- Triggers `staff_attendance`
+--
+DELIMITER $$
+CREATE TRIGGER `staff_attendance_att_id` BEFORE INSERT ON `staff_attendance` FOR EACH ROW begin
+	declare max_id decimal(60,0);
+    select max(att_id) into max_id from staff_attendance;
+    if max_id is not null then
+    	set new.att_id = max_id + 1;
+    else
+		set new.att_id = 1;
+	end if;
+end
+$$
+DELIMITER ;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `academic_calendar`
+--
+ALTER TABLE `academic_calendar`
+  ADD PRIMARY KEY (`hd_id`);
+
+--
+-- Indexes for table `academic_calendar_details`
+--
+ALTER TABLE `academic_calendar_details`
+  ADD KEY `hd_id` (`hd_id`);
+
+--
+-- Indexes for table `emp_leave_apps`
+--
+ALTER TABLE `emp_leave_apps`
+  ADD PRIMARY KEY (`ela_id`);
+
+--
+-- Indexes for table `emp_leave_apps_details`
+--
+ALTER TABLE `emp_leave_apps_details`
+  ADD PRIMARY KEY (`dt_id`),
+  ADD KEY `ela_id` (`ela_id`);
+
+--
+-- Indexes for table `staff_attendance`
+--
+ALTER TABLE `staff_attendance`
+  ADD PRIMARY KEY (`att_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `academic_calendar`
+--
+ALTER TABLE `academic_calendar`
+  MODIFY `hd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `emp_leave_apps`
+--
+ALTER TABLE `emp_leave_apps`
+  MODIFY `ela_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `emp_leave_apps_details`
+--
+ALTER TABLE `emp_leave_apps_details`
+  MODIFY `dt_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `academic_calendar`
+--
+--
+-- Constraints for table `academic_calendar_details`
+--
+--
+-- Constraints for table `emp_leave_apps`
+--
+--
+-- Constraints for table `emp_leave_apps_details`
+--
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
