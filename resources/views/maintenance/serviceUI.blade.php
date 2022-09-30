@@ -10,7 +10,10 @@
                 <a class="nav-link" data-toggle="tab" href="#tab2">Ongoing Process</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tab3">Unserviceable</a>
+                <a class="nav-link" data-toggle="tab" href="#tab3">Done</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab4">Damage</a>
             </li>
         </ul><!-- /.nav-tabs -->
     </div><!-- /.card-header -->
@@ -62,6 +65,7 @@
                         <thead>
                         <tr>
                             <th colspan="2">Token No</th>
+                            <th>Asset ID</th>
                             <th style="min-width: 240px">
                                 Serviceable Item
                             </th>
@@ -77,6 +81,65 @@
                 </div><!-- /.table-responsive -->
             </div><!-- /.card-body -->
         </div>
+
+
+
+        <!-- Tab3-->
+        <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <!-- .table -->
+                    <table class="table">
+                        <!-- thead -->
+                        <thead>
+                            <tr>
+                                <th>Token No</th>
+                                <th>Asset ID</th>
+                                <th style="min-width: 240px">
+                                    Serviceable Item
+                                </th>
+                                <th> Outlet </th>
+                                <th> Request date </th>
+                                <th style="width:100px; min-width:100px;"> &nbsp; </th>
+                            </tr>
+                        </thead><!-- /thead -->
+                        <!-- tbody -->
+                        <tbody id="serviceDoneGrid">
+                        </tbody><!-- /tbody -->
+                    </table><!-- /.table -->
+                </div><!-- /.table-responsive -->
+            </div><!-- /.card-body -->
+        </div>
+
+
+        <!-- Tab4-->
+        <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <!-- .table -->
+                    <table class="table">
+                        <!-- thead -->
+                        <thead>
+                        <tr>
+                            <th colspan="2">Token No</th>
+                            <th style="min-width: 240px">
+                                Serviceable Item
+                            </th>
+                            <th> Outlet </th>
+                            <th> Request date </th>
+                            <th style="width:100px; min-width:100px;"> &nbsp; </th>
+                        </tr>
+                        </thead><!-- /thead -->
+                        <!-- tbody -->
+                        <tbody id="serviceDamageGrid">
+                        </tbody><!-- /tbody -->
+                    </table><!-- /.table -->
+                </div><!-- /.table-responsive -->
+            </div><!-- /.card-body -->
+        </div>
+
+
+
     </div>
     <!-- /Tab Content -->
 
@@ -365,6 +428,8 @@
     $(document).ready(function(){
         getIncomingService();
         getServiceProcessData();
+        getServiceDoneData();
+        getServiceDamageData();
     });
     var incomingRequestList = '';
     var serviceInProgressList = '';
@@ -402,6 +467,26 @@
             // alert(result);
             serviceInProgressList = result
             generateServiceProcessGrid(result);
+        });
+    }
+
+    function getServiceDoneData(){
+        $.ajax({
+            type: "GET",
+            url: 'getServiceDoneData',
+            context: document.body
+        }).done(function(result) {
+            generateServiceDoneGrid(result);
+        });
+    }
+
+    function getServiceDamageData(){
+        $.ajax({
+            type: "GET",
+            url: 'getServiceDamageData',
+            context: document.body
+        }).done(function(result) {
+            generateServiceDamageGrid(result);
         });
     }
 
@@ -521,77 +606,60 @@
                 vStatus = '';
             }
             html='<tr>'+
-                '<td class="align-middle px-0" style="width: 1.5rem">'+
-                '<button type="button" class="btn btn-sm btn-icon btn-light" onclick="updateSeenStatus('+data.request_id+','+data.view_status+');" data-toggle="collapse" data-target="#p_details-'+data.request_id+'"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>'+
-                '</td>'+
-                '<td class="align-middle px-0">'+data.token_id+'</td>'+
-                '<td class="align-middle">'+
-                '<h4 class="list-group-item-title text-truncate '+vStatus+'" id="p_asset_name'+data.request_id+'" data-target="#sdetails-'+data.request_id+'">'+
-                '<a href="#">'+data.asset_name+'</a>'+
-                '</h4>'+
-                '</td>'+
-                '<td class="align-middle"> '+ data.outlet_name +'</td>'+
-                '<td class="align-middle"> '+ data.added_on +'</td>'+
-                '<td class="align-middle text-right">'+
-                '<a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>'+
-                '</td>'+
+                    '<td class="align-middle px-0" style="width: 1.5rem">'+
+                        '<button type="button" class="btn btn-sm btn-icon btn-light" onclick="updateSeenStatus('+data.request_id+','+data.view_status+');" data-toggle="collapse" data-target="#p_details-'+data.request_id+'"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>'+
+                    '</td>'+
+                    '<td class="align-middle px-0">'+data.asset_reg_id+'</td>'+
+                    '<td class="align-middle px-0">'+data.token_id+'</td>'+
+                    '<td class="align-middle">'+
+                        '<h4 class="list-group-item-title text-truncate '+vStatus+'" id="p_asset_name'+data.request_id+'" data-target="#sdetails-'+data.request_id+'">'+
+                            '<a href="#">'+data.asset_name+'</a>'+
+                        '</h4>'+
+                    '</td>'+
+                    '<td class="align-middle"> '+ data.outlet_name +'</td>'+
+                    '<td class="align-middle"> '+ data.added_on +'</td>'+
+                    '<td class="align-middle text-right">'+
+                        '<a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>'+
+                    '</td>'+
                 '</tr>'+
                 '<tr class="row-details bg-light collapse" id="p_details-'+data.request_id+'">'+
-                '<td colspan="6">'+
-                '<div class="row">'+
-                <!-- .col -->
-                '<div class="col-md-auto text-center">'+
-                '<div class="user-avatar user-avatar-xl"><img src="asset_image/'+data.photo_path+'" alt=""></div>'+
-                '<h3 class="card-title mb-4"> 3948844 </h3>'+
-                '</div>'+
-                '<div class="col-md-7">'+
-                '<table class="table table-sm mb-0 table-striped">'+
-                '<tr>'+
-                '<td> Model </td>'+
-                '<td>'+data.model_no+'</td>'+
-                '</tr>'+
-                '<tr>'+
-                '<td> Brand </td>'+
-                '<td>'+data.brand_name+'</td>'+
-                '</tr>'+
-                '<tr>'+
-                '<td> Supplier </td>'+
-                '<td> ACI Electronic </td>'+
-                '</tr>'+
-                '<tr>'+
-                '<td> Purchase Date </td>'+
-                '<td> '+data.purchase_date+' </td>'+
-                '</tr>'+
-                '<tr>'+
-                '<td> Warranty </td>'+
-                '<td> '+data.warranty_end_date+' </td>'+
-                '</tr>'+
-                '<tr>'+
-                '<td> Serviceable period </td>'+
-                '<td> 3 Month </td>'+
-                '</tr>'+
-                '<tr>'+
-                '<td> Last Service Date </td>'+
-                '<td> 2020-01-01 </td>'+
-                '</tr>'+
-
-                '</table>'+
-                '</div>'+
-                '<div class="col">'+
-                '<div class="publisher keep-focus focus">'+
-                '<label for="hgh'+data.request_id+'" class="publisher-label"><b>User Comment: </b>'+data.user_comment+'</label>'+
-                '</div>'+
-                '<div class="publisher-actions align-items-center">'+
-                '<div class="el-example">'+
-                '<button type="button" class="btn btn-danger" data-toggle="repairStatusPanel" onclick="problemIdentifyPopUpForm('+i+')">Identified Problem </button>'+
-                '<button type="button" class="btn btn-success" data-toggle="solutionPanel" onclick="solutionPanelPopUp('+i+')">Solution </button>'+
-                '<button type="button" class="btn btn-success" data-toggle="solutionPanel" onclick="usedPartsPanelPopUp('+i+')">Parts</button>'+
-                '</div>'+
-                '</div>'+
-                '</div>'+
-                '</div>'+
-                '</div>'+
-                '</td>'+
+                    '<td colspan="6">'+
+                        '<div class="row">'+
+                            <!-- .col -->
+                            '<div class="col-md-auto text-center">'+
+                                '<div class="user-avatar user-avatar-xl"><img src="asset_image/'+data.photo_path+'" alt=""></div>'+
+                                    '<h3 class="card-title mb-4"> 3948844 </h3>'+
+                                '</div>'+
+                                '<div class="col-md-7">'+
+                                    '<table class="table table-sm mb-0 table-striped">'+
+                                        '<tr><td> Model </td><td>'+data.model_no+'</td></tr>'+
+                                        '<tr><td> Brand </td><td>'+data.brand_name+'</td></tr>'+
+                                        '<tr><td> Supplier </td><td> ACI Electronic </td></tr>'+
+                                        '<tr><td> Purchase Date </td><td> '+data.purchase_date+' </td></tr>'+
+                                        '<tr><td> Warranty </td><td> '+data.warranty_end_date+' </td></tr>'+
+                                        '<tr><td> Serviceable period </td><td> 3 Month </td></tr>'+
+                                        '<tr><td> Last Service Date </td><td> 2020-01-01 </td></tr>'+
+                                    '</table>'+
+                                '</div>'+
+                                '<div class="col">'+
+                                    '<div class="publisher keep-focus focus">'+
+                                        '<label for="hgh'+data.request_id+'" class="publisher-label"><b>User Comment: </b>'+data.user_comment+'</label>'+
+                                    '</div>'+
+                                    '<div class="publisher-actions align-items-center">'+
+                                        '<div class="el-example">'+
+                                            '<button type="button" class="btn btn-danger" data-toggle="repairStatusPanel" onclick="problemIdentifyPopUpForm('+i+')">Identified Problem </button>'+
+                                            '<button type="button" class="btn btn-success" data-toggle="solutionPanel" onclick="solutionPanelPopUp('+i+')">Solution </button>'+
+                                            '<button type="button" class="btn btn-success" data-toggle="solutionPanel" onclick="usedPartsPanelPopUp('+i+')">Parts</button>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="publisher keep-focus focus">'+
+                                        '<button type="button" class="btn btn-danger" data-toggle="repairStatusPanel" onclick="updateServiceStatus('+i+',1)">Done</button>'+
+                                        '<button type="button" class="btn btn-danger" data-toggle="repairStatusPanel" onclick="updateServiceStatus('+i+',2)">Damage</button>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</td>'+
                 '</tr>';
 
             $('#serviceProcessGrid').append(html);
@@ -955,6 +1023,103 @@
 
     }
 
+
+    function updateServiceStatus(index,serviceStatus){
+        let tokenId = serviceInProgressList[index].token_id;
+        let assetRegId = serviceInProgressList[index].asset_reg_id;
+        if(tokenId){
+            $.ajax({
+                type: "POST",
+                url: 'updateServiceStatus',
+                data:{_token:'{{csrf_token()}}',tokenId:tokenId,serviceStatus:serviceStatus,asset_reg_id:assetRegId},
+                context: document.body
+            }).done(function(result) {
+                alert(result);
+            });
+        }
+
+    }
+
+    function generateServiceDoneGrid(dataSet){
+        var html='';
+        var vStatus = '';
+        $('#serviceDoneGrid').html('');
+        $.each(dataSet, function(i,data) {
+            if(data.view_status==0){
+                vStatus = 'seenStatus';// CSS class
+            }else{
+                vStatus = '';
+            }
+            html='<tr>'+
+                '<td class="align-middle px-0" style="width: 1.5rem">'+
+                '<button type="button" class="btn btn-sm btn-icon btn-light" onclick="updateSeenStatus('+data.request_id+','+data.view_status+');" data-toggle="collapse" data-target="#p_details-'+data.request_id+'"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>'+
+                '</td>'+
+                '<td class="align-middle px-0">'+data.token_id+'</td>'+
+                '<td class="align-middle px-0">'+data.asset_reg_id+'</td>'+
+                '<td class="align-middle">'+
+                '<h4 class="list-group-item-title text-truncate '+vStatus+'" id="p_asset_name'+data.request_id+'" data-target="#sdetails-'+data.request_id+'">'+
+                '<a href="#">'+data.asset_name+'</a>'+
+                '</h4>'+
+                '</td>'+
+                '<td class="align-middle"> '+ data.outlet_name +'</td>'+
+                '<td class="align-middle"> '+ data.added_on +'</td>'+
+                '<td class="align-middle text-right">'+
+                '<button type="button" class="btn btn-secondary btn-xs" onclick="updateDetiveredStatus('+data.token_id+','+data.asset_reg_id+','+'1)">Delivered</button>'+
+                '</td>'+
+                '</tr>';
+
+            $('#serviceDoneGrid').append(html);
+            html='';
+        });
+    }
+
+    function generateServiceDamageGrid(dataSet){
+        var html='';
+        var vStatus = '';
+        $('#serviceDamageGrid').html('');
+        $.each(dataSet, function(i,data) {
+            if(data.view_status==0){
+                vStatus = 'seenStatus';// CSS class
+            }else{
+                vStatus = '';
+            }
+            html='<tr>'+
+                '<td class="align-middle px-0" style="width: 1.5rem">'+
+                '<button type="button" class="btn btn-sm btn-icon btn-light" data-toggle="collapse" data-target="#p_details-'+data.request_id+'"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>'+
+                '</td>'+
+                '<td class="align-middle px-0">'+data.token_id+'</td>'+
+                '<td class="align-middle px-0">'+data.asset_reg_id+'</td>'+
+                '<td class="align-middle">'+
+                '<h4 class="list-group-item-title text-truncate '+vStatus+'" id="p_asset_name'+data.request_id+'" data-target="#sdetails-'+data.request_id+'">'+
+                    '<a href="#">'+data.asset_name+'</a>'+
+                '</h4>'+
+                '</td>'+
+                '<td class="align-middle"> '+ data.outlet_name +'</td>'+
+                '<td class="align-middle"> '+ data.added_on +'</td>'+
+                '<td class="align-middle text-right">'+
+                    '<button type="button" class="btn btn-secondary btn-xs" onclick="updateDetiveredStatus('+data.token_id+','+data.asset_reg_id+','+'3)">Delivered</button>'+
+                '</td>'+
+                '</tr>';
+
+            $('#serviceDamageGrid').append(html);
+            html='';
+        });
+    }
+
+
+    function updateDetiveredStatus(tokenId,assetRegId,assetCondition){
+        alert(tokenId+'-'+assetRegId+'-'+assetCondition);
+        if(tokenId){
+            $.ajax({
+                type: "POST",
+                url: 'updateDeliveredStatus',
+                data:{_token:'{{csrf_token()}}',tokenId:tokenId,asset_reg_id:assetRegId,asset_condition:assetCondition},
+                context: document.body
+            }).done(function(result) {
+                alert(result);
+            });
+        }
+    }
 
 
 

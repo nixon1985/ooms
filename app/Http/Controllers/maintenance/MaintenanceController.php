@@ -179,7 +179,7 @@ class MaintenanceController extends Controller
 
     function getServiceInProgressData(){
         $dataList = DB::table('service_maintenance AS sp')
-            ->selectRaw('sp.token_id,sp.request_id,s.view_status, s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_id, a.asset_name, o.outlet_name, s.added_on, a.model_no, a.brand_name')
+            ->selectRaw('sp.token_id, sp.request_id, ar.asset_reg_id, s.view_status, s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_id, a.asset_name, o.outlet_name, s.added_on, a.model_no, a.brand_name')
             ->join('service_request AS s','s.request_id','=','sp.request_id')
             ->join('assets_register AS ar', 'ar.asset_reg_id', '=', 's.asset_reg_id')
             ->join('asset_list AS a', 'a.asset_id', '=', 'ar.asset_id')
@@ -362,6 +362,62 @@ class MaintenanceController extends Controller
             ->get();
 
         return $dataList2;
+    }
+
+    function updateServiceStatus(Request $request){
+        $seenUpdate = DB::table('service_maintenance')
+            ->where('token_id',  $request->tokenId)
+            ->limit(1)
+            ->update(array('service_status' =>$request->serviceStatus));
+
+        // $request->assetRegId
+        return response()->json($seenUpdate);
+    }
+
+    function updateDeliveredStatus(Request $request){
+
+        $seenUpdate = DB::table('service_maintenance')
+            ->where('token_id',  $request->tokenId)
+            ->limit(1)
+            ->update(array('delivered_status' =>1));
+
+        DB::table('assets_register')
+            ->where('asset_reg_id',  $request->asset_reg_id)
+            ->limit(1)
+            ->update(array('asset_condition' =>$request->asset_condition));
+
+        return response()->json($seenUpdate);
+    }
+
+    function getServiceDoneData(){
+        $dataList = DB::table('service_maintenance AS sp')
+            ->selectRaw('sp.token_id, sp.request_id, ar.asset_reg_id, s.view_status, s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_id, a.asset_name, o.outlet_name, s.added_on, a.model_no, a.brand_name')
+            ->join('service_request AS s','s.request_id','=','sp.request_id')
+            ->join('assets_register AS ar', 'ar.asset_reg_id', '=', 's.asset_reg_id')
+            ->join('asset_list AS a', 'a.asset_id', '=', 'ar.asset_id')
+            ->leftJoin('outlet_info AS o', 'o.outlet_id','=','ar.outlet_id')
+            ->where('sp.service_status','=','1')
+            ->where('sp.delivered_status','=','0')
+            ->orderByDesc('sp.added_on')
+            ->get();
+        return response()->json($dataList);
+        // $results = DB::select('select * from users where id = ?', [1]);
+    }
+
+
+    function getServiceDamageData(){
+        $dataList = DB::table('service_maintenance AS sp')
+            ->selectRaw('sp.token_id, sp.request_id, ar.asset_reg_id, s.view_status, s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_id, a.asset_name, o.outlet_name, s.added_on, a.model_no, a.brand_name')
+            ->join('service_request AS s','s.request_id','=','sp.request_id')
+            ->join('assets_register AS ar', 'ar.asset_reg_id', '=', 's.asset_reg_id')
+            ->join('asset_list AS a', 'a.asset_id', '=', 'ar.asset_id')
+            ->leftJoin('outlet_info AS o', 'o.outlet_id','=','ar.outlet_id')
+            ->where('sp.service_status','=','2')
+            ->where('sp.delivered_status','=','0')
+            ->orderByDesc('sp.added_on')
+            ->get();
+        return response()->json($dataList);
+        // $results = DB::select('select * from users where id = ?', [1]);
     }
 
 }

@@ -168,10 +168,16 @@ Route::post('/saveIdentifiedProblem',[MaintenanceController::class,'saveIdentifi
 
 // Applied Solution
 Route::post('/saveAppliedSolution',[MaintenanceController::class,'saveAppliedSolution'])->name('saveAppliedSolution');
+// Update Service Status
+Route::post('/updateServiceStatus',[MaintenanceController::class,'updateServiceStatus'])->name('updateServiceStatus');
+Route::post('/updateDeliveredStatus',[MaintenanceController::class,'updateDeliveredStatus'])->name('updateDeliveredStatus');
 
 // Used Part
 Route::get('/getUsedPartsList',[MaintenanceController::class,'getUsedPartsList'])->name('getUsedPartsList');
 Route::post('/addPartsIntoDevice',[MaintenanceController::class,'addPartsIntoDevice'])->name('addPartsIntoDevice');
+// Data List of Damage and Done
+Route::get('/getServiceDoneData',[MaintenanceController::class,'getServiceDoneData'])->name('getServiceDoneData');
+Route::get('/getServiceDamageData',[MaintenanceController::class,'getServiceDamageData'])->name('getServiceDamageData');
 
 
 
