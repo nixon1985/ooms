@@ -76,7 +76,25 @@ Route::get('/getAllOutlet',[OutletController::class,'getAllOutlet'])->name('getA
 Route::get('/employeeInfo',[EmployeeClr::class,'employeeInfo'])->name('employeeInfo');
 
 Route::get('/getAllEmployee',[EmployeeClr::class,'getAllEmployee'])->name('getAllEmployee');
+Route::get('/getAllDesignation',[EmployeeClr::class,'getAllDesignation'])->name('getAllDesignation');
+
+
+Route::post('/saveEmployeeBasicInfo',[EmployeeClr::class,'saveEmployeeBasicInfo'])->name('saveEmployeeBasicInfo');
+Route::post('/saveEmployeeJoiningInfo',[EmployeeClr::class,'saveEmployeeJoiningInfo'])->name('saveEmployeeJoiningInfo');
+Route::post('/updateEmployeeJoiningInfo',[EmployeeClr::class,'updateEmployeeJoiningInfo'])->name('updateEmployeeJoiningInfo');
+Route::post('/saveEmployeeEduInfo',[EmployeeClr::class,'saveEmployeeEduInfo'])->name('saveEmployeeEduInfo');
+Route::post('/saveEmployeeAttendInfo',[EmployeeClr::class,'saveEmployeeAttendInfo'])->name('saveEmployeeAttendInfo');
+
 Route::get('/employeeByID/{id}',[EmployeeClr::class,'employeeByID'])->name('employeeByID');
+Route::get('/joiningByID/{id}',[EmployeeClr::class,'joiningByID'])->name('joiningByID');
+Route::get('/editJoiningByID/{id}',[EmployeeClr::class,'editJoiningByID'])->name('editJoiningByID');
+Route::get('/eduByID/{id}',[EmployeeClr::class,'eduByID'])->name('eduByID');
+Route::get('/editEduByID/{id}',[EmployeeClr::class,'editEduByID'])->name('editEduByID');
+Route::get('/attendByID/{id}',[EmployeeClr::class,'attendByID'])->name('attendByID');
+Route::get('/editAttendByID/{id}',[EmployeeClr::class,'editAttendByID'])->name('editAttendByID');
+Route::delete('/deleteEmpJoiningInfo/{id}',[EmployeeClr::class,'deleteEmpJoiningInfo'])->name('deleteEmpJoiningInfo');
+Route::delete('/deleteEmpEduInfo/{id}',[EmployeeClr::class,'deleteEmpEduInfo'])->name('deleteEmpEduInfo');
+Route::delete('/deleteEmpAttendInfo/{id}',[EmployeeClr::class,'deleteEmpAttendInfo'])->name('deleteEmpAttendInfo');
 // Route::get('/assetGroup',[AssetGroupController::class,'assetSubGroup'])->name('assetSubGroup');
 // Route::get('/getAllAssetGroup',[AssetGroupController::class,'getAllAssetGroup'])->name('getAllAssetGroup');
 // Route::get('/getAllAssetList',[AssetGroupController::class,'getAllAssetList'])->name('getAllAssetList');
