@@ -9,11 +9,9 @@ use App\Http\Controllers\hr\EmployeeClr;
 use App\Http\Controllers\assets\AssetGroupController;
 use App\Http\Controllers\assets\AssetConfigController;
 use App\Http\Controllers\assets\AssetRegisterController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\maintenance\ServiceRequestController;
-
-
-
-
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +34,9 @@ Route::get('/', function () {
 });
 
 
-Route::get('/dashboard', function () {
-    return view('layout');
-});
+// Route::get('/dashboard', function () {
+//     return view('layout');
+// });
 
 Route::get('/dashboard2', function () {
     return view('dashboard');
@@ -64,7 +62,8 @@ Route::get('/service_update', function () {
     return view('servicing.service_update');
 });
 
-
+// Dashboard
+Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
 
 Route::get('/outletinfo',[OutletController::class,'agreement'])->name('outletinforr.user');
 Route::post('/outletinfoSave',[OutletController::class,'save'])->name('outletinfoSave7.save');
@@ -184,3 +183,7 @@ Route::post('/serviceRequest',[ServiceRequestController::class,'saveServiceReque
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
