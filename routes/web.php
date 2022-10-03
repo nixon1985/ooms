@@ -177,17 +177,33 @@ Route::post('/addPartsIntoDevice',[MaintenanceController::class,'addPartsIntoDev
 // Data List of Damage and Done
 Route::get('/getServiceDoneData',[MaintenanceController::class,'getServiceDoneData'])->name('getServiceDoneData');
 Route::get('/getServiceDamageData',[MaintenanceController::class,'getServiceDamageData'])->name('getServiceDamageData');
-
-
-
-
-
 // Complain Request
 Route::post('/serviceRequest',[ServiceRequestController::class,'saveServiceRequest'])->name('serviceRequest');
 
 
 
+// Anik Route =====================
+Route::post('/saveEmployeeBasicInfo',[EmployeeClr::class,'saveEmployeeBasicInfo'])->name('saveEmployeeBasicInfo');
+//24-09-2022
+// -------------------------
+Route::get('/getAllDesignation',[EmployeeClr::class,'getAllDesignation'])->name('getAllDesignation');
+Route::post('/saveEmployeeJoiningInfo',[EmployeeClr::class,'saveEmployeeJoiningInfo'])->name('saveEmployeeJoiningInfo');
+Route::post('/saveEmployeeEduInfo',[EmployeeClr::class,'saveEmployeeEduInfo'])->name('saveEmployeeEduInfo');
+Route::get('/eduByID/{id}',[EmployeeClr::class,'eduByID'])->name('eduByID');
+//26-09-2022
+// -------------------------
+Route::delete('/deleteEmpJoiningInfo/{id}',[EmployeeClr::class,'deleteEmpJoiningInfo'])->name('deleteEmpJoiningInfo');
+Route::delete('/deleteEmpEduInfo/{id}',[EmployeeClr::class,'deleteEmpEduInfo'])->name('deleteEmpEduInfo');
+Route::get('/joiningByID/{id}',[EmployeeClr::class,'joiningByID'])->name('joiningByID');
+Route::post('/saveEmployeeAttendInfo',[EmployeeClr::class,'saveEmployeeAttendInfo'])->name('saveEmployeeAttendInfo');
+//27-09-2022
+//-------------------------
+Route::delete('/deleteEmpAttendInfo/{id}',[EmployeeClr::class,'deleteEmpAttendInfo'])->name('deleteEmpAttendInfo');
 
+//28-09-2022
+//-------------------------
+Route::get('/editJoiningByID/{id}',[EmployeeClr::class,'editJoiningByID'])->name('editJoiningByID');
+Route::get('/editEduByID/{id}',[EmployeeClr::class,'editEduByID'])->name('editEduByID');
 
 
 
