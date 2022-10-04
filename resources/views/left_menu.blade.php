@@ -109,7 +109,7 @@
                   <a href="#" class="menu-link"><span class="menu-icon oi oi-chat"></span> <span class="menu-text">Branding And Marketing</span> <span class="badge badge-subtle badge-success">+4</span></a> <!-- child menu -->
                   <ul class="menu">
                     <li class="menu-item">
-                      <a href="layout-blank.html" class="menu-link">Create Branding Material</a>
+                      <a href="#" class="menu-link" onclick="loadRemotePage('brandingMaterial')" >Create Branding Material</a>
                     </li>
                     <li class="menu-item">
                       <a href="layout-nosearch.html" class="menu-link">Allocate the Branding Material</a>

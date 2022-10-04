@@ -11,6 +11,7 @@ use App\Http\Controllers\assets\AssetConfigController;
 use App\Http\Controllers\assets\AssetRegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\maintenance\ServiceRequestController;
+use App\Http\Controllers\branding\BrandingMaterialController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -204,6 +205,17 @@ Route::delete('/deleteEmpAttendInfo/{id}',[EmployeeClr::class,'deleteEmpAttendIn
 //-------------------------
 Route::get('/editJoiningByID/{id}',[EmployeeClr::class,'editJoiningByID'])->name('editJoiningByID');
 Route::get('/editEduByID/{id}',[EmployeeClr::class,'editEduByID'])->name('editEduByID');
+
+
+// Branding Material
+Route::get('/brandingMaterial',[BrandingMaterialController::class,'index'])->name('index');
+Route::post('/saveBrandingArea',[BrandingMaterialController::class,'saveBrandingArea'])->name('saveBrandingArea');
+Route::get('/getAllBrandingArea',[BrandingMaterialController::class,'getAllBrandingArea'])->name('getAllBrandingArea');
+Route::get('/getOutletWiseBrandingArea',[BrandingMaterialController::class,'getOutletWiseBrandingArea'])->name('getOutletWiseBrandingArea');
+
+
+// Common Rout
+Route::get('/getAllSection',[DashboardController::class,'getAllSection'])->name('getAllSection');
 
 
 
