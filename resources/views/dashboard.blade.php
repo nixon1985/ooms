@@ -59,7 +59,7 @@
                                 <a href="user-teams.html" class="metric metric-bordered align-items-center">
                                     <h2 class="metric-label"> Pending </h2>
                                     <p class="metric-value h3">
-                                        <sub><i class="oi oi-people"></i></sub> <span class="value">8</span>
+                                        <sub><i class="oi oi-people"></i></sub> <span class="value" id="totalPending">0</span>
                                     </p>
                                 </a> <!-- /.metric -->
                             </div><!-- /metric column -->
@@ -69,7 +69,7 @@
                                 <a href="user-projects.html" class="metric metric-bordered align-items-center">
                                     <h2 class="metric-label"> On Going Process </h2>
                                     <p class="metric-value h3">
-                                        <sub><i class="oi oi-fork"></i></sub> <span class="value">12</span>
+                                        <sub><i class="oi oi-fork"></i></sub> <span class="value" id="totalInProgress">0</span>
                                     </p>
                                 </a> <!-- /.metric -->
                             </div><!-- /metric column -->
@@ -77,9 +77,9 @@
                             <div class="col">
                                 <!-- .metric -->
                                 <a href="user-tasks.html" class="metric metric-bordered align-items-center">
-                                    <h2 class="metric-label"> Completed Tasks </h2>
+                                    <h2 class="metric-label"> Damage </h2>
                                     <p class="metric-value h3">
-                                        <sub><i class="fa fa-tasks"></i></sub> <span class="value">64</span>
+                                        <sub><i class="fa fa-tasks"></i></sub> <span class="value" id="damageNo">0</span>
                                     </p>
                                 </a> <!-- /.metric -->
                             </div><!-- /metric column -->
@@ -89,10 +89,10 @@
                         <!-- .metric -->
                         <a href="user-tasks.html" class="metric metric-bordered">
                             <div class="metric-badge">
-                                <span class="badge badge-lg badge-success"><span class="oi oi-media-record pulse mr-1"></span> ONGOING TASKS</span>
+                                <span class="badge badge-lg badge-success"><span class="oi oi-media-record pulse mr-1"></span> Completed Tasks</span>
                             </div>
                             <p class="metric-value h3">
-                                <sub><i class="oi oi-timer"></i></sub> <span class="value">8</span>
+                                <sub><i class="oi oi-timer"></i></sub> <span class="value" id="doneNo">0</span>
                             </p>
                         </a> <!-- /.metric -->
                     </div><!-- /metric column -->
@@ -487,3 +487,59 @@
         </div><!-- /.page-section -->
     </div><!-- /.page-inner -->
 </div><!-- /.page -->
+
+
+<script>
+    $(document).ready(function(){
+        getIncomingService();
+        getAllInProgressData();
+        getDashServiceDoneData();
+        getDashServiceDamageData();
+    });
+
+
+
+
+    function getIncomingService(){
+        $.ajax({
+            type: "GET",
+            url: 'getAllPendingList',
+            context: document.body
+        }).done(function(result) {
+            $('#totalPending').html(result);
+        });
+    }
+
+    function getAllInProgressData(){
+        $.ajax({
+            type: "GET",
+            url: 'getDashServiceInProgressData',
+            context: document.body
+        }).done(function(result) {
+            $('#totalInProgress').html(result);
+        });
+    }
+
+    function getDashServiceDoneData(){
+        $.ajax({
+            type: "GET",
+            url: 'getDashServiceDoneData',
+            context: document.body
+        }).done(function(result) {
+            $('#doneNo').html(result);
+        });
+    }
+    function getDashServiceDamageData(){
+        $.ajax({
+            type: "GET",
+            url: 'getDashServiceDamageData',
+            context: document.body
+        }).done(function(result) {
+            $('#damageNo').html(result);
+        });
+    }
+
+
+
+
+</script>

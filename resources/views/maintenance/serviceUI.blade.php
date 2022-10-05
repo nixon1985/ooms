@@ -7,13 +7,13 @@
                 <a class="nav-link active show" data-toggle="tab" href="#tab1">New service</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tab2">Ongoing Process</a>
+                <a class="nav-link" data-toggle="tab" href="#tab2" onclick="loadTabData('OnProcess')">Ongoing Process</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tab3">Done</a>
+                <a class="nav-link" data-toggle="tab" href="#tab3" onclick="loadTabData('Done')">Done</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tab4">Damage</a>
+                <a class="nav-link" data-toggle="tab" href="#tab4" onclick="loadTabData('Damage')">Damage</a>
             </li>
         </ul><!-- /.nav-tabs -->
     </div><!-- /.card-header -->
@@ -431,6 +431,7 @@
         getServiceDoneData();
         getServiceDamageData();
     });
+    var tabID='';
     var incomingRequestList = '';
     var serviceInProgressList = '';
     var gServiceableItemIndex='';
@@ -441,6 +442,22 @@
     var temp_changesProblemList=[];
     var temp_selectedSolutionList=[];
     var temp_changesSolutionList=[];
+
+    function loadTabData(pTabID){
+        tabID = pTabID;
+
+        switch(tabID){
+            case 'OnProcess':
+                getServiceProcessData();
+                break;
+            case 'Done':
+                getServiceDoneData();
+                break;
+            case 'Damage':
+                getServiceDamageData();
+                break;
+        }
+    }
 
 
     function getIncomingService(){
@@ -470,6 +487,7 @@
         });
     }
 
+
     function getServiceDoneData(){
         $.ajax({
             type: "GET",
@@ -479,6 +497,7 @@
             generateServiceDoneGrid(result);
         });
     }
+
 
     function getServiceDamageData(){
         $.ajax({
@@ -653,7 +672,7 @@
                                         '</div>'+
                                     '</div>'+
                                     '<div class="publisher keep-focus focus">'+
-                                        '<button type="button" class="btn btn-danger" data-toggle="repairStatusPanel" onclick="updateServiceStatus('+i+',1)">Done</button>'+
+                                        '<button type="button" class="btn btn-success" data-toggle="repairStatusPanel" onclick="updateServiceStatus('+i+',1)">Done</button>'+
                                         '<button type="button" class="btn btn-danger" data-toggle="repairStatusPanel" onclick="updateServiceStatus('+i+',2)">Damage</button>'+
                                     '</div>'+
                                 '</div>'+
@@ -1108,7 +1127,7 @@
 
 
     function updateDetiveredStatus(tokenId,assetRegId,assetCondition){
-        alert(tokenId+'-'+assetRegId+'-'+assetCondition);
+        // alert(tokenId+'-'+assetRegId+'-'+assetCondition);
         if(tokenId){
             $.ajax({
                 type: "POST",
@@ -1116,7 +1135,7 @@
                 data:{_token:'{{csrf_token()}}',tokenId:tokenId,asset_reg_id:assetRegId,asset_condition:assetCondition},
                 context: document.body
             }).done(function(result) {
-                alert(result);
+                loadTabData(tabID);
             });
         }
     }

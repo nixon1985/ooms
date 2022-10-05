@@ -216,6 +216,12 @@ Route::get('/getOutletWiseBrandingArea',[BrandingMaterialController::class,'getO
 
 // Common Rout
 Route::get('/getAllSection',[DashboardController::class,'getAllSection'])->name('getAllSection');
+Route::get('/getAllPendingList',[DashboardController::class,'getAllPendingList'])->name('getAllPendingList');
+Route::get('/getDashServiceInProgressData',[DashboardController::class,'getDashServiceInProgressData'])->name('getDashServiceInProgressData');
+Route::get('/getDashServiceDoneData',[DashboardController::class,'getDashServiceDoneData'])->name('getDashServiceDoneData');
+Route::get('/getDashServiceDamageData',[DashboardController::class,'getDashServiceDamageData'])->name('getDashServiceDamageData');
+
+
 
 
 
