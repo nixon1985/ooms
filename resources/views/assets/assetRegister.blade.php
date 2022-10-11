@@ -475,9 +475,12 @@ var gRegAssetList = '';
                     '<a href="#" class="dropdown-item" onclick="popupAssetRepair()"><i class="fas fa-rocket"></i> Transfer</a>' +
                     '</div>' +
                     '</div>';
-            }else{
+            }else if(data.asset_condition==2){
+                disableStyle="style='color: blue'";
+                assetStatus = '<span class="badge badge-lg badge-warning"><span class="oi oi-media-record pulse mr-1"></span>Repair</span>';
+            }else if(data.asset_condition==3){
                 disableStyle="style='color: red'";
-                assetStatus = '<span class="badge badge-lg badge-danger"><span class="oi oi-media-record pulse mr-1"></span>Problem</span>';
+                assetStatus = '<span class="badge badge-lg badge-danger"><span class="oi oi-media-record mr-1"></span>Damage</span>';
             }
 
             html += "<tr "+disableStyle+">";

@@ -7,10 +7,13 @@
                 <a class="nav-link active show" data-toggle="tab" href="#tab1">New service</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tab2">Ongoing Process</a>
+                <a class="nav-link" data-toggle="tab" href="#tab2" onclick="loadTabData('OnProcess')">Ongoing Process</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tab3">Unserviceable</a>
+                <a class="nav-link" data-toggle="tab" href="#tab3" onclick="loadTabData('Done')">Done</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab4" onclick="loadTabData('Damage')">Damage</a>
             </li>
         </ul><!-- /.nav-tabs -->
     </div><!-- /.card-header -->
@@ -62,6 +65,7 @@
                         <thead>
                         <tr>
                             <th colspan="2">Token No</th>
+                            <th>Asset ID</th>
                             <th style="min-width: 240px">
                                 Serviceable Item
                             </th>
@@ -77,6 +81,65 @@
                 </div><!-- /.table-responsive -->
             </div><!-- /.card-body -->
         </div>
+
+
+
+        <!-- Tab3-->
+        <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <!-- .table -->
+                    <table class="table">
+                        <!-- thead -->
+                        <thead>
+                            <tr>
+                                <th>Token No</th>
+                                <th>Asset ID</th>
+                                <th style="min-width: 240px">
+                                    Serviceable Item
+                                </th>
+                                <th> Outlet </th>
+                                <th> Request date </th>
+                                <th style="width:100px; min-width:100px;"> &nbsp; </th>
+                            </tr>
+                        </thead><!-- /thead -->
+                        <!-- tbody -->
+                        <tbody id="serviceDoneGrid">
+                        </tbody><!-- /tbody -->
+                    </table><!-- /.table -->
+                </div><!-- /.table-responsive -->
+            </div><!-- /.card-body -->
+        </div>
+
+
+        <!-- Tab4-->
+        <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <!-- .table -->
+                    <table class="table">
+                        <!-- thead -->
+                        <thead>
+                        <tr>
+                            <th colspan="2">Token No</th>
+                            <th style="min-width: 240px">
+                                Serviceable Item
+                            </th>
+                            <th> Outlet </th>
+                            <th> Request date </th>
+                            <th style="width:100px; min-width:100px;"> &nbsp; </th>
+                        </tr>
+                        </thead><!-- /thead -->
+                        <!-- tbody -->
+                        <tbody id="serviceDamageGrid">
+                        </tbody><!-- /tbody -->
+                    </table><!-- /.table -->
+                </div><!-- /.table-responsive -->
+            </div><!-- /.card-body -->
+        </div>
+
+
+
     </div>
     <!-- /Tab Content -->
 
@@ -272,6 +335,84 @@
 
 
 
+<div class="modal fade" id="usedPartsPanelPopUp" tabindex="-1" role="dialog" aria-labelledby="solutionPanelPopUpLabel" aria-hidden="true">
+    <!-- .modal-dialog -->
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <!-- .modal-content -->
+        <div class="modal-content">
+            <!-- .modal-header -->
+            <div class="modal-header">
+                <h6 id="repairPopUpLabel" class="modal-title"> Used Parts </h6>
+            </div><!-- /.modal-header -->
+            <!-- .modal-body -->
+            <div class="modal-body px-0">
+
+                <!-- .card -->
+                <div class="card">
+                    <!-- .card-body -->
+                    <div class="card-body">
+                        <form class="needs-validation" novalidate="">
+                            <!-- .form-row -->
+                            <div class="form-row">
+
+                                <div class="col-md-12 mb-3" id="massageDiv-forParts"></div>
+
+                                <div class="col-md-12 mb-3">
+                                    <!-- .form-group -->
+                                    <div class="form-group">
+                                        <label for="partsList">Parts<abbr title="Required">*</abbr></label>
+                                        <select class="custom-select d-block w-100" id="partsList" required="">
+                                            <option value=""> Choose... </option>
+                                        </select>
+                                    </div><!-- /.form-group -->
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <!-- .form-group -->
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="parts_qty" placeholder="Parts Qty" value="" required="">
+                                    </div><!-- /.form-group -->
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <!-- .form-group -->
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" type="button" onclick="addPartsIntoDevice()">Save</button>
+                                    </div><!-- /.form-group -->
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <div class="list-group list-group-flush" id="take_solution_list"></div>
+                                    <table class="table table-sm mb-0 table-striped">
+                                        <!-- thead -->
+                                        <thead class="thead-">
+                                        <tr>
+                                            <th style="min-width:200px"> Used parts </th>
+                                            <th> Unit </th>
+                                            <th> Qty </th>
+                                        </tr>
+                                        </thead><!-- /thead -->
+                                        <!-- tbody -->
+                                        <tbody id="usedPartsList">
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div><!-- /.form-row -->
+                        </form><!-- /form .needs-validation -->
+                    </div><!-- /.card-body -->
+                </div><!-- /.card -->
+            </div><!-- /.modal-body -->
+
+            <!-- .modal-footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+            </div><!-- /.modal-footer -->
+        </div>
+    </div>
+</div>
+
+
+
+
 <style>
     .seenStatus {
         font-weight: bold;
@@ -287,7 +428,10 @@
     $(document).ready(function(){
         getIncomingService();
         getServiceProcessData();
+        getServiceDoneData();
+        getServiceDamageData();
     });
+    var tabID='';
     var incomingRequestList = '';
     var serviceInProgressList = '';
     var gServiceableItemIndex='';
@@ -298,6 +442,22 @@
     var temp_changesProblemList=[];
     var temp_selectedSolutionList=[];
     var temp_changesSolutionList=[];
+
+    function loadTabData(pTabID){
+        tabID = pTabID;
+
+        switch(tabID){
+            case 'OnProcess':
+                getServiceProcessData();
+                break;
+            case 'Done':
+                getServiceDoneData();
+                break;
+            case 'Damage':
+                getServiceDamageData();
+                break;
+        }
+    }
 
 
     function getIncomingService(){
@@ -324,6 +484,28 @@
             // alert(result);
             serviceInProgressList = result
             generateServiceProcessGrid(result);
+        });
+    }
+
+
+    function getServiceDoneData(){
+        $.ajax({
+            type: "GET",
+            url: 'getServiceDoneData',
+            context: document.body
+        }).done(function(result) {
+            generateServiceDoneGrid(result);
+        });
+    }
+
+
+    function getServiceDamageData(){
+        $.ajax({
+            type: "GET",
+            url: 'getServiceDamageData',
+            context: document.body
+        }).done(function(result) {
+            generateServiceDamageGrid(result);
         });
     }
 
@@ -436,83 +618,67 @@
         $.each(dataSet, function(i,data) {
             // var text = data.view_status;
             // var subStrs = text.substring(0,1);asset_name
-            //view Status control - Assign Css class
+            // view Status control - Assign Css class
             if(data.view_status==0){
                 vStatus = 'seenStatus';// CSS class
             }else{
                 vStatus = '';
             }
             html='<tr>'+
-                '<td class="align-middle px-0" style="width: 1.5rem">'+
-                '<button type="button" class="btn btn-sm btn-icon btn-light" onclick="updateSeenStatus('+data.request_id+','+data.view_status+');" data-toggle="collapse" data-target="#p_details-'+data.request_id+'"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>'+
-                '</td>'+
-                '<td class="align-middle px-0">'+data.token_id+'</td>'+
-                '<td class="align-middle">'+
-                '<h4 class="list-group-item-title text-truncate '+vStatus+'" id="p_asset_name'+data.request_id+'" data-target="#sdetails-'+data.request_id+'">'+
-                '<a href="#">'+data.asset_name+'</a>'+
-                '</h4>'+
-                '</td>'+
-                '<td class="align-middle"> '+ data.outlet_name +'</td>'+
-                '<td class="align-middle"> '+ data.added_on +'</td>'+
-                '<td class="align-middle text-right">'+
-                '<a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>'+
-                '</td>'+
+                    '<td class="align-middle px-0" style="width: 1.5rem">'+
+                        '<button type="button" class="btn btn-sm btn-icon btn-light" onclick="updateSeenStatus('+data.request_id+','+data.view_status+');" data-toggle="collapse" data-target="#p_details-'+data.request_id+'"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>'+
+                    '</td>'+
+                    '<td class="align-middle px-0">'+data.asset_reg_id+'</td>'+
+                    '<td class="align-middle px-0">'+data.token_id+'</td>'+
+                    '<td class="align-middle">'+
+                        '<h4 class="list-group-item-title text-truncate '+vStatus+'" id="p_asset_name'+data.request_id+'" data-target="#sdetails-'+data.request_id+'">'+
+                            '<a href="#">'+data.asset_name+'</a>'+
+                        '</h4>'+
+                    '</td>'+
+                    '<td class="align-middle"> '+ data.outlet_name +'</td>'+
+                    '<td class="align-middle"> '+ data.added_on +'</td>'+
+                    '<td class="align-middle text-right">'+
+                        '<a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> <a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>'+
+                    '</td>'+
                 '</tr>'+
                 '<tr class="row-details bg-light collapse" id="p_details-'+data.request_id+'">'+
-                '<td colspan="6">'+
-                '<div class="row">'+
-                <!-- .col -->
-                '<div class="col-md-auto text-center">'+
-                '<div class="user-avatar user-avatar-xl"><img src="asset_image/'+data.photo_path+'" alt=""></div>'+
-                '<h3 class="card-title mb-4"> 3948844 </h3>'+
-                '</div>'+
-                '<div class="col-md-7">'+
-                '<table class="table table-bordered">'+
-                '<tr>'+
-                '<td> Model </td>'+
-                '<td>'+data.model_no+'</td>'+
-                '</tr>'+
-                '<tr>'+
-                '<td> Brand </td>'+
-                '<td>'+data.brand_name+'</td>'+
-                '</tr>'+
-                '<tr>'+
-                '<td> Supplier </td>'+
-                '<td> ACI Electronic </td>'+
-                '</tr>'+
-                '<tr>'+
-                '<td> Purchase Date </td>'+
-                '<td> '+data.purchase_date+' </td>'+
-                '</tr>'+
-                '<tr>'+
-                '<td> Warranty </td>'+
-                '<td> '+data.warranty_end_date+' </td>'+
-                '</tr>'+
-                '<tr>'+
-                '<td> Serviceable period </td>'+
-                '<td> 3 Month </td>'+
-                '</tr>'+
-                '<tr>'+
-                '<td> Last Service Date </td>'+
-                '<td> 2020-01-01 </td>'+
-                '</tr>'+
-
-                '</table>'+
-                '</div>'+
-                '<div class="col">'+
-                '<div class="publisher keep-focus focus">'+
-                '<label for="hgh'+data.request_id+'" class="publisher-label"><b>User Comment: </b>'+data.user_comment+'</label>'+
-                '</div>'+
-                '<div class="publisher-actions align-items-center">'+
-                '<div class="el-example">'+
-                '<button type="button" class="btn btn-danger" data-toggle="repairStatusPanel" onclick="problemIdentifyPopUpForm('+i+')">Identified Problem </button>'+
-                '<button type="button" class="btn btn-success" data-toggle="solutionPanel" onclick="solutionPanelPopUp('+i+')">Solution </button>'+
-                '</div>'+
-                '</div>'+
-                '</div>'+
-                '</div>'+
-                '</div>'+
-                '</td>'+
+                    '<td colspan="6">'+
+                        '<div class="row">'+
+                            <!-- .col -->
+                            '<div class="col-md-auto text-center">'+
+                                '<div class="user-avatar user-avatar-xl"><img src="asset_image/'+data.photo_path+'" alt=""></div>'+
+                                    '<h3 class="card-title mb-4"> 3948844 </h3>'+
+                                '</div>'+
+                                '<div class="col-md-7">'+
+                                    '<table class="table table-sm mb-0 table-striped">'+
+                                        '<tr><td> Model </td><td>'+data.model_no+'</td></tr>'+
+                                        '<tr><td> Brand </td><td>'+data.brand_name+'</td></tr>'+
+                                        '<tr><td> Supplier </td><td> ACI Electronic </td></tr>'+
+                                        '<tr><td> Purchase Date </td><td> '+data.purchase_date+' </td></tr>'+
+                                        '<tr><td> Warranty </td><td> '+data.warranty_end_date+' </td></tr>'+
+                                        '<tr><td> Serviceable period </td><td> 3 Month </td></tr>'+
+                                        '<tr><td> Last Service Date </td><td> 2020-01-01 </td></tr>'+
+                                    '</table>'+
+                                '</div>'+
+                                '<div class="col">'+
+                                    '<div class="publisher keep-focus focus">'+
+                                        '<label for="hgh'+data.request_id+'" class="publisher-label"><b>User Comment: </b>'+data.user_comment+'</label>'+
+                                    '</div>'+
+                                    '<div class="publisher-actions align-items-center">'+
+                                        '<div class="el-example">'+
+                                            '<button type="button" class="btn btn-danger" data-toggle="repairStatusPanel" onclick="problemIdentifyPopUpForm('+i+')">Identified Problem </button>'+
+                                            '<button type="button" class="btn btn-success" data-toggle="solutionPanel" onclick="solutionPanelPopUp('+i+')">Solution </button>'+
+                                            '<button type="button" class="btn btn-success" data-toggle="solutionPanel" onclick="usedPartsPanelPopUp('+i+')">Parts</button>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="publisher keep-focus focus">'+
+                                        '<button type="button" class="btn btn-success" data-toggle="repairStatusPanel" onclick="updateServiceStatus('+i+',1)">Done</button>'+
+                                        '<button type="button" class="btn btn-danger" data-toggle="repairStatusPanel" onclick="updateServiceStatus('+i+',2)">Damage</button>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</td>'+
                 '</tr>';
 
             $('#serviceProcessGrid').append(html);
@@ -802,6 +968,177 @@
         return difference;
     }
 
+
+
+    /* =========================== */
+    // Parts Panel
+    /*****************************/
+
+    function usedPartsPanelPopUp(index){
+
+        $("#massageDiv-forParts").html('');
+
+        gSelectedTokenId = serviceInProgressList[index].token_id;
+        var assetId = serviceInProgressList[index].asset_id;
+        var html = '';
+        $.ajax({
+            type: "GET",
+            url: 'getUsedPartsList',
+            data:{
+                tokenId:gSelectedTokenId,
+                assetId:assetId
+            },
+            context: document.body
+        }).done(function(result) {
+
+            var html = '<option value="">Choose... </option>';
+            $.each(result.partsList, function(i,data) {
+                html +='<option value="'+data.parts_id+'">'+data.parts_name+'</option>';
+            });
+            $('#partsList').html(html);
+
+            if(result.usedPartsList){
+                var html2 = '';
+                $.each(result.usedPartsList, function(i,data) {
+                    html2 +='<tr><td>'+data.parts_name+'</td><td>'+data.parts_qty+'</td><td><a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a></tr>';
+                });
+                $('#usedPartsList').html(html2);
+            }
+        });
+        $("#usedPartsPanelPopUp").modal('show');
+    }
+
+
+    function addPartsIntoDevice(){
+        var partsId = $('#partsList').val();
+        var partsQty = $('#parts_qty').val();
+
+
+        $.ajax({
+            type: "POST",
+            url: 'addPartsIntoDevice',
+            data:{_token:'{{csrf_token()}}',partsId:partsId,partsQty:partsQty,token_id:gSelectedTokenId},
+            context: document.body
+        }).done(function(result) {
+
+            if(result.message==1){
+                var massageTest = '<div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">×</button><strong>Well done!</strong> You successfully saved.</div>';
+                $("#massageDiv-forParts").html(massageTest);
+            }else{
+                alert('Error .....');
+            }
+
+            if(result.dataList){
+                $('#partsList').val('');
+                $('#parts_qty').val('');
+                var html2 = '';
+                $.each(result.dataList, function(i,data) {
+                    html2 +='<tr><td>'+data.parts_name+'</td><td>'+data.parts_qty+'</td><td><a href="#" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a></tr>';
+                });
+                $('#usedPartsList').html(html2);
+            }
+        });
+
+
+    }
+
+
+    function updateServiceStatus(index,serviceStatus){
+        let tokenId = serviceInProgressList[index].token_id;
+        let assetRegId = serviceInProgressList[index].asset_reg_id;
+        if(tokenId){
+            $.ajax({
+                type: "POST",
+                url: 'updateServiceStatus',
+                data:{_token:'{{csrf_token()}}',tokenId:tokenId,serviceStatus:serviceStatus,asset_reg_id:assetRegId},
+                context: document.body
+            }).done(function(result) {
+                alert(result);
+            });
+        }
+
+    }
+
+    function generateServiceDoneGrid(dataSet){
+        var html='';
+        var vStatus = '';
+        $('#serviceDoneGrid').html('');
+        $.each(dataSet, function(i,data) {
+            if(data.view_status==0){
+                vStatus = 'seenStatus';// CSS class
+            }else{
+                vStatus = '';
+            }
+            html='<tr>'+
+                '<td class="align-middle px-0" style="width: 1.5rem">'+
+                '<button type="button" class="btn btn-sm btn-icon btn-light" onclick="updateSeenStatus('+data.request_id+','+data.view_status+');" data-toggle="collapse" data-target="#p_details-'+data.request_id+'"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>'+
+                '</td>'+
+                '<td class="align-middle px-0">'+data.token_id+'</td>'+
+                '<td class="align-middle px-0">'+data.asset_reg_id+'</td>'+
+                '<td class="align-middle">'+
+                '<h4 class="list-group-item-title text-truncate '+vStatus+'" id="p_asset_name'+data.request_id+'" data-target="#sdetails-'+data.request_id+'">'+
+                '<a href="#">'+data.asset_name+'</a>'+
+                '</h4>'+
+                '</td>'+
+                '<td class="align-middle"> '+ data.outlet_name +'</td>'+
+                '<td class="align-middle"> '+ data.added_on +'</td>'+
+                '<td class="align-middle text-right">'+
+                '<button type="button" class="btn btn-secondary btn-xs" onclick="updateDetiveredStatus('+data.token_id+','+data.asset_reg_id+','+'1)">Delivered</button>'+
+                '</td>'+
+                '</tr>';
+
+            $('#serviceDoneGrid').append(html);
+            html='';
+        });
+    }
+
+    function generateServiceDamageGrid(dataSet){
+        var html='';
+        var vStatus = '';
+        $('#serviceDamageGrid').html('');
+        $.each(dataSet, function(i,data) {
+            if(data.view_status==0){
+                vStatus = 'seenStatus';// CSS class
+            }else{
+                vStatus = '';
+            }
+            html='<tr>'+
+                '<td class="align-middle px-0" style="width: 1.5rem">'+
+                '<button type="button" class="btn btn-sm btn-icon btn-light" data-toggle="collapse" data-target="#p_details-'+data.request_id+'"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>'+
+                '</td>'+
+                '<td class="align-middle px-0">'+data.token_id+'</td>'+
+                '<td class="align-middle px-0">'+data.asset_reg_id+'</td>'+
+                '<td class="align-middle">'+
+                '<h4 class="list-group-item-title text-truncate '+vStatus+'" id="p_asset_name'+data.request_id+'" data-target="#sdetails-'+data.request_id+'">'+
+                    '<a href="#">'+data.asset_name+'</a>'+
+                '</h4>'+
+                '</td>'+
+                '<td class="align-middle"> '+ data.outlet_name +'</td>'+
+                '<td class="align-middle"> '+ data.added_on +'</td>'+
+                '<td class="align-middle text-right">'+
+                    '<button type="button" class="btn btn-secondary btn-xs" onclick="updateDetiveredStatus('+data.token_id+','+data.asset_reg_id+','+'3)">Delivered</button>'+
+                '</td>'+
+                '</tr>';
+
+            $('#serviceDamageGrid').append(html);
+            html='';
+        });
+    }
+
+
+    function updateDetiveredStatus(tokenId,assetRegId,assetCondition){
+        // alert(tokenId+'-'+assetRegId+'-'+assetCondition);
+        if(tokenId){
+            $.ajax({
+                type: "POST",
+                url: 'updateDeliveredStatus',
+                data:{_token:'{{csrf_token()}}',tokenId:tokenId,asset_reg_id:assetRegId,asset_condition:assetCondition},
+                context: document.body
+            }).done(function(result) {
+                loadTabData(tabID);
+            });
+        }
+    }
 
 
 

@@ -179,7 +179,7 @@ class MaintenanceController extends Controller
 
     function getServiceInProgressData(){
         $dataList = DB::table('service_maintenance AS sp')
-            ->selectRaw('sp.token_id,sp.request_id,s.view_status, s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_id, a.asset_name, o.outlet_name, s.added_on, a.model_no, a.brand_name')
+            ->selectRaw('sp.token_id, sp.request_id, ar.asset_reg_id, s.view_status, s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_id, a.asset_name, o.outlet_name, s.added_on, a.model_no, a.brand_name')
             ->join('service_request AS s','s.request_id','=','sp.request_id')
             ->join('assets_register AS ar', 'ar.asset_reg_id', '=', 's.asset_reg_id')
             ->join('asset_list AS a', 'a.asset_id', '=', 'ar.asset_id')
@@ -307,4 +307,117 @@ class MaintenanceController extends Controller
         $deleted = DB::table('service_problem_solution')->where('action_id', 'IN', $id->parts_id)->delete();
         return $deleted;
     }
+
+    public function getUsedPartsList(){
+        $tokenId = $_GET['tokenId'];
+        $assetId = $_GET['assetId'];
+        // echo $tokenId;die();
+        // $assetId = 11;//$request->assetId;
+        // $data = [];
+        $dataList = DB::table('asset_list AS a')
+            ->selectRaw('p.parts_id, p.parts_name')
+            ->join('asset_parts AS p', 'p.group_id', '=', 'a.sub_group_id')
+            ->where('a.asset_id','=',$assetId)
+            ->orderBy('p.parts_id')
+            ->get();
+
+
+        $dataList2 = DB::table('service_parts_used AS p')
+            ->selectRaw('p.id, p.parts_id, ap.parts_name, p.parts_qty')
+            ->join('asset_parts AS ap', 'ap.parts_id', '=', 'p.parts_id')
+            ->where('p.token_id','=',$tokenId)
+            ->orderBy('p.id')
+            ->get();
+
+        $data['partsList']=$dataList;
+        $data['usedPartsList']=$dataList2;
+        return response()->json($data);
+    }
+
+
+    function addPartsIntoDevice(Request $request){
+
+        $partsList=array(
+            'parts_id' => $request->partsId,
+            'parts_qty'=> $request->partsQty,
+            'token_id' => $request->token_id
+        );
+
+        // print_r($array);
+        if(DB::table('service_parts_used')->insert($partsList)){
+            $returnData['message']=1;
+            $returnData['dataList']=$this->getUsedPartsList2($request->token_id);
+        }else{
+            $returnData['message']=0;
+        }
+        return response()->json($returnData);
+    }
+
+    public function getUsedPartsList2($tokenId){
+        $dataList2 = DB::table('service_parts_used AS p')
+            ->selectRaw('p.id, p.parts_id, ap.parts_name, p.parts_qty')
+            ->join('asset_parts AS ap', 'ap.parts_id', '=', 'p.parts_id')
+            ->where('p.token_id','=',$tokenId)
+            ->orderBy('p.id')
+            ->get();
+
+        return $dataList2;
+    }
+
+    function updateServiceStatus(Request $request){
+        $seenUpdate = DB::table('service_maintenance')
+            ->where('token_id',  $request->tokenId)
+            ->limit(1)
+            ->update(array('service_status' =>$request->serviceStatus));
+
+        // $request->assetRegId
+        return response()->json($seenUpdate);
+    }
+
+    function updateDeliveredStatus(Request $request){
+
+        $seenUpdate = DB::table('service_maintenance')
+            ->where('token_id',  $request->tokenId)
+            ->limit(1)
+            ->update(array('delivered_status' =>1));
+
+        DB::table('assets_register')
+            ->where('asset_reg_id',  $request->asset_reg_id)
+            ->limit(1)
+            ->update(array('asset_condition' =>$request->asset_condition));
+
+        return response()->json($seenUpdate);
+    }
+
+    function getServiceDoneData(){
+        $dataList = DB::table('service_maintenance AS sp')
+            ->selectRaw('sp.token_id, sp.request_id, ar.asset_reg_id, s.view_status, s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_id, a.asset_name, o.outlet_name, s.added_on, a.model_no, a.brand_name')
+            ->join('service_request AS s','s.request_id','=','sp.request_id')
+            ->join('assets_register AS ar', 'ar.asset_reg_id', '=', 's.asset_reg_id')
+            ->join('asset_list AS a', 'a.asset_id', '=', 'ar.asset_id')
+            ->leftJoin('outlet_info AS o', 'o.outlet_id','=','ar.outlet_id')
+            ->where('sp.service_status','=','1')
+            ->where('sp.delivered_status','=','0')
+            ->orderByDesc('sp.added_on')
+            ->get();
+        return response()->json($dataList);
+        // $results = DB::select('select * from users where id = ?', [1]);
+    }
+
+
+    function getServiceDamageData(){
+        $dataList = DB::table('service_maintenance AS sp')
+            ->selectRaw('sp.token_id, sp.request_id, ar.asset_reg_id, s.view_status, s.user_comment,ar.purchase_date,ar.warranty_end_date, ar.photo_path, a.asset_id, a.asset_name, o.outlet_name, s.added_on, a.model_no, a.brand_name')
+            ->join('service_request AS s','s.request_id','=','sp.request_id')
+            ->join('assets_register AS ar', 'ar.asset_reg_id', '=', 's.asset_reg_id')
+            ->join('asset_list AS a', 'a.asset_id', '=', 'ar.asset_id')
+            ->leftJoin('outlet_info AS o', 'o.outlet_id','=','ar.outlet_id')
+            ->where('sp.service_status','=','2')
+            ->where('sp.delivered_status','=','0')
+            ->orderByDesc('sp.added_on')
+            ->get();
+        return response()->json($dataList);
+        // $results = DB::select('select * from users where id = ?', [1]);
+    }
+
 }
