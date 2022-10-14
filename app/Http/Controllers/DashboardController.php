@@ -79,5 +79,12 @@ class DashboardController extends Controller
         return response()->json($dataList);
     }
 
+    function getAllBusinessUnit(){
+        $dataList = DB::table('business_unit as b')
+            ->selectRaw('b.business_id as id, b.business_name as text')
+            ->get();
+        return response()->json($dataList);
+    }
+
 
 }

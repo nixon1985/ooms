@@ -1223,6 +1223,21 @@
 
                           <div class="col-md-6">
                               <div class="form-group">
+                                  <label for="outletShortCode">Short Code</label>
+                                  <input type="text" id="outletShortCode" name="outletShortCode" class="form-control">
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="businessUnit">Business Unit</label>
+                                  <select id="businessUnit" name="businessUnit" class="custom-select d-block w-100">
+                                      <option value=""> Choose... </option>
+                                  </select>
+                              </div>
+                          </div>
+
+                          <div class="col-md-6">
+                              <div class="form-group">
                                   <label for="outletType">Outlet Type</label>
                                   <select id="outletType" name="outletType" class="custom-select d-block w-100">
                                       <option value=""> Choose... </option>
@@ -1441,139 +1456,158 @@
                           <h6 id="outletAgreementFormLabel" class="modal-title"> Outlet Agreement </h6>
                       </div><!-- /.modal-header -->
                       <!-- .modal-body -->
-                      <div class="modal-body px-0">
+
+                          <div class="modal-body px-0">
+
+
+                              <form id="outlet_Agreement_Form" method="post" enctype="multipart/form-data">
+                              @csrf
+                              <!-- .card -->
+                              <div class="card">
+                                  <!-- .card-body -->
+                                  <div class="card-body">
+                                      <form class="needs-validation" novalidate="">
+                                          <!-- .form-row -->
+                                          <div class="form-row">
+                                              <!-- form grid -->
+                                              <div class="col-md-12 mb-3">
+                                                  <label for="landOwnerName">Land owner Name <abbr title="Required">*</abbr></label>
+                                                  <input type="text" class="form-control" id="landOwnerName" placeholder="Land owner" aria-describedby="inputGroupPrepend" required="">
+                                                  <div id="inputGroupPrepend" class="invalid-tooltip"> Please enter the land owner name. </div>
+                                              </div>
+                                              <!-- /form grid -->
+
+                                              <!-- form grid -->
+                                              <div class="col-md-6 mb-3">
+                                                  <label for="outletSize">Outlet Size <abbr title="Required">*</abbr></label>
+                                                  <input type="text" class="form-control" id="outletSize" required="">
+                                                  <div class="invalid-feedback"> Outlet Size. </div>
+                                              </div><!-- /form grid -->
+
+                                              <!-- form grid -->
+                                              <div class="col-md-6 mb-3">
+
+                                                  <label class="control-label" for="flatpickr-wrap">Date of Agreement</label>
+                                                  <div class="input-group input-group-alt flatpickr" id="flatpickr93"  data-toggle="flatpickr" data-wrap="true" data-alt-input="true" data-alt-format="F j, Y" data-alt-input-class="form-control" data-date-format="Y-m-d" value="2019-11-04" placeholder="DD/MM/YYYY">
+                                                      <input id="flatpickr-wrap" type="text" class="form-control" data-input="">
+                                                      <div class="input-group-append">
+                                                          <button type="button" class="btn btn-secondary" data-toggle=""><i class="far fa-calendar"></i></button> <button type="button" class="btn btn-secondary" data-clear=""><i class="fa fa-times"></i></button>
+                                                      </div>
+                                                  </div>
+
+                                              </div><!-- /form grid -->
 
 
 
 
 
+                                              <!-- form grid -->
+                                              <div class="col-md-6 mb-3">
+                                                  <label class="control-label" for="flatpickr-wrap">Agreement Start Date</label>
+                                                  <div class="input-group input-group-alt flatpickr" id="flatpickr944" data-toggle="flatpickr" data-wrap="true" data-alt-input="true" data-alt-format="F j, Y" data-alt-input-class="form-control" data-date-format="Y-m-d" value="2019-11-04" placeholder="DD/MM/YYYY">
+                                                      <input id="flatpickr-wrap" type="text" class="form-control" data-input="">
+                                                      <div class="input-group-append">
+                                                          <button type="button" class="btn btn-secondary" data-toggle=""><i class="far fa-calendar"></i></button> <button type="button" class="btn btn-secondary" data-clear=""><i class="fa fa-times"></i></button>
+                                                      </div>
+                                                  </div>
 
-                          <!-- .card -->
-                          <div class="card">
-                              <!-- .card-body -->
-                              <div class="card-body">
-                                  <form class="needs-validation" novalidate="">
-                                      <!-- .form-row -->
-                                      <div class="form-row">
-                                          <!-- form grid -->
-                                          <div class="col-md-12 mb-3">
-                                              <label for="landOwnerName">Land owner Name <abbr title="Required">*</abbr></label>
-                                              <input type="text" class="form-control" id="landOwnerName" placeholder="Land owner" aria-describedby="inputGroupPrepend" required="">
-                                              <div id="inputGroupPrepend" class="invalid-tooltip"> Please enter the land owner name. </div>
+                                              </div><!-- /form grid -->
+
+                                              <!-- form grid -->
+                                              <div class="col-md-6 mb-3">
+
+                                                  <label class="control-label" for="flatpickr-wrap">Agreement End Date</label>
+                                                  <div class="input-group input-group-alt flatpickr" id="flatpickr9445" data-toggle="flatpickr" data-wrap="true" data-alt-input="true" data-alt-format="F j, Y" data-alt-input-class="form-control" data-date-format="Y-m-d" value="2019-11-04" placeholder="DD/MM/YYYY">
+                                                      <input id="flatpickr-wrap" type="text" class="form-control" data-input="">
+                                                      <div class="input-group-append">
+                                                          <button type="button" class="btn btn-secondary" data-toggle=""><i class="far fa-calendar"></i></button> <button type="button" class="btn btn-secondary" data-clear=""><i class="fa fa-times"></i></button>
+                                                      </div>
+                                                  </div>
+
+                                              </div><!-- /form grid -->
+
+
+
+
+
+                                              <!-- form grid -->
+                                              <div class="col-md-6 mb-3">
+
+                                                  <label for="validationTooltipZip">Advance Payment [In Taka]<abbr title="Required">*</abbr></label>
+                                                  <input type="text" class="form-control" id="advancePayment" required="">
+                                                  <div class="invalid-feedback"> Advance Payment required. </div>
+
+                                              </div><!-- /form grid -->
+
+                                              <!-- form grid -->
+                                              <div class="col-md-6 mb-3">
+                                                  <label for="validationTooltipZip">Starting Rent Amount [In Taka]<abbr title="Required">*</abbr></label>
+                                                  <input type="text" class="form-control" id="rentAmount" required="">
+                                                  <div class="invalid-feedback"> Starting Rent Amount required. </div>
+                                              </div><!-- /form grid -->
+
+                                              <!-- form grid -->
+
                                           </div>
-                                          <!-- /form grid -->
 
-                                          <!-- form grid -->
-                                          <div class="col-md-6 mb-3">
-                                              <label for="outletSize">Outlet Size <abbr title="Required">*</abbr></label>
-                                              <input type="text" class="form-control" id="outletSize" required="">
-                                              <div class="invalid-feedback"> Outlet Size. </div>
-                                          </div><!-- /form grid -->
-
-                                          <!-- form grid -->
-                                          <div class="col-md-6 mb-3">
-
-                                              <label class="control-label" for="flatpickr-wrap">Date of Agreement</label>
-                                              <div class="input-group input-group-alt flatpickr" id="flatpickr9" data-toggle="flatpickr" data-wrap="true" data-alt-input="true" data-alt-format="F j, Y" data-alt-input-class="form-control" data-date-format="Y-m-d" value="2019-11-04" placeholder="DD/MM/YYYY">
-                                                  <input id="flatpickr-wrap" type="text" class="form-control" data-input="">
-                                                  <div class="input-group-append">
-                                                      <button type="button" class="btn btn-secondary" data-toggle=""><i class="far fa-calendar"></i></button> <button type="button" class="btn btn-secondary" data-clear=""><i class="fa fa-times"></i></button>
-                                                  </div>
-                                              </div>
-
-                                          </div><!-- /form grid -->
-
-
-
-
-
-                                          <!-- form grid -->
-                                          <div class="col-md-6 mb-3">
-                                              <label class="control-label" for="flatpickr-wrap">Agreement Start Date</label>
-                                              <div class="input-group input-group-alt flatpickr" id="flatpickr9" data-toggle="flatpickr" data-wrap="true" data-alt-input="true" data-alt-format="F j, Y" data-alt-input-class="form-control" data-date-format="Y-m-d" value="2019-11-04" placeholder="DD/MM/YYYY">
-                                                  <input id="flatpickr-wrap" type="text" class="form-control" data-input="">
-                                                  <div class="input-group-append">
-                                                      <button type="button" class="btn btn-secondary" data-toggle=""><i class="far fa-calendar"></i></button> <button type="button" class="btn btn-secondary" data-clear=""><i class="fa fa-times"></i></button>
-                                                  </div>
-                                              </div>
-
-                                          </div><!-- /form grid -->
-
-                                          <!-- form grid -->
-                                          <div class="col-md-6 mb-3">
-
-                                              <label class="control-label" for="flatpickr-wrap">Agreement End Date</label>
-                                              <div class="input-group input-group-alt flatpickr" id="flatpickr9" data-toggle="flatpickr" data-wrap="true" data-alt-input="true" data-alt-format="F j, Y" data-alt-input-class="form-control" data-date-format="Y-m-d" value="2019-11-04" placeholder="DD/MM/YYYY">
-                                                  <input id="flatpickr-wrap" type="text" class="form-control" data-input="">
-                                                  <div class="input-group-append">
-                                                      <button type="button" class="btn btn-secondary" data-toggle=""><i class="far fa-calendar"></i></button> <button type="button" class="btn btn-secondary" data-clear=""><i class="fa fa-times"></i></button>
-                                                  </div>
-                                              </div>
-
-                                          </div><!-- /form grid -->
-
-
-
-
-
-                                          <!-- form grid -->
-                                          <div class="col-md-6 mb-3">
-
-                                              <label for="validationTooltipZip">Advance Payment <abbr title="Required">*</abbr></label>
-                                              <input type="text" class="form-control" id="advancePayment" required="">
-                                              <div class="invalid-feedback"> Advance Payment required. </div>
-
-                                          </div><!-- /form grid -->
-
-                                          <!-- form grid -->
-                                          <div class="col-md-6 mb-3">
-                                              <label for="validationTooltipZip">Starting Rent Amount<abbr title="Required">*</abbr></label>
-                                              <input type="text" class="form-control" id="rentAmount" required="">
-                                              <div class="invalid-feedback"> Starting Rent Amount required. </div>
-                                          </div><!-- /form grid -->
-
-
-
-                                          <!-- form grid -->
-                                          <div class="col-md-6 mb-3">
-
-                                              <label for="validationTooltipZip">Rent increase duration [in Month] <abbr title="Required">*</abbr></label>
-                                              <input type="number" class="form-control" id="advancePayment" required="">
-                                              <div class="invalid-feedback"> Number of months after rent increase </div>
-
-                                          </div><!-- /form grid -->
-
-                                          <!-- form grid -->
-                                          <div class="col-md-6 mb-3">
-                                              <label for="validationTooltipZip">Present of rent increase<abbr title="Required">*</abbr></label>
-                                              <input type="number" class="form-control" id="rentAmount" required="">
-                                              <div class="invalid-feedback"> Present of rent increase. </div>
-                                          </div><!-- /form grid -->
-
-                                      </div><!-- /.form-row -->
-
-
-                                      <!-- .form-group -->
-                                      <div class="form-group">
-                                          <div class="custom-control custom-checkbox mb-3">
-                                              <input type="checkbox" class="custom-control-input" id="validationTooltip06" required=""> <label class="custom-control-label" for="validationTooltip06">Agree to terms and conditions</label>
-                                              <div class="invalid-tooltip"> You must agree before submitting. </div>
+                                          <div class="form-row">
+                                              <div class="col-md-6 mb-3">
+                                                  <label for="validationTooltipZip">Adjustment Amount [In Taka]<abbr title="Per months add with rent from advance">*</abbr></label>
+                                                  <input type="text" class="form-control" id="rentAmount" required="">
+                                                  <div class="invalid-feedback"> Starting Rent Amount required. </div>
+                                              </div><!-- /form grid -->
                                           </div>
-                                      </div><!-- /.form-group -->
-                                      <!-- .form-actions -->
-                                      <div class="form-actions">
-                                          <button class="btn btn-primary" type="submit">Submit form</button>
-                                      </div><!-- /.form-actions -->
-                                  </form><!-- /form .needs-validation -->
-                              </div><!-- /.card-body -->
-                          </div><!-- /.card -->
 
-                      </div><!-- /.modal-body -->
+                                          <div class="form-row">
+                                              <!-- form grid -->
+                                              <div class="col-md-6 mb-3">
 
-                      <!-- .modal-footer -->
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                      </div><!-- /.modal-footer -->
+                                                  <label for="validationTooltipZip">Rent increase duration [in Month] <abbr title="Required">*</abbr></label>
+                                                  <input type="number" class="form-control" id="advancePayment" required="">
+                                                  <div class="invalid-feedback"> Number of months after rent increase </div>
+
+                                              </div><!-- /form grid -->
+
+                                              <!-- form grid -->
+                                              <div class="col-md-6 mb-3">
+                                                  <label for="validationTooltipZip">Present of rent increase<abbr title="Required">*</abbr></label>
+                                                  <input type="number" class="form-control" id="rentAmount" required="">
+                                                  <div class="invalid-feedback"> Present of rent increase. </div>
+                                              </div><!-- /form grid -->
+
+                                          </div><!-- /.form-row -->
+
+                                          <div class="form-row">
+                                              <label for="tf3">Agreement file</label>
+                                              <div class="custom-file">
+                                                  <input type="file" class="custom-file-input" accept="image/*" id="image" name="image" onchange="loadFile(event)" multiple>
+                                                  <label class="custom-file-label" for="image">Choose file</label>
+                                              </div>
+                                          </div>
+
+
+                                          <!-- .form-group -->
+                                          <div class="form-group">
+                                              <div class="custom-control custom-checkbox mb-3">
+                                                  <input type="checkbox" class="custom-control-input" id="validationTooltip06" required=""> <label class="custom-control-label" for="validationTooltip06">Agree to terms and conditions</label>
+                                                  <div class="invalid-tooltip"> You must agree before submitting. </div>
+                                              </div>
+                                          </div><!-- /.form-group -->
+                                          <!-- .form-actions -->
+                                          <div class="form-actions">
+                                              <button class="btn btn-primary" type="submit">Submit form</button>
+                                          </div><!-- /.form-actions -->
+                                      </form><!-- /form .needs-validation -->
+                                  </div><!-- /.card-body -->
+                              </div><!-- /.card -->
+                              </form>
+                          </div><!-- /.modal-body -->
+
+                          <!-- .modal-footer -->
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                          </div><!-- /.modal-footer -->
+
                   </div>
               </div>
           </div>
@@ -1583,7 +1617,7 @@
 
 
           <!-- BEGIN THEME JS -->
-          <script src="assets/javascript/theme.min.js"></script> <!-- END THEME JS -->
+          <!-- script src="assets/javascript/theme.min.js"></script --> <!-- END THEME JS -->
           <!-- BEGIN PAGE LEVEL JS -->
 
 
@@ -1591,7 +1625,13 @@
       var gOutletInfo = Array();
       var tabID='basicInfo';
       $(document).ready(function(){
+
+          $(".flatpickr").flatpickr({
+              dateFormat: 'Y-m-d',
+          });
+
           getAllOutlet();
+          getComboBox('getAllBusinessUnit','businessUnit');
       });
 
       const colorCodes = [];
@@ -1638,12 +1678,6 @@
         }
       }
 
-      // $( document ).ready(function() {
-
-      //     alert("I am here");
-      //     $('.hhh').on('click', myFunc)
-
-      // });
 
       function outletBasicInfo(){
         alert('Outlet Basic Info Loading.....');
@@ -1665,10 +1699,21 @@
           var outletAddress = $("#outletAddress").val();
           var districtId = $("#districtId").val();
           var areaId = $("#areaId").val();
+          var shortCode = $("#outletShortCode").val();
+          var businessId = $("#businessUnit").val();
           $.ajax({
               type: "POST",
               url: actionlink,
-              data:{_token:'{{csrf_token()}}',outletName:outletName,outletType:outletType,outletSize:outletSize,outletAddress:outletAddress,districtId:districtId,areaId:areaId},
+              data:{_token:'{{csrf_token()}}',
+                  outletName:outletName,
+                  outletType:outletType,
+                  outletSize:outletSize,
+                  outletAddress:outletAddress,
+                  districtId:districtId,
+                  areaId:areaId,
+                  shortCode:shortCode,
+                  businessId:businessId
+              },
               context: document.body
           }).done(function(result) {
             if(result.success){
@@ -1689,6 +1734,7 @@
           }).done(function(result) {
               gOutletInfo = result;
               var html='';
+              $('#outletList-panel').html('');
               $.each(result, function(i,data) {
                   var text = data.outlet_name;
                   var subStrs = text.substring(0,1);
@@ -1711,5 +1757,25 @@
           });
 
       }
+
+      $("form#outlet_Agreement_Form").submit(function(e) {
+          e.preventDefault();
+          var formData = new FormData(this);
+
+          $.ajax({
+              url: 'addAssetsRegister33',
+              type: 'POST',
+              data: formData,
+              success: function (data) {
+                  // alert(JSON.stringify(data.qrcode));
+                  $("#qrcode").html(data.qrcode);
+                  $("#registration_no").html(data.reg_id);
+                  getAllAsset();
+              },
+              cache: false,
+              contentType: false,
+              processData: false
+          });
+      });
     </script>
 

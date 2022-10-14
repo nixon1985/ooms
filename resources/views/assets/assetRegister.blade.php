@@ -219,7 +219,6 @@
                                                     </div><!-- /.form-group -->
                                                 </div>
                                             </div>
-
                                     </div><!-- /.card-body -->
                                 </div><!-- /.card -->
 
@@ -357,7 +356,7 @@
 
 
 
-<script src="assets/javascript/theme.min.js"></script> <!-- END THEME JS -->
+<!-- script src="assets/javascript/theme.min.js"></script --> <!-- END THEME JS -->
 
 <script>
 var gRegAssetList = '';
@@ -380,6 +379,13 @@ var gRegAssetList = '';
         getAllRegisterAsset();
         getAllAsset();
         getOutletList();
+
+        $('#asset_list').select2({ });
+        $('#outlet_id').select2({ });
+
+        $(".flatpickr").flatpickr({
+            dateFormat: 'Y-m-d',
+        });
     });
 
     function getAllAsset(){

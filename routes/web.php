@@ -220,6 +220,8 @@ Route::get('/getAllPendingList',[DashboardController::class,'getAllPendingList']
 Route::get('/getDashServiceInProgressData',[DashboardController::class,'getDashServiceInProgressData'])->name('getDashServiceInProgressData');
 Route::get('/getDashServiceDoneData',[DashboardController::class,'getDashServiceDoneData'])->name('getDashServiceDoneData');
 Route::get('/getDashServiceDamageData',[DashboardController::class,'getDashServiceDamageData'])->name('getDashServiceDamageData');
+Route::get('/getAllBusinessUnit',[DashboardController::class,'getAllBusinessUnit'])->name('getAllBusinessUnit');
+
 
 
 
