@@ -12,6 +12,7 @@ use App\Http\Controllers\assets\AssetRegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\maintenance\ServiceRequestController;
 use App\Http\Controllers\branding\BrandingMaterialController;
+use Illuminate\Support\Facades\Hash;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -28,6 +29,10 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/login', function () {
     return view('login');
+});
+
+Route::get('/pa', function () {
+    return Hash::make('Pass1234');
 });
 
 Route::get('/', function () {
@@ -76,6 +81,7 @@ Route::get('/getAllOutlet',[OutletController::class,'getAllOutlet'])->name('getA
 Route::get('/employeeInfo',[EmployeeClr::class,'employeeInfo'])->name('employeeInfo');
 
 Route::get('/getAllEmployee',[EmployeeClr::class,'getAllEmployee'])->name('getAllEmployee');
+Route::get('/getAllEmployeeByOutlet/{id}',[EmployeeClr::class,'getAllEmployeeByOutlet'])->name('getAllEmployeeByOutlet');
 Route::get('/getAllDesignation',[EmployeeClr::class,'getAllDesignation'])->name('getAllDesignation');
 
 
@@ -233,3 +239,5 @@ Route::get('/getAllBusinessUnit',[DashboardController::class,'getAllBusinessUnit
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+

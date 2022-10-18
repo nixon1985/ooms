@@ -8,10 +8,10 @@
             <div class="page-inner page-inner-fill position-relative">
                 <header class="page-navs bg-light shadow-sm">
                     <div class="input-group has-clearable">
-{{--                        <select class="custom-select" id="selDefault">--}}
-{{--                            <option> Small select </option>--}}
-{{--                        </select>--}}
-                        <select id="select2-single" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true"></select>
+                        <select class="custom-select d-block w-100" name="outlet_list_search" id="outlet_list_search" required="">
+                            <option value=""> Choose... </option>
+                        </select>
+                        {{-- <select id="select2-single" class="form-control" data-toggle="select2" data-placeholder="Select a state" data-allow-clear="true"></select> --}}
                     </div>
                 </header>
 
@@ -45,7 +45,7 @@
 
                   <?php /*
                   <!-- .list-group-item -->
-                  <div class="list-group-item active" data-toggle="sidebar" data-sidebar="show" onclick="outletInfo('Mr. Jamal Hossen','profile.jpg')">
+                  <div class="list-group-item active" data-toggle="sidebar" data-sidebar="show" onclick="employeeDetailList('Mr. Jamal Hossen','profile.jpg')">
                     <a href="#" class="stretched-link"></a> <!-- .list-group-item-figure -->
                     <div class="list-group-item-figure">
                         <a href="#" class="user-avatar user-avatar-md" data-toggle="tooltip" title="Martha Myers">
@@ -536,7 +536,7 @@
                                 });
                             });
                           </script>
-                          
+
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="make_user">Make User</label>
@@ -1160,64 +1160,133 @@
             e.preventDefault();
         });
 
+    //getAllEmployee
+    function getAllEmployee() {
+        var html = '';
+        $.ajax({
+            type: "GET",
+            url: 'getAllEmployee',
+            context: document.body
+        }).done(function(result) {
+            $('.employeeList').html("");
+            $.each(result, function(i,data) {
+                // <!-- .list-group-item -->
+                html += "<div class='list-group-item active' data-toggle='sidebar' data-sidebar='show' onclick='employeeDetailList("+data.emp_id+")'>";
+                html += "<a href='#' class='stretched-link'></a>";
+                html += "<div class='list-group-item-figure'>";
+                html += "<a href='#' class='user-avatar user-avatar-md' data-toggle='tooltip' title="+data.emp_name+">";
+                // html += "<img src='http://ooms.test/storage/employee/"+data.photo_path+"' alt=''>";
+                html += "<img src='{{ asset('storage/employee')}}/"+data.photo_path+"' alt=''>";
+                html += "</a>";
+                html += "</div>";
+
+                html += "<div class='list-group-item-body'>";
+                html += "<h4 class='list-group-item-title'>"+data.emp_name+"</h4>";
+                html += "<p class='list-group-item-text'>"+data.designation_name+"</p>";
+                html += "</div>";
+                html += "</div>";
+            });
+            $('.employeeList').append(html);
+        });
+    }
+
+
+    $('#outlet_list_search').on('change', function() {
+        // alert( this.value );
+        EmployeeByOutlet(this.value)
+    });
+
+    // get Employee by outlet
+    function   EmployeeByOutlet(outlet_id)
+    {
+        // alert(outlet_id);
+        var html = '';
+        $.ajax({
+            type: "GET",
+            url: 'getAllEmployeeByOutlet/'+ outlet_id,
+            context: document.body
+        }).done(function(result) {
+            $('.employeeList').html("");
+            $.each(result, function(i,data) {
+                // <!-- .list-group-item -->
+                html += "<div class='list-group-item active' data-toggle='sidebar' data-sidebar='show' onclick='employeeDetailList("+data.emp_id+")'>";
+                html += "<a href='#' class='stretched-link'></a>";
+                html += "<div class='list-group-item-figure'>";
+                html += "<a href='#' class='user-avatar user-avatar-md' data-toggle='tooltip' title="+data.emp_name+">";
+                // html += "<img src='http://ooms.test/storage/employee/"+data.photo_path+"' alt=''>";
+                html += "<img src='{{ asset('storage/employee')}}/"+data.photo_path+"' alt=''>";
+                html += "</a>";
+                html += "</div>";
+
+                html += "<div class='list-group-item-body'>";
+                html += "<h4 class='list-group-item-title'>"+data.emp_name+"</h4>";
+                html += "<p class='list-group-item-text'>"+data.designation_name+"</p>";
+                html += "</div>";
+                html += "</div>";
+            });
+            $('.employeeList').append(html);
+        });
+    }
     // employee details
-    function outletInfo(emp_id) {
-            var employeeInfoContactVar = '';
-            sessionStorage.clear();
-            var preAddr = '';
-            var perAddr = '';
-                $.ajax({
-                type: "GET",
-                url: "employeeByID/" + emp_id,
-                // data: { sales_ref: sales_ref},
-                dataType: 'json',
-                success: function (data) {
-                    // console.log(data)
-                    if (data) {
+    function employeeDetailList(emp_id) {
+        var employeeInfoContactVar = '';
+        sessionStorage.clear();
+        var preAddr = '';
+        var perAddr = '';
+            $.ajax({
+            type: "GET",
+            url: "employeeByID/" + emp_id,
+            // data: { sales_ref: sales_ref},
+            dataType: 'json',
+            success: function (data) {
+                console.log(data)
+                if (data) {
 
-                        var photoPath = '{{ asset('storage/employee/')}}'+"/"+data.photo_path;
-                        var empHtml = '<a href="#" class="user-avatar user-avatar-md" data-toggle="tooltip" title="Martha Myers"><img src="'+photoPath+'" alt=""></a> ' + data.emp_name;
+                    var photoPath = '{{ asset('storage/employee/')}}'+"/"+data.photo_path;
+                    var empHtml = '<a href="#" class="user-avatar user-avatar-md" data-toggle="tooltip" title="Martha Myers"><img src="'+photoPath+'" alt=""></a> ' + data.emp_name;
 
-                        $("#title-outlet-name").html(empHtml);
+                    $("#title-outlet-name").html(empHtml);
 
-                        var profileTitle = '<a href="#" class="user-avatar user-avatar-xxl"><img src="'+photoPath+'" alt=""></a><h2 class="h4 mt-2 mb-0"> '+ data.emp_name +' </h2> <p class="text-muted"> '+ data.designation_name +' </p>';
-                        $("#profile-photo").html(profileTitle);
+                    var profileTitle = '<a href="#" class="user-avatar user-avatar-xxl"><img src="'+photoPath+'" alt=""></a><h2 class="h4 mt-2 mb-0"> '+ data.emp_name +' </h2> <p class="text-muted"> '+ data.designation_name +' </p>';
+                    $("#profile-photo").html(profileTitle);
 
-                        employeeInfoContactVar += "<strong>Mobile : "+data.contact_no+"</strong>";
-                        employeeInfoContactVar += "<address> Email: "+data.email_id;
-                        // employeeInfoContactVar += "<br>Mobile: "+data.contact_no+" <br> Join Date: "+data.joining_date+" </address>";
-                        employeeInfoContactVar += " <br> Join Date: "+data.joining_date+" </address>";
-                        $(".employeeInfoContact").html(employeeInfoContactVar);
+                    employeeInfoContactVar += "<strong>Mobile : "+data.contact_no+"</strong>";
+                    employeeInfoContactVar += "<address> Email: "+data.email_id;
+                    // employeeInfoContactVar += "<br>Mobile: "+data.contact_no+" <br> Join Date: "+data.joining_date+" </address>";
+                    employeeInfoContactVar += " <br> Join Date: "+data.joining_date;
+                    employeeInfoContactVar += " <br> <strong> Outlet Name: "+data.outlet_name+"</strong> </address>";
+                    $(".employeeInfoContact").html(employeeInfoContactVar);
 
-                        preAddr += data.present_address;
-                        perAddr += data.permanent_address;
+                    preAddr += data.present_address;
+                    perAddr += data.permanent_address;
 
-                        $(".preAddr").html(preAddr);
-                        $(".perAddr").html(perAddr);
-                        $(".card-title111").html('Parmanent Address');
-                        $(".card-title222").html('Parmanent Address');
+                    $(".preAddr").html(preAddr);
+                    $(".perAddr").html(perAddr);
+                    $(".card-title111").html('Parmanent Address');
+                    $(".card-title222").html('Parmanent Address');
 
-                        sessionStorage.setItem("joining_emp_id", data.emp_id);
-                        sessionStorage.setItem("edu_emp_id", data.emp_id);
-                        getJoiningList();
-                        getEduList();
-                        getAttendList();
+                    sessionStorage.setItem("joining_emp_id", data.emp_id);
+                    sessionStorage.setItem("edu_emp_id", data.emp_id);
+                    getJoiningList();
+                    getEduList();
+                    getAttendList();
 
 
-                        // console.log(sessionStorage.getItem("joining_emp_id"));
-                        // console.log(sessionStorage.getItem("edu_emp_id"));
+                    // console.log(sessionStorage.getItem("joining_emp_id"));
+                    // console.log(sessionStorage.getItem("edu_emp_id"));
 
-                    } else {
-                        // $('#customer_id').val('');
-                        // $("#territory_id").trigger("change");
-                    }
+                } else {
+                    // $('#customer_id').val('');
+                    // $("#territory_id").trigger("change");
                 }
-                });
+            }
+            });
+        // Call Tab containt loading function
+        // storeTabId(tabID);
 
-            // Call Tab containt loading function
-            // storeTabId(tabID);
+    }
 
-        }
+
     // outlet
     function getAlloutlet(){
         var html = '';
@@ -1232,12 +1301,12 @@
                 html +='<option value="'+data.outlet_id+'">'+data.outlet_name+'</option>';
             });
             $('#outlet_id').html(html);
+            $('#outlet_list_search').html(html);
             $('#joining_outlet_id').html(html);
             $('#edit_joining_outlet_id').html(html);
             // assetGroupCombo(result);
         });
     }
-
     // Designation
     function getAllDesignation(){
         var html = '';
@@ -1327,8 +1396,6 @@
             // alert(result);
         });
     }
-
-
     //  Employee Joining Form
     function saveEmpJoining(){
         var empId               = sessionStorage.getItem("joining_emp_id");
@@ -1545,7 +1612,7 @@
         });
     }
 
-    // uUdate Employee Attendent
+    // Udate Employee Attendent
     function updateEmpAtten()
     {
         var rowId           = $('#attend_row_id').val();
@@ -1665,35 +1732,7 @@
 
         });
     }
-    //getAllEmployee
-    function getAllEmployee() {
-    var html = '';
-    $.ajax({
-        type: "GET",
-        url: 'getAllEmployee',
-        context: document.body
-    }).done(function(result) {
-        $('.employeeList').html("");
-        $.each(result, function(i,data) {
-            // <!-- .list-group-item -->
-            html += "<div class='list-group-item active' data-toggle='sidebar' data-sidebar='show' onclick='outletInfo("+data.emp_id+")'>";
-            html += "<a href='#' class='stretched-link'></a>";
-            html += "<div class='list-group-item-figure'>";
-            html += "<a href='#' class='user-avatar user-avatar-md' data-toggle='tooltip' title="+data.emp_name+">";
-            // html += "<img src='http://ooms.test/storage/employee/"+data.photo_path+"' alt=''>";
-            html += "<img src='{{ asset('storage/employee')}}/"+data.photo_path+"' alt=''>";
-            html += "</a>";
-            html += "</div>";
 
-            html += "<div class='list-group-item-body'>";
-            html += "<h4 class='list-group-item-title'>"+data.emp_name+"</h4>";
-            html += "<p class='list-group-item-text'>"+data.designation_name+"</p>";
-            html += "</div>";
-            html += "</div>";
-        });
-        $('.employeeList').append(html);
-    });
-    }
 
     // getEduList
     function getEduList()

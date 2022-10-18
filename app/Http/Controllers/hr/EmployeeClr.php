@@ -36,6 +36,17 @@ class EmployeeClr extends Controller
         return response()->json($getAllEmployeeDta);
     }
 
+    // getAllEmployeeByOutlet
+    public function getAllEmployeeByOutlet($outlet) {
+        // $getAllEmployeeDta=Employee::all();
+        $getAllEmployeeData = DB::table('emp_info AS ei')
+        ->join('emp_designation AS ed', 'ed.designation_id', '=', 'ei.designation_id')
+        ->select('ei.*', 'ed.designation_name')
+        ->where('ei.outlet_id',$outlet)
+        ->get();
+        return response()->json($getAllEmployeeData);
+    }
+
     public function getAllDesignation()
     {
         // $getDesignation = DB::table("emp_designation")->get();
@@ -46,10 +57,12 @@ class EmployeeClr extends Controller
     // employeeByID
     public function employeeByID($emp_id) {
         // $dtaa = Employee::find($emp_id);
-        $dtaa = DB::table('emp_info AS ei')
+        $data = DB::table('emp_info AS ei')
+        ->select('ei.*','ed.designation_name','outlet_info.outlet_name')
         ->join('emp_designation AS ed', 'ed.designation_id', '=', 'ei.designation_id')
-        ->select('ei.*','ed.designation_name')->where('ei.emp_id', $emp_id)->first();
-        return response()->json($dtaa);
+        ->join('outlet_info','outlet_info.outlet_id','ei.outlet_id')
+        ->where('ei.emp_id', $emp_id)->first();
+        return response()->json($data);
     }
 
     // joiningByID
