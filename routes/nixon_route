@@ -1,0 +1,30 @@
+Common Route
+Route::get('/getAllBusinessUnit',[DashboardController::class,'getAllBusinessUnit'])->name('getAllBusinessUnit');
+
+-- DB SCRIPT =====================================================================
+
+ALTER TABLE `outlet_info`
+	ADD COLUMN `approved_manpower` SMALLINT NULL DEFAULT NULL AFTER `agreement_id`;
+
+
+ALTER TABLE `outlet_info`
+    	ADD COLUMN `bu_id` INT NULL DEFAULT NULL AFTER `approved_manpower`;
+
+ALTER TABLE `outlet_agreement`
+	ADD COLUMN `adj_amount` DECIMAL(14,2) NULL DEFAULT NULL COMMENT 'Monthly Adjustment Amount Deduction from Advance amount ' AFTER `current_status`;
+
+ALTER TABLE `outlet_agreement`
+	ADD COLUMN `agreement_file` VARCHAR(200) NULL DEFAULT NULL AFTER `approved_date`;
+
+ALTER TABLE `outlet_info`
+	ADD COLUMN `outlet_short_code` VARCHAR(10) NOT NULL AFTER `outlet_name`;
+
+ALTER TABLE `outlet_section`
+	ADD COLUMN `section_short_code` VARCHAR(10) NULL DEFAULT NULL AFTER `section_name`;
+
+
+ALTER TABLE `outlet_info`
+	CHANGE COLUMN `manager_id` `manager_id` BIGINT NULL DEFAULT NULL COMMENT 'fk employee id' AFTER `area_id`;
+
+ALTER TABLE `outlet_agreement`
+	ADD COLUMN `advance_amount` INT NULL DEFAULT NULL AFTER `current_status`;

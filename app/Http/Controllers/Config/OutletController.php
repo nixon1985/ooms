@@ -32,7 +32,9 @@ class OutletController extends Controller
             'outlet_size'   => $request->outletSize,
             'outlet_address' => $request->outletAddress,
             'district_id'   => $request->districtId,
-            'area_id'       => $request->areaId
+            'area_id'       => $request->areaId,
+            'outlet_short_code' => $request->shortCode,
+            'bu_id'         => $request->businessId
         );
 
         $returnData = array();
@@ -51,4 +53,42 @@ class OutletController extends Controller
         $data = OutletInfo::all();
         return response()->json($data);
     }
+
+    function saveOutletAgreement(Request $request){
+
+        $request->validate([
+            'image' => 'required|max:5048'
+        ]);
+        //$newImageName = time().'-'.$request->asset_id.'.'.$request->image->extension();
+        $newImageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('agreement_file'),$newImageName);
+
+
+        $data=array(
+            'asset_id' => $request->asset_id,
+            'land_owner_name' => $request->land_owner_name,
+            'owner_contact'=> $request->owner_contact,
+            'agreement_start_date' => $request->purchase_date,
+            'agreement_expire_date' => $request->warranty_end_date,
+            'agreement_month'=>$request->supplier_id,
+            'outlet_size'=>$request->outlet_size,
+            'rent_amount'=>$request->rent_amount,
+            'rent_increase_month'=>$request->rent_increase_month,
+            'increase_percentage'=>$request->increase_percentage,
+            'advance_amount'=>$request->advance_amount,
+            'adj_amount'=>$request->adj_amount,
+            'agreement_file'=>$newImageName
+        );
+
+
+
+
+        if(DB::table('assets_register')->insert($data)){
+            $data['reg_id'] = '38480008';
+            return response()->json($data);
+        }else{
+            return 0;
+        }
+    }
+
 }
