@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\assets;
+namespace App\Http\Controllers\reports;
 
 use App\Http\Controllers\Controller;
 use App\Models\asset\AssetRegisterModel;
@@ -13,6 +13,7 @@ class MaintenanceReportController extends Controller
 {
     function index(){
         $registerAssetList = $this->getRegisterAssetList();
+        //echo "Page Loading test.....";
         return view('reports.maintenance.newRequestList',compact('registerAssetList'));
     }
 

@@ -231,8 +231,12 @@ Route::get('/getAllBusinessUnit',[DashboardController::class,'getAllBusinessUnit
 
 
 // Reports Rout
-Route::get('/assetRegister',[MaintenanceReportController::class,'index'])->name('assetConfigUi');
+Route::get('/reportNewServiceRequest',[MaintenanceReportController::class,'index'])->name('getRegisterAssetList');
 //Route::get('/getAllBusinessUnit',[DashboardController::class,'getAllBusinessUnit'])->name('getAllBusinessUnit');
+
+Route::get('/reportNewServiceRequest1', function () {
+    return view('reports.maintenance.newRequestList');
+});
 
 
 

@@ -133,7 +133,7 @@
                       <a href="#" class="menu-link"><span class="menu-icon far fa-file"></span> <span class="menu-text">Maintenance</span></a> <!-- child menu -->
                       <ul class="menu">
                           <li class="menu-item">
-                              <a href="#" class="menu-link">Pending Request</a>
+                              <a href="#" class="menu-link" onclick="loadRemotePage('reportNewServiceRequest')">Pending Request</a>
                           </li>
                           <li class="menu-item">
                               <a href="#" class="menu-link">In Progress</a>
