@@ -123,12 +123,28 @@
                 <li class="menu-item has-child">
                   <a href="#" class="menu-link"><span class="menu-icon far fa-file"></span> <span class="menu-text">Asset Information</span></a> <!-- child menu -->
                   <ul class="menu">
-                    <li class="menu-item">
-                      <a href="component-tasks.html" class="menu-link">Tasks</a>
-                    </li>
+                    <li class="menu-item"><a href="#" class="menu-link">Asset List</a></li>
+                      <li class="menu-item"><a href="#" class="menu-link">Damage Assets</a></li>
                   </ul><!-- /child menu -->
                 </li><!-- /.menu-item -->
                 <!-- .menu-item -->
+
+                  <li class="menu-item has-child">
+                      <a href="#" class="menu-link"><span class="menu-icon far fa-file"></span> <span class="menu-text">Maintenance</span></a> <!-- child menu -->
+                      <ul class="menu">
+                          <li class="menu-item">
+                              <a href="#" class="menu-link">Pending Request</a>
+                          </li>
+                          <li class="menu-item">
+                              <a href="#" class="menu-link">In Progress</a>
+                          </li>
+
+                          <li class="menu-item">
+                              <a href="#" class="menu-link">Progress Done</a>
+                          </li>
+
+                      </ul><!-- /child menu -->
+                  </li><!-- /.menu-item -->
 
 
                 <!-- .menu-item -->

@@ -9,6 +9,7 @@ use App\Http\Controllers\hr\EmployeeClr;
 use App\Http\Controllers\assets\AssetGroupController;
 use App\Http\Controllers\assets\AssetConfigController;
 use App\Http\Controllers\assets\AssetRegisterController;
+use App\Http\Controllers\reports\MaintenanceReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\maintenance\ServiceRequestController;
 use App\Http\Controllers\branding\BrandingMaterialController;
@@ -227,6 +228,11 @@ Route::get('/getDashServiceInProgressData',[DashboardController::class,'getDashS
 Route::get('/getDashServiceDoneData',[DashboardController::class,'getDashServiceDoneData'])->name('getDashServiceDoneData');
 Route::get('/getDashServiceDamageData',[DashboardController::class,'getDashServiceDamageData'])->name('getDashServiceDamageData');
 Route::get('/getAllBusinessUnit',[DashboardController::class,'getAllBusinessUnit'])->name('getAllBusinessUnit');
+
+
+// Reports Rout
+Route::get('/assetRegister',[MaintenanceReportController::class,'index'])->name('assetConfigUi');
+//Route::get('/getAllBusinessUnit',[DashboardController::class,'getAllBusinessUnit'])->name('getAllBusinessUnit');
 
 
 
